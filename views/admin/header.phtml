@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AdminKionux - Área Administrativa</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?= PATH ?>assets/admin/images/favicon.ico">
+
+    <!-- Bootstrap CSS -->
+    <link href="<?= PATH ?>assets/admin/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <!-- Font Awesome CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="<?= PATH ?>assets/admin/css/style.css" rel="stylesheet" type="text/css" />
+
+    <!-- BEGIN CSS for this page -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+    <style>
+        .parsley-error {
+            border-color: #ff5d48 !important;
+        }
+
+        .parsley-errors-list.filled {
+            display: block;
+        }
+
+        .parsley-errors-list {
+            display: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .parsley-errors-list>li {
+            font-size: 12px;
+            list-style: none;
+            color: #ff5d48;
+            margin-top: 5px;
+        }
+    </style>
+    <!-- END CSS for this page -->
+
+</head>
+
+<body class="adminbody">
+
+    <div id="main">
+
+        <!-- top bar navigation -->
+        <div class="headerbar">
+
+            <!-- LOGO -->
+            <div class="headerbar-left">
+                <a href="<?= PATH ?>/admin" class="logo"><img alt="Logo" src="<?= PATH ?>assets/site/img/icon-ecardapio-white.png" /></a>
+            </div>
+
+            <nav class="navbar-custom">
+                <ul class="list-inline float-right mb-0">
+                    <li class="list-inline-item dropdown notif">
+                        <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" alt="Profile image" class="avatar-rounded">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="text-overflow"><small>Olá, <?= getUsername() ?></small> </h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="<?= PATH ?>/admin/users/profile" class="dropdown-item notify-item">
+                                <i class="fa fa-user"></i> <span>Perfil</span>
+                            </a>
+
+
+                            <!-- item-->
+                            <a href="<?= PATH ?>/admin/logout" class="dropdown-item notify-item">
+                                <i class="fa fa-power-off"></i> <span>Logout</span>
+                            </a>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div>
+        <!-- End Navigation -->
+
+
+        <!-- Left Sidebar -->
+        <div class="left main-sidebar">
+            <div class="sidebar-inner leftscroll">
+                <div id="sidebar-menu">
+                    <ul>
+
+                        <li class="submenu">
+                            <a class="<?= ($page === 'users/users') ? 'active' : '' ?>" href="<?= PATH ?>admin/users"><i class="fa fa-fw fa-users"></i><span> Usuários </span> </a>
+                        </li>
+
+                    </ul>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- End Sidebar -->

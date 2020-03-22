@@ -1,0 +1,87 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form role="form" action="<?= PATH ?>/admin/users/create" method="post" data-parsley-validate novalidate>
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal_add_user">Adicionar novo usuario</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label  for="desperson">Nome*</label>
+                            <input  type="text"
+                                    id="desperson"
+                                    name="desperson"
+                                    class="form-control"
+                                    parsley-trigger="change"
+                                    required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-12">
+                        <div class="form-group">
+                            <label  for="desemail">E-mail*</label>
+                            <input  type="email" 
+                                    id="desemail" 
+                                    name="desemail" 
+                                    class="form-control" 
+                                    data-parsley-type="email" 
+                                    required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label  for="deslogin">Login*</label>
+                            <input  type="login" 
+                                    id="deslogin" 
+                                    name="deslogin" 
+                                    class="form-control"
+                                    required />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label  for="despassword">Senha*</label>
+                            <input  type="password" 
+                                    id="despassword"
+                                    class="form-control" 
+                                    name="despassword"
+                                    data-parsley-length="[6, 10]" 
+                                    parsley-trigger="change"
+                                    required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Perfil</label>
+                            <select name="inadmin" class="form-control">
+                                <option value="1">Administrador</option>
+                                <option value="0">Vendedor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Ativo</label>
+                            <select name="active" class="form-control">
+                                <option value="1">SIM</option>
+                                <option value="0">NÃO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
