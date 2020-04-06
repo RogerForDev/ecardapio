@@ -2,9 +2,9 @@
 
 namespace App\Controllers\Site;
 
-use App\Helper;
+use App\Controllers\Controller;
 
-final class HomeAction extends Helper{
+final class HomeAction extends Controller{
     
     public function index($request, $response)
     {      

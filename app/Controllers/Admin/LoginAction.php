@@ -2,10 +2,10 @@
 
 namespace App\Controllers\Admin;
 
-use App\Helper as Action;
-use App\Model\User;
+use App\Controllers\Controller;
+use App\models\admin\User;
 
-final class LoginAction extends Action{
+final class LoginAction extends Controller{
         
     public function index($request, $response)
     {
@@ -57,25 +57,23 @@ final class LoginAction extends Action{
 
     public function login($login, $password)
     {
-        $results = $this->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.deslogin = :LOGIN", [":LOGIN"=>$login]);
+        $user = new User;
 
-        if(count($results) === 0)
+        $data = $user->select()->find('login', $login)->first();
+
+        if(count($data) === 0)
         {
             throw new \Exception("Usuário inexistente ou senha inválida.1");
         }
-        $data = $results[0];
 
-        if(password_verify($password, $data["despassword"]) === true)
+        if(password_verify($password, $data["senha"]) === true)
         {
 
-            $data['desperson'] = utf8_encode($data['desperson']);
+            $data['nome'] = utf8_encode($data['nome']);
 
             $user = new User();
 
-            $user->setData($data);
-
-            
-            $_SESSION[User::SESSION] = $user->getValues();
+            $_SESSION[User::SESSION] = $data;
 
             return $user;
 

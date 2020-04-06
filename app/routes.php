@@ -10,12 +10,12 @@ $app->group('/admin', function(){
     $this->get('', 'App\Controllers\Admin\HomeAction:index');
     
     //USER
-    $this->get('/users', 'App\Controllers\Admin\UserAction:index');
-    $this->get('/users/profile', 'App\Controllers\Admin\UserAction:profile');
-    $this->post('/users/create', 'App\Controllers\Admin\UserAction:create');
-    $this->post('/users/{id}', 'App\Controllers\Admin\UserAction:update');
-    $this->get('/users/{id}/delete', 'App\Controllers\Admin\UserAction:delete');
-    $this->post('/users/{id}/password', 'App\Controllers\Admin\UserAction:updatePassword');
+    $this->get('/users', 'App\Controllers\Admin\UserController:index');
+    $this->get('/users/profile', 'App\Controllers\Admin\UserController:profile');
+    $this->post('/users/create', 'App\Controllers\Admin\UserController:create');
+    $this->post('/users/{id}', 'App\Controllers\Admin\UserController:update');
+    $this->get('/users/{id}/delete', 'App\Controllers\Admin\UserController:delete');
+    $this->post('/users/{id}/password', 'App\Controllers\Admin\UserController:updatePassword');
     
 })->add(App\Middleware\Admin\AuthMiddleware::class);
 

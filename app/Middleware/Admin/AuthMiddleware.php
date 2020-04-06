@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Middleware\Admin;
-use App\Model\User;
+
+use App\models\admin\User;
 
 class AuthMiddleware{
     

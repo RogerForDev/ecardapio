@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Model;
+namespace App\models\admin;
 
-use App\Model;
+use App\models\Model;
 
-class User extends Model{
-
-    const SESSION = "User";
+class User extends Model {
+	protected $table = 'tb_usuario';
+	const SESSION = "User";
     const ERROR = 'UserError';
     const SUCCESS = 'UserSuccess';
     const ERROR_REGISTER = 'ErrorRegister';
@@ -14,7 +14,7 @@ class User extends Model{
 
     public static function getFromSession()
     {
-        if(isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['iduser'] > 0){
+        if(isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['id_usuario'] > 0){
           $user =  $_SESSION[User::SESSION];
         }
         return $user;
@@ -49,81 +49,6 @@ class User extends Model{
         ]);
     }
 
-    /*   
-    public static function getForgot($email, $inadmin = true){
-        $results = $this->db->select("
-            SELECT * FROM tb_persons a INNER JOIN tb_users b USING(idperson) WHERE a.desemail = :email;
-        ", array(":email"=>$email));
-
-        if(count($results) === 0)
-        {
-            throw new \Exception("Não foi possível recuperar a senha.");
-        }else{
-
-            $data = $results[0];
-
-            $results2 = $this->db->select("CALL sp_userspasswordsrecoveries_create(:iduser, :desip)", array(
-                ":iduser"=>$data["iduser"],
-                ":desip"=>$_SERVER["REMOTE_ADDR"]
-            ));
-
-            if(count($results2) === 0)
-            {
-                throw new \Exception("Não foi possível recuperar a senha");
-            }
-            else{
-                $dataRecovery = $results2[0];
-
-                base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, User::SECRET, $dataRecovery["idrecovery"], MCRYPT_MODE_ECB));
-
-                if ($inadmin === true) {
-                    $link = PATH."/admin/forgot/reset?code=$code";
-                } else {
-                    $link = PATH."/forgot/reset?code=$code";
-                }
-                $mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinição de senha", "forgot", array(
-                    "name"=>$data["desperson"],
-                    "link"=>$link
-                ));
-
-                $mailer->send();
-                
-                return $data;
-            }
-        }
-
-
-    } 
-    */
-
-    /* 
-    public static function setForgotUsed($idrecovery)
-    {
-        $this->db->query("UPDATE tb_userspasswordsrecoveries SET dtrecovery = NOW() WHERE idrecovery = :idrecovery", array(
-                ":idrecovery"=>$idrecovery
-            ));
-    }
-    */
-
-    /* 
-    public static function validForgotDecrypt($code)
-    {
-        $idrecovery = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, User::SECRET, base64_decode($code), MCRYPT_MODE_ECB);
-        
-        $results = $this->db->select("
-        SELECT * FROM tb_userspasswordsrecoveries a
-        INNER JOIN tb_users b USING(iduser)
-        INNER JOIN tb_persons c USING(idperson)
-        WHERE a.idrecovery = :idrecovery AND DATE_ADD(a.dtregister, INTERVAL 1 HOUR) >= NOW();
-        ", array(":idrecovery"=>$idrecovery));
-
-        if(count($results) === 0){
-            throw new \Exception("Não foi possível recuperar a senha.");
-        }else{
-            return $results[0];
-        }
-    }
-    */
     public function setPassword($password){
        $results = $this->db->query("UPDATE tb_users SET despassword = :password WHERE iduser = :iduser", [
             ":password"=>$password,
@@ -140,53 +65,6 @@ class User extends Model{
             }
             exit;
         }       
-    }
-
-    public function get($iduser){
-        $results = $this->db->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = :iduser", array(
-            ":iduser"=>$iduser
-        ));
-
-        $data = $results[0];
-
-        $data['desperson'] = utf8_encode($data['desperson']);
-
-        $this->setData($data);
-
-    }
-
-    public static function listAll(){
-        return $this->db->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) ORDER BY b.desperson");
-    }
-
-    public function save(){
-        $results = $this->db->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
-            ":desperson"=>utf8_decode($this->getdesperson()),
-            ":deslogin"=>$this->getdeslogin(),
-            ":despassword"=>User::getPasswordHash($this->getdespassword()),
-            ":desemail"=>$this->getdesemail(),
-            ":nrphone"=>$this->getnrphone(),
-            ":inadmin"=>$this->getinadmin()
-        ));
-        return $results[0];
-    }
-
-    public function update(){
-        $results = $this->db->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :desemail, :nrphone, :inadmin, :active, :idprofile)", [
-            ":iduser"=>$this->getiduser(),
-            ":desperson"=>utf8_decode($this->getdesperson()),
-            ":deslogin"=>$this->getdeslogin(),
-            ":desemail"=>$this->getdesemail(),
-            ":nrphone"=>$this->getnrphone(),
-            ":inadmin"=>$this->getinadmin(),
-            ":active"=>$this->getactive(),
-            ":idprofile"=>$this->getidprofile()
-        ]);
-        return $results[0];
-    }
-
-    public function delete(){
-       $this->db->query("CALL sp_users_delete(:iduser)", array(":iduser"=>$this->getiduser()));
     }
 
     public function logout(){
@@ -227,7 +105,7 @@ class User extends Model{
         $_SESSION[User::SUCCESS] = null;
     }
 
-    public static function getPasswordHash($password){
+    public function getPasswordHash($password){
         return password_hash($password, PASSWORD_DEFAULT, [
             'cost'=>12
         ]);
@@ -298,7 +176,4 @@ class User extends Model{
             "pages"=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
         ];
     }
-
 }
-
-?>
