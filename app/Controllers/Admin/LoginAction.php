@@ -28,9 +28,6 @@ final class LoginAction extends Controller{
         $login = strip_tags(filter_var($data['login'], FILTER_SANITIZE_STRING));
         $password = strip_tags(filter_var($data['password'], FILTER_SANITIZE_STRING));
 
-        // print_r(User::getPasswordHash("teste123"));
-        // exit;
-
         try {
             $this->login($login, $password);
         }catch(\Exception $e){
@@ -59,7 +56,7 @@ final class LoginAction extends Controller{
     {
         $user = new User;
 
-        $data = $user->select()->find('login', $login)->first();
+        $data = $user->select()->findBy('login', $login);
 
         if(count($data) === 0)
         {
@@ -68,15 +65,7 @@ final class LoginAction extends Controller{
 
         if(password_verify($password, $data["senha"]) === true)
         {
-
-            $data['nome'] = utf8_encode($data['nome']);
-
-            $user = new User();
-
             $_SESSION[User::SESSION] = $data;
-
-            return $user;
-
         } else {
             throw new \Exception("Usuário inexistente ou senha inválida.2");
         }

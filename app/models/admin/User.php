@@ -42,20 +42,6 @@ class User extends Model {
         }
     }
 
-    public function getUsuarioComCodigo($iduser)
-    {
-        return $this->db->select("SELECT u.*,p.desprofile AS perfil FROM tb_users AS u INNER JOIN tb_profiles AS p ON(p.idprofile = u.idprofile) WHERE u.iduser = :iduser", [
-            ':iduser'=>$iduser
-        ]);
-    }
-
-    public function setPassword($password){
-       $results = $this->db->query("UPDATE tb_users SET despassword = :password WHERE iduser = :iduser", [
-            ":password"=>$password,
-            ":iduser"=>$this->getiduser()
-        ]);       
-    }
-
     public static function verifyLogin($inadmin = true){
         if (!User::checkLogin($inadmin)) {
             if ($inadmin) {
@@ -129,51 +115,10 @@ class User extends Model {
     }
 
     public function checkLoginExist($login){
-        $results = $this->db->select("SELECT * FROM tb_users WHERE deslogin = :deslogin", [
+        $results = $this->db->select("SELECT * FROM tb_usuario WHERE login = :deslogin", [
             'deslogin'=>$login
         ]);
 
         return (count($results) > 0);
-    }
-
-    public static function getPage($page = 1, $itensPerPage = 10){
-        $start = ($page - 1) * $itensPerPage;
-
-        $results = $this->db->select("SELECT SQL_CALC_FOUND_ROWS *
-                        FROM tb_users a 
-                        INNER JOIN tb_persons b USING(idperson) 
-                        ORDER BY b.desperson
-                        LIMIT $start, $itensPerPage;           
-        ");
-
-        $resultTotal = $this->db->select("SELECT FOUND_ROWS() AS nrtotal;");
-
-        return [
-            "data"=>$results,
-            "total"=>(int)$resultTotal[0]["nrtotal"],
-            "pages"=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
-        ];
-    }
-
-    public static function getPageSearch($search, $page = 1, $itensPerPage = 10){
-        $start = ($page - 1) * $itensPerPage;
-
-        $results = $this->db->select("SELECT SQL_CALC_FOUND_ROWS *
-                        FROM tb_users a 
-                        INNER JOIN tb_persons b USING(idperson) 
-                        WHERE b.desperson LIKE :search OR b.desemail = :search OR a.deslogin LIKE :search
-                        ORDER BY b.desperson
-                        LIMIT $start, $itensPerPage;           
-        ", [
-            ':search'=>'%'.$search.'%'
-        ]);
-
-        $resultTotal = $this->db->select("SELECT FOUND_ROWS() AS nrtotal;");
-
-        return [
-            "data"=>$results,
-            "total"=>(int)$resultTotal[0]["nrtotal"],
-            "pages"=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
-        ];
     }
 }
