@@ -20,8 +20,7 @@ trait Update{
 
         $sql.= " where {$this->field} = :{$this->field}";
 
-
-        $attributes['id'] = $this->value;
+        $attributes[$this->id] = $this->value;
 
         $update = $this->connect->prepare($sql);
 

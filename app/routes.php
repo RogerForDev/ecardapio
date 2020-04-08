@@ -11,11 +11,16 @@ $app->group('/admin', function(){
     
     //USER
     $this->get('/users', 'App\Controllers\Admin\UserController:index');
-    $this->get('/users/profile', 'App\Controllers\Admin\UserController:profile');
     $this->post('/users/create', 'App\Controllers\Admin\UserController:create');
     $this->post('/users/{id}', 'App\Controllers\Admin\UserController:update');
     $this->get('/users/{id}/delete', 'App\Controllers\Admin\UserController:delete');
     $this->post('/users/{id}/password', 'App\Controllers\Admin\UserController:updatePassword');
+    
+    //CATEGORIA
+    $this->get('/categorias', 'App\Controllers\Admin\CategoriaController:index');
+    $this->post('/categorias/create', 'App\Controllers\Admin\CategoriaController:create');
+    $this->post('/categorias/{id}', 'App\Controllers\Admin\CategoriaController:update');
+    $this->get('/categorias/{id}/delete', 'App\Controllers\Admin\CategoriaController:delete');
     
 })->add(App\Middleware\Admin\AuthMiddleware::class);
 
