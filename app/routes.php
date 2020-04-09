@@ -26,7 +26,7 @@ $app->group('/admin', function(){
 
 // SITE
 $app->get('/', 'App\Controllers\Site\HomeAction:index');
-$app->post('/cadastrar', 'App\Controllers\Site\HomeAction:cadastrar');
+$app->post('/cadastrar', 'App\Controllers\Site\HomeController:cadastrar');
 // $app->get('/editor', 'App\Controllers\Site\HomeAction:editor');
 $app->get('/login', 'App\Controllers\Site\LoginAction:index');
 $app->post('/login', 'App\Controllers\Site\LoginAction:login');

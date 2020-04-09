@@ -19,24 +19,5 @@ final class HomeAction extends Controller{
      //   $vars = array_merge($vars, $template);
         return $this->view->render($response, 'site/index.phtml', $vars);
     }    
-    public function cadastrar($request, $response)
-    {      
-        $data = $request->getParsedBody();
-
-        $user = new User();
-
-        try{
-
-            $user->create($data);
-
-        }catch(\Exception $e){
-            User::setError($e->getMessage());		
-        }
-
-        $vars = [			
-            'page'       => 'cadastro-cardapio'
-        ];
-        return $this->view->render($response, 'site/index.phtml', $vars);
-    }     
 }
 
