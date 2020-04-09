@@ -7,14 +7,16 @@ use App\models\site\Post;
 use App\models\admin\User;
 use App\src\Validate;
 
-class HomeController extends Controller {
+class HomeController extends Controller
+{
 
-	public function index($request, $response) {
+	public function index($request, $response)
+	{
 
 		$post = new Post;
 		$posts = $post->posts();
 
-		
+
 
 		$vars = [
 			'page' => 'home',
@@ -23,37 +25,33 @@ class HomeController extends Controller {
 			'links' => $post->links()
 		];
 
-		return $this->view->render($response,'site/index.phtml', $vars);
+		return $this->view->render($response, 'site/index.phtml', $vars);
 	}
 
-	public function cadastrar($request, $response){
+	public function cadastrar($request, $response)
+	{
 		$validate = new Validate;
 
-        $data = (array) $validate->validate([
-            'nome' => 'required:min@3',
-            'senha'=> 'required',
-            'login' => 'required'
-        ]);
-        
-        if($validate->hasErrors()) {
-            return back();
-        }
-        $user = new User;
-        
-        $data['senha'] = $user->getPasswordHash($data['senha']);
+		$data = (array) $validate->validate([
+			'nome' => 'required:min@3',
+			'senha' => 'required',
+			'login' => 'required:unique@user'
+		]);
 
-        try{
+		if ($validate->hasErrors()) {
+			flash('message', error('Erro ao cadastrar, tente novamente'));
+			redirect(PATH);
+		}
+		$user = new User;
 
-			$user->create($data);
-			
-			$vars = [			
-				'page'       => 'cadastro-cardapio'
-			];
-			return $this->view->render($response, 'site/index.phtml', $vars);
+		$data['senha'] = $user->getPasswordHash($data['senha']);
+		$created = $user->create($data);
 
-        }catch(\Exception $e){
-            User::setError($e->getMessage());		
-        }  
+		if($created){
+			return $this->view->render($response, 'site/index.phtml', ['page' => 'cadastro-cardapio']);
+		}else{
+			flash('message', error('Erro ao cadastrar, tente novamente'));
+			redirect(PATH);
+		}
 	}
-
 }
