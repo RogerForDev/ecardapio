@@ -8,7 +8,7 @@ $config['addContentLengthHeader'] = false;
 
 $config['db']['host']   = "localhost";
 $config['db']['user']   = "root";
-$config['db']['pass']   = "bancodedados";
+$config['db']['pass']   = "";
 $config['db']['dbname'] = "ecardapio";
 
 define('PATH', "http://localhost/ecardapio/");

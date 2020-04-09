@@ -6,18 +6,19 @@
           <p class="mb-5 text-center">eCardapio - Cardápio digital</p>
         </div>
         <div class="col-lg-5 p-3 bg-form">
-          <form class="section-light pt-4 pb-2 px-4" method="post">
+          <form action="<?=PATH?>cadastrar" class="section-light pt-4 pb-2 px-4" method="post" data-parsley-validate novalidate>
             <h4 class="mb-3 text-center">Crie o seu agora mesmo</h4>
             <div class="form-group">
               <label>Nome</label>
-              <input class="form-control" placeholder="Digite seu nome"> </div>
+              <input required parsley-trigger="change" name="nome" class="form-control" placeholder="Digite seu nome"> </div>
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" class="form-control" placeholder="Digite seu e-mail"> </div>
+              <label>Login</label>
+              <input required parsley-trigger="change" name="login" type="text" class="form-control" placeholder="Digite seu login"> </div>
             <div class="form-group">
               <label>Senha</label>
-              <input type="password" class="form-control" placeholder="Digite uma senha"> </div>
-            <a class="btn mt-4 btn-block p-2 btn-secondary font-20" href="<?= PATH ?>cadastrar"> Criar cardápio </a><button type="submit" class="btn btn-block p-2 font-20 btn-link text-white">
+              <input required parsley-trigger="change" name="senha" type="password" class="form-control" placeholder="Digite uma senha"> </div>
+            <button type="submit" class="btn mt-4 btn-block p-2 btn-secondary font-20"> Criar cardápio </button>
+            <button type="submit" class="btn btn-block p-2 font-20 btn-link text-white">
               <b>Já possuo conta</b>
             </button>
           </form>

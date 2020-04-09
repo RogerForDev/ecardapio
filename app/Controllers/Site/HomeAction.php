@@ -20,14 +20,15 @@ final class HomeAction extends Controller{
     }    
     public function cadastrar($request, $response)
     {      
-       // $template = $this->getTemplate();
-       
+        $data = $request->getParsedBody();
+        
+        $nome = strip_tags(filter_var($data['nome'], FILTER_SANITIZE_STRING));
+        $login = strip_tags(filter_var($data['login'], FILTER_SANITIZE_STRING));
+        $senha = strip_tags(filter_var($data['senha'], FILTER_SANITIZE_STRING));
+
         $vars = [			
-      //      'title'      => 'Home - '.$template['nome'],
             'page'       => 'cadastrar'
         ];
-
-     //   $vars = array_merge($vars, $template);
         return $this->view->render($response, 'site/index.phtml', $vars);
     }     
 }
