@@ -18,21 +18,15 @@
           <!--form cadastro-->
           <form id="form-cadastro" action="<?=PATH?>cadastrar" class="section-light pt-4 pb-2 px-4" method="post" data-parsley-validate novalidate>
             <h4 class="mb-3 text-center">Crie o seu agora mesmo</h4>
-
-            <!-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div> -->
-
+            <?= message('message') ?>
             <div class="form-group">
               <label>Nome</label>
               <input required parsley-trigger="change" name="nome" class="form-control" placeholder="Digite seu nome"> </div>
             <div class="form-group">
               <label>Login</label>
               <input required parsley-trigger="change" name="login" type="text" class="form-control" placeholder="Digite seu login"> </div>
-            <div class="form-group">
+              <?= message('login') ?>
+              <div class="form-group">
               <label>Senha</label>
               <input required parsley-trigger="change" name="senha" type="password" class="form-control" placeholder="Digite uma senha"> </div>
             <button type="submit" class="btn mt-4 btn-block p-2 btn-secondary font-20"> Criar cardápio </button>
@@ -44,6 +38,7 @@
           <!--form login-->
           <form id="form-login" style="display: none;" action="<?=PATH?>logar" class="section-light pt-4 pb-2 px-4" method="post" data-parsley-validate novalidate>
             <h4 class="mb-3 text-center">Login</h4>
+            <?= message('message') ?>
             <div class="form-group">
               <label>Login</label>
               <input required parsley-trigger="change" name="login" type="text" class="form-control" placeholder="Digite seu login"> </div>

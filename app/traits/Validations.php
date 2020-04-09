@@ -32,7 +32,7 @@ trait Validations {
 		$find = $model->select()->where($field, $_POST[$field])->first();
 
 		if ($find and !empty($_POST[$field])) {
-			$this->errors[$field][] = flash($field, error('Esse valor ja esta cadastrado no banco de dados'));
+			$this->errors[$field][] = flash($field, error("Esse {$field} ja esta cadastrado no banco de dados"));
 		}
 	}
 
