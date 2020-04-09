@@ -70,7 +70,7 @@ class HomeController extends Controller
 
         if(password_verify($password, $data["senha"]) === true)
         {
-			$_SESSION[User::SESSION] = $data;
+			$_SESSION['User'] = $data;
 			return 1;
         } else {
             return 0;
@@ -87,7 +87,7 @@ class HomeController extends Controller
 			'login' => 'required:unique@user'
 		]);
 
-		dd($validate);exit;
+		dd($validate->hasErrors());exit;
 
 		if ($validate->hasErrors()) {
 			flash('message', error('Erro ao cadastrar, tente novamente'));
