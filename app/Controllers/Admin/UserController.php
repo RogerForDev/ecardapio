@@ -27,7 +27,7 @@ class UserController extends Controller
         $data = (array) $validate->validate([
             'nome' => 'required:min@3',
             'senha'=> 'required',
-            'email' => 'required:email'
+            'login' => 'required'
         ]);
         
         if($validate->hasErrors()) {
@@ -41,7 +41,7 @@ class UserController extends Controller
 
         if($user){
             flash('message', success('Cadastrado com sucesso!'));
-            return back();
+            // return back();
         }
         
 		flash('message', error('Erro ao cadastrar, tente novamente'));
