@@ -63,7 +63,7 @@ final class LoginAction extends Controller{
             throw new \Exception("Usuário inexistente ou senha inválida.1");
         }
 
-        if(password_verify($password, $data["senha"]) === false)
+        if(password_verify($password, $data["senha"]) === true)
         {
             $_SESSION[User::SESSION] = $data;
         } else {
