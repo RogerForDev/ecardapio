@@ -6,7 +6,8 @@
           <p class="mb-5 text-center">eCardapio - Cardápio digital</p>
         </div>
         <div class="col-lg-5 p-3 bg-form">
-          <form action="<?=PATH?>cadastrar" class="section-light pt-4 pb-2 px-4" method="post" data-parsley-validate novalidate>
+          <!--form cadastro-->
+          <form id="form-cadastro" action="<?=PATH?>cadastrar" class="section-light pt-4 pb-2 px-4" method="post" data-parsley-validate novalidate>
             <h4 class="mb-3 text-center">Crie o seu agora mesmo</h4>
             <div class="form-group">
               <label>Nome</label>
@@ -18,8 +19,23 @@
               <label>Senha</label>
               <input required parsley-trigger="change" name="senha" type="password" class="form-control" placeholder="Digite uma senha"> </div>
             <button type="submit" class="btn mt-4 btn-block p-2 btn-secondary font-20"> Criar cardápio </button>
-            <button type="submit" class="btn btn-block p-2 font-20 btn-link text-white">
+            <button id="botao-login" type="button" class="btn btn-block p-2 font-20 btn-link text-white">
               <b>Já possuo conta</b>
+            </button>
+          </form>
+
+          <!--form login-->
+          <form id="form-login" style="display: none;" action="<?=PATH?>logar" class="section-light pt-4 pb-2 px-4" method="post" data-parsley-validate novalidate>
+            <h4 class="mb-3 text-center">Login</h4>
+            <div class="form-group">
+              <label>Login</label>
+              <input required parsley-trigger="change" name="login" class="form-control" placeholder="Digite seu login"> </div>
+            <div class="form-group">
+              <label>Senha</label>
+              <input required parsley-trigger="change" name="senha" type="password" class="form-control" placeholder="Digite sua senha"> </div>
+            <button type="submit" class="btn mt-4 btn-block p-2 btn-secondary font-20"> Entrar </button>
+            <button id="botao-cadastro" type="button" class="btn btn-block p-2 font-20 btn-link text-white">
+              <b>Não possuo conta</b>
             </button>
           </form>
         </div>
@@ -262,3 +278,17 @@
       </div>
     </div>
   </div>
+
+  <script>
+    $("#botao-login").on("click", function(){
+      $("#form-cadastro").slideUp("2000", function(){
+        $("#form-login").slideDown();
+      });
+    });
+
+    $("#botao-cadastro").on("click", function(){
+      $("#form-login").slideUp("2000", function(){
+        $("#form-cadastro").slideDown();
+      });
+    });
+  </script>
