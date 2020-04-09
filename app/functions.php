@@ -52,7 +52,6 @@ function redirect($target) {
 
 function back() {
 	Redirect::back();
-
 	die();
 }
 

@@ -5,12 +5,14 @@ namespace App\models\admin;
 use App\models\Model;
 
 class User extends Model {
-	protected $table = 'tb_usuario';
+
+    protected $table = 'tb_usuario';
+    protected $id = 'id_usuario';
+    
 	const SESSION = "User";
     const ERROR = 'UserError';
     const SUCCESS = 'UserSuccess';
     const ERROR_REGISTER = 'ErrorRegister';
-    const SECRET = "K10nUX_Halifax_S3cr3t";
 
     public static function getFromSession()
     {

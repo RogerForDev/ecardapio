@@ -248,7 +248,7 @@ a {
   z-index: 999; }
 
 .headerbar .headerbar-left {
-    background: #4980b5;
+    background: #F55e61;
     float: left;
     text-align: center;
     height: 50px;
@@ -264,7 +264,7 @@ a {
 }
 	  
 .navbar-custom {
-  background-color: #4980b5 ;
+  background-color: #F55e61 ;
   border-radius: 0;
   margin-bottom: 0;
   padding: 0 10px;
@@ -408,7 +408,7 @@ body.adminbody .main-sidebar.left {
   #sidebar-menu .subdrop {
     color: #fff !important; 
 	background-color: #414d58; 
-	border-left: 2px solid #608ab3; }
+	border-left: 2px solid rgb(165, 58, 60); }
 	
   #sidebar-menu .submenu ul .submenu .menu-arrow {
     top: 10px !important; }
@@ -425,7 +425,7 @@ body.adminbody .main-sidebar.left {
     color: #FFF;
 	background-color: #414d58;
     text-decoration: none; 
-	border-left: 2px solid #608ab3; }
+	border-left: 2px solid #F55e61; }
 
 #sidebar-menu > ul > li > a > span {
   vertical-align: middle; }
@@ -446,7 +446,7 @@ body.adminbody .main-sidebar.left {
 
 #sidebar-menu > ul > li > a.active {
   color: #ffffff !important;
-  background-color: #6194c1; }
+  background-color: #F55e61; }
 
 .menu-title {
   padding: 12px 20px !important;
@@ -1174,7 +1174,7 @@ a.btn:focus {
 .custom-modal .modal-header {    
     padding: 10px !important;
     border-radius: 0;
-    background-color: #5ba2e6;
+    background-color: #F55e61;
 	color: #fff;
 }
 
