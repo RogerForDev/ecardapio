@@ -87,8 +87,6 @@ class HomeController extends Controller
 			'login' => 'required:unique@user'
 		]);
 
-		dd($validate->hasErrors());exit;
-
 		if ($validate->hasErrors()) {
 			flash('message', error('Erro ao cadastrar, tente novamente'));
 			redirect(PATH);
