@@ -1,0 +1,125 @@
+<style>
+    .edit {
+        display: none;
+    }
+
+    .card-title:hover {
+        cursor: pointer;
+    }
+
+    .card-title:hover .edit {
+        display: inline-block;
+        color:royalblue;
+    }
+</style>
+<div class="content-page">
+
+    <!-- Start content -->
+    <div class="content" style="background: url(<?= PATH . "/assets/admin/images/pattern.png" ?>);height: 650px;background-repeat: repeat-y;background-size:cover;">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb-holder">
+                        <h1 class="main-title float-left">Cardapio</h1>
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-produto">Home</li>/
+                            <li class="breadcrumb-produto active">Produtos</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <?= message('message') ?>
+
+            <div class="row">
+                <?php foreach ($data as $key => $value) : ?>
+                    <div class="col-xl-3 pb-3">
+                        <div class="card shadow text-left">
+                            <img class="card-img-top" src="holder.js/100px180/" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><?= $value['nome'] ?>
+                                    <span class="edit" title="Editar nome" data-toggle="tooltip" data-placement="top"><i class="fa fa-pencil"></i></span>
+                                </h5>
+                                <p class="card-text text-center" style="min-height:63px" contenteditable="false"><?= $value['descricao'] ?></p>
+                                <h6 class="text-center" contenteditable="false">R$<?= $value['preco'] ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <div class="col-xl-3 pb-3">
+                    <div class="card text-left">                        
+                        <div class="card-body py-4">
+                        <a href="" data-toggle="modal" data-target="#modelId">
+                            <h3 class="card-title text-center text-dark">
+                                <i class="fa fa-plus fa-2x"></i><br>
+                                Adicionar produto
+                            </h3>                            
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                    <h5 class="modal-title">Novo produto</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <form action="">
+                                    <div class="form-group">
+                                        <select class="custom-select" name="" id="">
+                                            <option selected>Selecione a categoria</option>
+                                            <?php foreach($categorias as $key => $value): ?>
+                                                <option value="<?= $value['id_categoria'] ?>"><?= $value['nome'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="">Nome</label>
+                                      <input type="text" class="form-control" name="" id="" placeholder="">
+                                    </div>                                   
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                $('#exampleModal').on('show.bs.modal', event => {
+                    var button = $(event.relatedTarget);
+                    var modal = $(this);
+                    // Use above variables to manipulate the DOM
+                    
+                });
+            </script>
+
+
+            <!-- end row -->
+
+        </div>
+        <!-- END container-fluid -->
+
+    </div>
+    <!-- END content -->
+
+</div>
+<!-- END content-page -->
+<script>
+    $('h4.title-prod').on('mouseover', function() {
+        $('.title-prod > span').show();
+    });
+</script>

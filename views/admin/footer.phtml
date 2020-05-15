@@ -25,6 +25,8 @@
 <script src="<?= PATH ?>assets/admin/js/jquery.scrollTo.min.js"></script>
 <script src="<?= PATH ?>assets/admin/plugins/parsleyjs/parsley.min.js"></script>
 <script src="<?= PATH ?>assets/admin/plugins/parsleyjs/pt-br.js"></script>
+<script src="<?= PATH ?>assets/admin/plugins/jQuery.filer/jquery.filer.min.js"></script>
+<script src="<?= PATH ?>assets/admin/plugins/jQuery.filer/custom.js"></script>
 <!-- App js -->
 <script src="<?= PATH ?>assets/admin/js/pikeadmin.js"></script>
 
@@ -33,8 +35,9 @@
 	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function() {			
 			'use-strict';	
+			$('[data-toggle="tooltip"]').tooltip()
 			// data-tables
 			$('#datatable').DataTable({
 				"language":{

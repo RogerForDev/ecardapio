@@ -21,6 +21,12 @@ $app->group('/admin', function(){
     $this->post('/categorias/create', 'App\Controllers\Admin\CategoriaController:create');
     $this->post('/categorias/{id}', 'App\Controllers\Admin\CategoriaController:update');
     $this->get('/categorias/{id}/delete', 'App\Controllers\Admin\CategoriaController:delete');
+
+    //PRODUTO
+    $this->get('/produtos', 'App\Controllers\Admin\ProdutoController:index');
+    $this->post('/produtos/create', 'App\Controllers\Admin\ProdutoController:create');
+    $this->post('/produtos/{id}', 'App\Controllers\Admin\ProdutoController:update');
+    $this->get('/produtos/{id}/delete', 'App\Controllers\Admin\ProdutoController:delete');
     
 })->add(App\Middleware\Admin\AuthMiddleware::class);
 

@@ -39,7 +39,7 @@ final class LoginAction extends Controller{
     {
         unset($_SESSION[User::SESSION]);
         session_destroy();
-        return $response->withRedirect(PATH . '/admin/login');
+        return $response->withRedirect(PATH);
     }
 
     public function forgot($request, $response)

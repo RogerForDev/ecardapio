@@ -6,17 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AdminKionux - Área Administrativa</title>
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= PATH ?>assets/admin/images/favicon.ico">
 
     <!-- Bootstrap CSS -->
-    <link href="<?= PATH ?>assets/admin/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="<?= PATH ?>assets/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Font Awesome CSS -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Custom CSS -->
     <link href="<?= PATH ?>assets/admin/css/style.css" rel="stylesheet" type="text/css" />
+    
+    <!-- JQuery.filer -->
+    <link href="<?= PATH ?>assets/admin/plugins/jQuery.filer/jquery.filer.css" rel="stylesheet" type="text/css" />
+    <link href="<?= PATH ?>assets/admin/plugins/jQuery.filer/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet" type="text/css" />
 
     <!-- BEGIN CSS for this page -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
@@ -55,7 +60,7 @@
 
             <!-- LOGO -->
             <div class="headerbar-left">
-                <a href="<?= PATH ?>/admin" class="logo"><img alt="Logo" src="<?= PATH ?>assets/site/img/icon-ecardapio-white.png" /></a>
+                <a href="<?= PATH ?>admin" class="logo"><img alt="Logo" src="<?= PATH ?>assets/site/img/icon-ecardapio-white.png" /></a>
             </div>
 
             <nav class="navbar-custom">
@@ -71,13 +76,13 @@
                             </div>
 
                             <!-- item-->
-                            <a href="<?= PATH ?>/admin/users/profile" class="dropdown-item notify-item">
+                            <a href="<?= PATH ?>admin/users/profile" class="dropdown-item notify-item">
                                 <i class="fa fa-user"></i> <span>Perfil</span>
                             </a>
 
 
                             <!-- item-->
-                            <a href="<?= PATH ?>/admin/logout" class="dropdown-item notify-item">
+                            <a href="<?= PATH ?>admin/logout" class="dropdown-item notify-item">
                                 <i class="fa fa-power-off"></i> <span>Logout</span>
                             </a>
 
@@ -111,6 +116,14 @@
                         </li>
                         <li class="submenu">
                             <a class="<?= ($page === 'categorias/categorias') ? 'active' : '' ?>" href="<?= PATH ?>admin/categorias"><i class="fa fa-fw fa-sitemap"></i><span> Categorias </span> </a>
+                        </li>
+                        <li class="submenu">
+                            <a class="<?= ($page === 'cardapio/cardapio') ? 'active' : '' ?>" href="#"><i class="fa fa-fw fa-bars"></i><span> Cardapio </span> </a>
+                            <ul>
+                                <li>
+                                    <a class="<?= ($page === 'cardapio/cardapio') ? 'active' : '' ?>" href="<?= PATH ?>admin/produtos"><i class="fa fa-fw fa-minus"></i><span> Produtos </span> </a>
+                                </li>
+                            </ul>
                         </li>
 
                     </ul>

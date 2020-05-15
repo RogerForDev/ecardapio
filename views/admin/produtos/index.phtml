@@ -7,10 +7,10 @@
 			<div class="row">
 				<div class="col-xl-12">
 					<div class="breadcrumb-holder">
-						<h1 class="main-title float-left">Categorias</h1>
+						<h1 class="main-title float-left">Produtos</h1>
 						<ol class="breadcrumb float-right">
-							<li class="breadcrumb-item">Home</li>
-							<li class="breadcrumb-item active">Categorias</li>
+							<li class="breadcrumb-produto">Home</li>/
+							<li class="breadcrumb-produto active">Produtos</li>
 						</ol>
 						<div class="clearfix"></div>
 					</div>
@@ -26,14 +26,14 @@
 						<div class="card-header">
 							<span class="pull-right">							
 								<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal_add">
-									<i class="fa fa-plus" aria-hidden="true"></i> Adicionar nova categoria
+									<i class="fa fa-plus" aria-hidden="true"></i> Adicionar novo produto
 								</button>							
 							</span>
 							<div class="modal custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add" aria-hidden="true"
 							 id="modal_add">
 								<?php include 'create.phtml'; ?>
 							</div>
-							<h3><i class="fa fa-sitemap"></i> Lista de categorias (<?= (count($categorias) === 1)?'1 categoria':count($categorias).' categorias'?>)</h3>
+							<h3><i class="fa fa-minus "></i> Lista de produtos (<?= (count($data) === 1)?'1 iten':count($data).' itens'?>)</h3>
 						</div>
 						<!-- end card-header -->
 						<div class="card-body">
@@ -42,30 +42,34 @@
 									<thead>
 										<tr>
 											<th width="50">#</th>
+											<th>Nome</th>
 											<th>Categoria</th>
 											<th width="180px"></th>
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach($categorias as $value){ ?>
+										<?php foreach($data as $value){ ?>
 										<tr>
 											<th>
-												<?= $value['id_categoria'] ?>
+												<?= $value['id_produto'] ?>
 											</th>
 											<td>
 												<strong><?= $value['nome'] ?></strong> <br />												
 											</td>
+											<td>
+												<strong><?= getNomeCategoria($value['id_categoria']) ?></strong> <br />												
+											</td>
 											
 											<td>
 												
-												<a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit_<?= $value['id_categoria'] ?>">
+												<a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit_<?= $value['id_produto'] ?>">
 													<i class="fa fa-pencil" aria-hidden="true"></i><span>&nbsp;Editar</span>
 												</a>
 												
-												<div class="modal custom-modal" tabindex="-1" role="dialog" aria-hidden="true" id="modal_edit_<?= $value['id_categoria'] ?>">
+												<div class="modal custom-modal" tabindex="-1" role="dialog" aria-hidden="true" id="modal_edit_<?= $value['id_produto'] ?>">
 													<div class="modal-dialog">
 														<div class="modal-content">
-															<form role="form" action="<?= PATH ?>/admin/categorias/<?= $value['id_categoria'] ?>" method="post" data-parsley-validate novalidate>
+															<form role="form" action="<?= PATH ?>/admin/data/<?= $value['id_produto'] ?>" method="post" data-parsley-validate novalidate>
 																<div class="modal-header">
 																	<h5 class="modal-title">Editar usuário</h5>
 																	<button type="button" class="close" data-dismiss="modal">
@@ -77,9 +81,9 @@
 																	<div class="row">
 																		<div class="col-lg-12">
 																			<div class="form-group">
-																				<label	for="nome-<?= $value['id_categoria'] ?>">Nome*</label>
+																				<label	for="nome-<?= $value['id_produto'] ?>">Nome*</label>
 																				<input	type="text" 
-																						id="nome-<?= $value['id_categoria'] ?>" 
+																						id="nome-<?= $value['id_produto'] ?>" 
 																						name="nome" 
 																						class="form-control" 
 																						parsley-trigger="change" 
@@ -113,10 +117,10 @@
 														</div>
 													</div>
 												</div>
-												<a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_remove_<?= $value['id_categoria'] ?>">
+												<a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_remove_<?= $value['id_produto'] ?>">
 													<i class="fa fa-trash" aria-hidden="true"></i><span>&nbsp;Excluir</span></a>
-												<div class="modal custom-modal" tabindex="-1" role="dialog" aria-hidden="true" id="modal_remove_<?= $value['id_categoria'] ?>">
-													<?= printAlert("Deseja realmente remover essa categoria?", PATH."/admin/categorias/".$value['id_categoria']."/delete"); ?>
+												<div class="modal custom-modal" tabindex="-1" role="dialog" aria-hidden="true" id="modal_remove_<?= $value['id_produto'] ?>">
+													<?= printAlert("Deseja realmente remover essa categoria?", PATH."/admin/data/".$value['id_produto']."/delete"); ?>
 												</div>	
 											</td>
 										</tr>

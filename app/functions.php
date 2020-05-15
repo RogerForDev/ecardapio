@@ -1,5 +1,6 @@
 <?php
 
+use App\models\admin\Categoria;
 use App\models\admin\User;
 use App\src\Flash;
 use App\src\Redirect;
@@ -68,6 +69,11 @@ function getUserName(){
     $user = User::getFromSession();
 
     return $user['nome'];
+}
+function getNomeCategoria($id){
+    $cat = Categoria::getName($id);
+
+    return $cat['nome'];
 }
 
 function printAlert($msg, $url){

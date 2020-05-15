@@ -30,7 +30,7 @@
               <label>Senha</label>
               <input required parsley-trigger="change" name="senha" type="password" class="form-control" placeholder="Digite uma senha"> </div>
             <button type="submit" class="btn mt-4 btn-block p-2 btn-secondary font-20"> Criar cardápio </button>
-            <button id="botao-login" type="button" class="btn btn-block p-2 font-20 btn-link text-white">
+            <button type="button" class="btn botao-login btn-block p-2 font-20 btn-link text-white">
               <b>Já possuo conta</b>
             </button>
           </form>
@@ -292,7 +292,7 @@
   </div>
 
   <script>
-    $("#botao-login").on("click", function(){
+    $(".botao-login").on("click", function(){
       $("#form-cadastro").slideUp("2000", function(){
         $("#form-login").slideDown();
       });
