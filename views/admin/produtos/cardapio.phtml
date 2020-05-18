@@ -63,7 +63,7 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal fade custom-modal" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                             <div class="modal-header">
@@ -74,9 +74,10 @@
                                 </div>
                         <div class="modal-body">
                             <div class="container-fluid">
-                                <form action="">
+                                <form action="" id="formNewProd">
                                     <div class="form-group">
-                                        <select class="custom-select" name="" id="">
+                                    <label for="idcat">Categoria</label>
+                                        <select class="custom-select" name="id_categoria" id="idcat">
                                             <option selected>Selecione a categoria</option>
                                             <?php foreach($categorias as $key => $value): ?>
                                                 <option value="<?= $value['id_categoria'] ?>"><?= $value['nome'] ?></option>
@@ -84,9 +85,13 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                      <label for="">Nome</label>
-                                      <input type="text" class="form-control" name="" id="" placeholder="">
+                                      <label for="prod-nome">Nome</label>
+                                      <input type="text" class="form-control" name="nome" id="prod-nome" placeholder="">
                                     </div>                                   
+                                    <div class="form-group">
+                                      <label for="">Descrição</label>
+                                      <textarea class="form-control" name="desc" id="prod-desc" rows="3"></textarea>
+                                    </div>
                                 </form>
                             </div>
                         </div>
