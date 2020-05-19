@@ -21,13 +21,14 @@ class ProdutoController extends Controller
         $categoria = new Categoria;
 
         $vars = [
-            "page"=> "produtos/cardapio",		
+            "page" => "produtos/cardapio",		
             "data" => $lista,
             "categorias" => $categoria->select()->get()
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);
     }
+
     public function create()
     {
         $validate = new Validate;
@@ -39,11 +40,14 @@ class ProdutoController extends Controller
         if($validate->hasErrors()) {
             return back();
         }
+
         $item = new Produto;
 
-        $item = $item->create($data);
-
-        if($item){
+        $id_produto = $item->create($data);
+        
+        if($id_produto){
+            $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
+            $item->saveProdCardapio($id_cardapio, $id_produto);
             flash('message', success('Cadastrado com sucesso!'));
             return back();
         }

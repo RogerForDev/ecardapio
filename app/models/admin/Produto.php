@@ -13,9 +13,18 @@ class Produto extends Model {
         
 		$this->sql = "select a.* from {$this->table} a inner join tb_cardapio_produto b on a.id_produto = b.id_produto where b.id_cardapio = {$id_cardapio}";
 
-        $this->orderBy('a.id_produto', 'DESC');
+        $this->orderBy('a.id_categoria', 'DESC');
         
 		return $this->get();
-	}
+    }
+    
+    public function saveProdCardapio($id_cardapio, $id_produto){
+        $sql = "INSERT INTO tb_cardapio_produto(id_cardapio, id_produto) VALUES(:id_cardapio, :id_produto)";
+        $create = $this->connect->prepare($sql);
+        $create->execute([
+            ":id_cardapio"=>$id_cardapio,
+            ":id_produto"=>$id_produto
+        ]);
+    }
     
 }
