@@ -18,16 +18,24 @@ class ProdutoController extends Controller
         $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
         
         $lista = $produto->getProdByCardapio($id_cardapio);
-        $categorias = $categoria->getCategByCardapio($id_cardapio);
+        
+        $categoria = new Categoria;
+        
+        $categorias = $categoria->select()->get();
+
+        foreach($categorias as &$cat){
+            $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+        }
 
         $vars = [
-            "page"=> "produtos/cardapio",		
-            "data" => $lista,
-            "categorias" => $categorias
+            "page" => "produtos/cardapio",		
+           // "data" => $lista,
+            "cardapio" => $categorias
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);
     }
+
     public function create()
     {
         $validate = new Validate;
@@ -39,11 +47,14 @@ class ProdutoController extends Controller
         if($validate->hasErrors()) {
             return back();
         }
+
         $item = new Produto;
 
-        $item = $item->create($data);
-
-        if($item){
+        $id_produto = $item->create($data);
+        
+        if($id_produto){
+            $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
+            $item->saveProdCardapio($id_cardapio, $id_produto);
             flash('message', success('Cadastrado com sucesso!'));
             return back();
         }
