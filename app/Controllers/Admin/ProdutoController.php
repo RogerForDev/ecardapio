@@ -13,6 +13,7 @@ class ProdutoController extends Controller
     public function index($request, $response)
     {
         $produto = new Produto;
+        $categoria = new Categoria;
 
         $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
         
