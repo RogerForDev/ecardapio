@@ -12,5 +12,12 @@ class Categoria extends Model {
     public static function getName($id){    
         $cat = new Categoria;
         return $cat->select()->findBy('id_categoria', $id);
-    }    
+    }  
+    
+    public function getCategByCardapio($id_cardapio){
+
+        $this->sql = "select * from {$this->table} where id_cardapio = {$id_cardapio}";
+
+        return $this->get();
+    }
 }

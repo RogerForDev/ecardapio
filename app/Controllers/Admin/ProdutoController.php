@@ -13,17 +13,17 @@ class ProdutoController extends Controller
     public function index($request, $response)
     {
         $produto = new Produto;
+        $categoria = new Categoria;
 
         $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
         
         $lista = $produto->getProdByCardapio($id_cardapio);
-
-        $categoria = new Categoria;
+        $categorias = $categoria->getCategByCardapio($id_cardapio);
 
         $vars = [
             "page"=> "produtos/cardapio",		
             "data" => $lista,
-            "categorias" => $categoria->select()->get()
+            "categorias" => $categorias
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);

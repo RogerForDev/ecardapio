@@ -16,6 +16,6 @@ class Produto extends Model {
         $this->orderBy('a.id_produto', 'DESC');
         
 		return $this->get();
-	}
+    }
     
 }

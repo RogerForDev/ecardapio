@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\models\admin\Categoria;
+use App\models\admin\Cardapio;
 use App\src\Validate;
 
 class CategoriaController extends Controller
@@ -22,26 +23,42 @@ class CategoriaController extends Controller
     }
     public function create()
     {
-        $validate = new Validate;
+        $data = array();
 
-        $data = (array) $validate->validate([
-            'nome' => 'required:min@3'
-        ]);
-        
-        if($validate->hasErrors()) {
-            return back();
+        // if(isset($_FILES)){
+        //     print_r($_FILES);exit;
+        // }
+
+        if(isset($_POST['nome']) && !empty($_POST['nome'])){
+            $data['nome'] = addslashes(htmlspecialchars($_POST['nome']));
+        }else{
+            echo json_encode(array("type" => "erro", "message" => "Nome da categoria não informado!"));
+            exit;  
         }
+
+        if(isset($_POST['nome']) && !empty($_POST['nome'])){
+            $data['ativo'] = addslashes(htmlspecialchars($_POST['ativo']));
+        }else{
+            echo json_encode(array("type" => "erro", "message" => "Não foi informado se a categoria estará ativa ou não!"));
+            exit;  
+        }
+        
         $categoria = new Categoria;
+        $cardapio = new Cardapio;
+
+        $cardapio = $cardapio->getFromUser();
+
+        $data['id_cardapio'] = $cardapio['id_cardapio'];
 
         $categoria = $categoria->create($data);
 
         if($categoria){
-            flash('message', success('Cadastrado com sucesso!'));
-            return back();
+            echo json_encode(array("type" => "sucesso", "message" => "Categoria cadastrado com sucesso!"));
+            exit;
         }
         
-		flash('message', error('Erro ao cadastrar, tente novamente'));
-		return back();      
+		echo json_encode(array("type" => "erro", "message" => "Ocorreu um erro interno!"));
+        exit;    
     }        
     public function update($request, $response, $args){
 
