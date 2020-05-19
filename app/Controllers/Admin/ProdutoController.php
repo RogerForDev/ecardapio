@@ -17,13 +17,19 @@ class ProdutoController extends Controller
         $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
         
         $lista = $produto->getProdByCardapio($id_cardapio);
-
+        
         $categoria = new Categoria;
+        
+        $categorias = $categoria->select()->get();
+
+        foreach($categorias as &$cat){
+            $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+        }
 
         $vars = [
             "page" => "produtos/cardapio",		
-            "data" => $lista,
-            "categorias" => $categoria->select()->get()
+           // "data" => $lista,
+            "cardapio" => $categorias
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);

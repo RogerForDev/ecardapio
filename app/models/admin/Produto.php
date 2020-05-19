@@ -13,7 +13,7 @@ class Produto extends Model {
         
 		$this->sql = "select a.* from {$this->table} a inner join tb_cardapio_produto b on a.id_produto = b.id_produto where b.id_cardapio = {$id_cardapio}";
 
-        $this->orderBy('a.id_categoria', 'DESC');
+        $this->orderBy('a.id_categoria', 'ASC');
         
 		return $this->get();
     }

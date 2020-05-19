@@ -2,20 +2,24 @@
     .edit {
         display: none;
     }
-
     .card-title:hover {
         cursor: pointer;
     }
-
     .card-title:hover .edit {
         display: inline-block;
         color: royalblue;
+    }
+    .bg-cat-title {
+        background-color: #f8f9fab8;
+    }
+    .bg-cat-title:hover{
+        background-color: #ffffff;
     }
 </style>
 <div class="content-page">
 
     <!-- Start content -->
-    <div class="content" style="background: url(<?= PATH . "/assets/admin/images/pattern.png" ?>);background-repeat: repeat-y;background-size:cover;">
+    <div class="content" style="background: url(<?= PATH . "/assets/admin/images/pattern.png" ?>);">
 
         <div class="container-fluid">
             <div class="row">
@@ -34,91 +38,81 @@
 
             <?= message('message') ?>
 
-            <div class="row">
-                <?php foreach ($data as $key => $value) : ?>
-                    <div class="col-xl-3 col-6 pb-3">
-                        <div class="card shadow text-left">
-                            <img class="card-img-top" src="holder.js/100px180/" alt="">
-                            <div class="card-body">
-                                <h5 class="card-title text-center"><?= $value['nome'] ?>
-                                    <span class="edit" title="Editar nome" data-toggle="tooltip" data-placement="top"><i class="fa fa-pencil"></i></span>
-                                </h5>
-                                <p class="card-text text-center" style="min-height:63px" contenteditable="false"><?= $value['descricao'] ?></p>
-                                <h6 class="text-center" contenteditable="false">R$<?= $value['preco'] ?></h6>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-                <div class="col-xl-3 pb-3">
-                    <div class="card text-left">
-                        <div class="card-body py-4">
-                            <a href="" data-toggle="modal" data-target="#modelId">
-                                <h3 class="card-title text-center text-dark">
-                                    <i class="fa fa-plus fa-2x"></i><br>
-                                    Adicionar produto
-                                </h3>
-                            </a>
-                        </div>
+            <?php foreach($cardapio as $key => $cat): ?>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <input type="text" class="bg-cat-title py-3 h5 w-100 border-0 text-center" readonly="true" title="Clique para editar o nome da categoria" data-toggle="tooltip" data-placement="top" value="<?= $cat['nome'] ?>">
                     </div>
                 </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade custom-modal" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Novo produto</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="<?= PATH ?>admin/produtos/create" method="POST" id="formNewProd">
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="form-group">
-                                        <label for="idcat">Categoria</label>
-                                        <select class="custom-select" name="id_categoria" id="idcat">
-                                            <option selected>Selecione a categoria</option>
-                                            <?php foreach ($categorias as $key => $value) : ?>
-                                                <option value="<?= $value['id_categoria'] ?>"><?= $value['nome'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="prod-nome">Nome</label>
-                                        <input type="text" class="form-control" name="nome" id="prod-nome" placeholder="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Descrição</label>
-                                        <textarea class="form-control" name="descricao" id="prod-desc" rows="3"></textarea>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col-xl-6">
-                                            <label for="prod-preco">Preço(R$)</label>
-                                            <input type="number" min="0.00" step="0.01" value="0.00" class="form-control" name="preco" id="prod-preco" placeholder="">
-                                        </div>
-                                    </div>
-
+                <br>
+                <div class="row">
+                    <?php foreach ($cat['produtos'] as $key => $value) : ?>
+                        <div class="col-xl-3 col-6 pb-3">
+                            <div class="card shadow text-left">
+                                <img class="card-img-top" src="holder.js/100px180/" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center"><?= $value['nome'] ?>
+                                        <span class="edit" title="Editar nome" data-toggle="tooltip" data-placement="top"><i class="fa fa-pencil"></i></span>
+                                    </h5>
+                                    <p class="card-text text-center" style="min-height:63px" contenteditable="false"><?= $value['descricao'] ?></p>
+                                    <h6 class="text-center" contenteditable="false">R$<?= $value['preco'] ?></h6>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    <?php endforeach; ?>
+                    <div class="col-xl-3 pb-3">
+                        <div class="card text-left">
+                            <div class="card-body py-4">
+                                <a href="" data-toggle="modal" data-target="#modelId<?= $key ?>">
+                                    <h3 class="card-title text-center text-dark">
+                                        <i class="fa fa-plus fa-2x"></i><br>
+                                        Adicionar produto
+                                    </h3>
+                                </a>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <script>
-                $('#exampleModal').on('show.bs.modal', event => {
-                    var button = $(event.relatedTarget);
-                    var modal = $(this);
-                    // Use above variables to manipulate the DOM
-
-                });
-            </script>
-
+                <!-- Modal -->
+                <div class="modal fade custom-modal" id="modelId<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Novo produto da categoria <?= $cat['nome'] ?></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="<?= PATH ?>admin/produtos/create" method="POST" >
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria'] ?>">
+                                        <div class="form-group">
+                                            <label for="prod-nome">Nome</label>
+                                            <input type="text" class="form-control" name="nome" id="prod-nome" placeholder="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Descrição</label>
+                                            <textarea class="form-control" name="descricao" id="prod-desc" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-xl-6">
+                                                <label for="prod-preco">Preço(R$)</label>
+                                                <input type="number" min="0.00" step="0.01" value="0.00" class="form-control" name="preco" id="prod-preco" placeholder="">
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
 
             <!-- end row -->
 
@@ -130,8 +124,3 @@
 
 </div>
 <!-- END content-page -->
-<script>
-    $('h4.title-prod').on('mouseover', function() {
-        $('.title-prod > span').show();
-    });
-</script>
