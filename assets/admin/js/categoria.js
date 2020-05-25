@@ -65,7 +65,10 @@ $(document).on("submit", "#form-categoria", function(event)
                     text: mensagem.message,
                     showConfirmButton: false,
                     timer: 1500
-                })
+                });
+
+                let html = "<div class='row'><div class='col-xl-12'><input type='text' class='bg-cat-title py-3 h5 w-100 border-0 text-center' readonly='true' title='Clique para editar o nome da categoria' data-toggle='tooltip' data-placement='top' value="+mensagem.nome+"></div></div>";
+                $("#conteudo").append(html);
             }else{
                 Swal.fire({
                     icon: 'error',
