@@ -6,6 +6,7 @@ use App\Controllers\Controller;
 use App\models\admin\Categoria;
 use App\models\admin\Cardapio;
 use App\src\Validate;
+use App\Util\Upload;
 
 class CategoriaController extends Controller
 {
@@ -25,9 +26,10 @@ class CategoriaController extends Controller
     {
         $data = array();
 
-        // if(isset($_FILES)){
-        //     print_r($_FILES);exit;
-        // }
+        if(isset($_FILES)){
+            $upload = new Upload(); 
+            $result = $upload->upload("imagem-categoria");
+        }
 
         if(isset($_POST['nome']) && !empty($_POST['nome'])){
             $data['nome'] = addslashes(htmlspecialchars($_POST['nome']));
@@ -48,12 +50,14 @@ class CategoriaController extends Controller
 
         $cardapio = $cardapio->getFromUser();
 
+        $data['imagem'] = $result;
         $data['id_cardapio'] = $cardapio['id_cardapio'];
+        // print_r($data);exit;
 
         $categoria = $categoria->create($data);
 
         if($categoria){
-            echo json_encode(array("type" => "sucesso", "message" => "Categoria cadastrado com sucesso!"));
+            echo json_encode(array("type" => "sucesso", "message" => "Categoria cadastrado com sucesso!", "nome" => $data['nome']));
             exit;
         }
         
