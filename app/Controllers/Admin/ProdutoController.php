@@ -6,6 +6,7 @@ use App\Controllers\Controller;
 use App\models\admin\Cardapio;
 use App\models\admin\Categoria;
 use App\models\admin\Produto;
+use App\models\admin\User;
 use App\src\Validate;
 
 class ProdutoController extends Controller
@@ -13,13 +14,11 @@ class ProdutoController extends Controller
     public function index($request, $response)
     {
         $produto = new Produto;
-        $categoria = new Categoria;
+        $categoria = new Categoria;       
 
-        $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
+       // $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
         
-        $lista = $produto->getProdByCardapio($id_cardapio);
-        
-        $categoria = new Categoria;
+       // $lista = $produto->getProdByCardapio($id_cardapio);
         
         $categorias = $categoria->select()->get();
 
@@ -28,9 +27,9 @@ class ProdutoController extends Controller
         }
 
         $vars = [
-            "page" => "produtos/cardapio",		
-           // "data" => $lista,
-            "cardapio" => $categorias
+            "page" => "home",	
+            "cardapio" => $categorias, 
+            "usuario" => User::getFromSession()
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);
@@ -76,7 +75,7 @@ class ProdutoController extends Controller
         
         $item = new Produto;
 
-		$updated = $item->find('id_item', $args['id'])->update((array) $data);
+		$updated = $item->find('id_produto', $args['id'])->update((array) $data);
 
 		if ($updated) {
 			flash('message', success('Atualizado com sucesso'));

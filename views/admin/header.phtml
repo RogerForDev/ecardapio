@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AdminKionux - Área Administrativa</title>
+    <title>eCardapio - Painel Administrativo</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= PATH ?>assets/admin/images/favicon.ico">
@@ -18,13 +18,11 @@
 
     <!-- Custom CSS -->
     <link href="<?= PATH ?>assets/admin/css/style.css" rel="stylesheet" type="text/css" />
-    
+
     <!-- JQuery.filer -->
     <link href="<?= PATH ?>assets/admin/plugins/jQuery.filer/jquery.filer.css" rel="stylesheet" type="text/css" />
     <link href="<?= PATH ?>assets/admin/plugins/jQuery.filer/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet" type="text/css" />
 
-    <!-- BEGIN CSS for this page -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
     <style>
         .parsley-error {
             border-color: #ff5d48 !important;
@@ -51,86 +49,25 @@
 
 </head>
 
-<body class="adminbody">
+<body>
 
-    <div id="main">
+    <nav class="navbar bg-primary fixed-top py-0">
+        <a href="<?= PATH ?>admin"><img alt="Logo" src="<?= PATH ?>assets/site/img/icon-ecardapio-white.png" width="80px" /></a>
 
-        <!-- top bar navigation -->
-        <div class="headerbar">
+        <form class="form-inline ml-auto my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Pesquisar">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pesquisar</button>
+        </form>
 
-            <!-- LOGO -->
-            <div class="headerbar-left">
-                <a href="<?= PATH ?>admin" class="logo"><img alt="Logo" src="<?= PATH ?>assets/site/img/icon-ecardapio-white.png" /></a>
-            </div>
-
-            <nav class="navbar-custom">
-                <ul class="list-inline float-right mb-0">
-                    <li class="list-inline-item dropdown notif">
-                        <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" alt="Profile image" class="avatar-rounded">
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                            <!-- item-->
-                            <div class="dropdown-item noti-title">
-                                <h5 class="text-overflow"><small>Olá, <?= getUsername() ?></small> </h5>
-                            </div>
-
-                            <!-- item-->
-                            <a href="<?= PATH ?>admin/users/profile" class="dropdown-item notify-item">
-                                <i class="fa fa-user"></i> <span>Perfil</span>
-                            </a>
-
-
-                            <!-- item-->
-                            <a href="<?= PATH ?>admin/logout" class="dropdown-item notify-item">
-                                <i class="fa fa-power-off"></i> <span>Logout</span>
-                            </a>
-
-                        </div>
-                    </li>
-
-                </ul>
-
-                <ul class="list-inline menu-left mb-0">
-                    <li class="float-left">
-                        <button class="button-menu-mobile open-left">
-                            <i class="fa fa-fw fa-bars"></i>
-                        </button>
-                    </li>
-                </ul>
-
-            </nav>
-
-        </div>
-        <!-- End Navigation -->
-
-
-        <!-- Left Sidebar -->
-        <div class="left main-sidebar">
-            <div class="sidebar-inner leftscroll">
-                <div id="sidebar-menu">
-                    <ul>
-
-                        <li class="submenu">
-                            <a class="<?= ($page === 'users/users') ? 'active' : '' ?>" href="<?= PATH ?>admin/users"><i class="fa fa-fw fa-users"></i><span> Usuários </span> </a>
-                        </li>
-                        <li class="submenu">
-                            <a class="<?= ($page === 'categorias/categorias') ? 'active' : '' ?>" href="<?= PATH ?>admin/categorias"><i class="fa fa-fw fa-sitemap"></i><span> Categorias </span> </a>
-                        </li>
-                        <li class="submenu">
-                            <a class="<?= ($page === 'cardapio/cardapio') ? 'active' : '' ?>" href="#"><i class="fa fa-fw fa-bars"></i><span> Cardapio </span> </a>
-                            <ul>
-                                <li>
-                                    <a class="<?= ($page === 'cardapio/cardapio') ? 'active' : '' ?>" href="<?= PATH ?>admin/produtos"><i class="fa fa-fw fa-minus"></i><span> Produtos </span> </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                    <div class="clearfix"></div>
-
-                </div>
-                <div class="clearfix"></div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" width="50px" alt="Profile image" class="avatar-rounded">
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item">Olá, <?= getUsername() ?></small></a>
+                <a href="<?= PATH ?>admin/users/profile" class="dropdown-item"><i class="fa fa-user"></i> <span>Perfil</span></a>
+                <a href="<?= PATH ?>admin/logout" class="dropdown-item"><i class="fa fa-power-off"></i> <span>Logout</span></a>
             </div>
         </div>
-        <!-- End Sidebar -->
+
+    </nav>

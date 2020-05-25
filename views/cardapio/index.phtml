@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<style>
+    .bg-header {
+        background: url(https://1strnd.ca/wp-content/uploads/2014/04/burger_header2.jpg);
+        background-size: contain;
+        background-position: right;
+        background-repeat: no-repeat;
+    }
+    .bg-title{
+        background: linear-gradient(-3deg, #f8f9fa 28%, #dc3545 31%);
+    }
+    .bg-fundo{
+        background-color: #292524;
+    }
+
+    .text-title {
+        color: #ab0f1d;
+        font-weight: bold;
+        font-size: 20pt;
+        text-transform: uppercase;
+    }
+
+    .linewrapper {
+        display: flex;
+        align-items: baseline;
+    }
+
+    .middle {
+        border-bottom: 1px dotted #000;
+        flex-grow: 1;
+        margin: 0 5px;
+    }
+
+    .ingredients {
+        margin-top: -0.5rem;
+        font-weight: bold;
+        font-size: 10pt;
+    }
+    .title-header{
+        font-size: 80px;
+        font-family: 'Caveat', cursive;
+        line-height: 1;
+    }
+</style>
+
+<body>
+
+    <div class="container-fluid bg-fundo">
+        <div class="row bg-header py-5">
+            <div class="col-xl-6 text-center">
+                <div class="pl-5 title-header  text-light">Tapioca Ceará</div>
+                <img src="https://i2.wp.com/multarte.com.br/wp-content/uploads/2018/10/logo-whatsapp-png-transparente17.png?fit=1024%2C727&ssl=1" class="pb-2" width="80px" alt="">
+                <div class="d-inline-block pt-4 text-light h3"><b>(45) 99141-0790</b></div>
+            </div>
+            <div class="col-xl-6">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="row">
+                    <div class="col-xl-6">
+                    <div class="bg-title py-3">
+                            <h2 class="text-light pl-4"><b><?= $cardapio[0]['nome'] ?></b></h2>
+                        </div>
+                        <div class="bg-light pt-2 px-4">
+                            <?php foreach ($cardapio[0]['produtos'] as $key => $value) : ?>
+                                <div class="pb-2">
+                                    <div class="linewrapper">
+                                        <span class="text-title"><?= $value['nome'] ?></span>
+                                        <div class="middle"></div>
+                                        <span class="text-title">R$ <?= number_format($value['preco'], 2, ",", ".") ?></span>
+                                    </div>
+                                    <div class="ingredients"><?= $value['descricao'] ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="bg-title py-3">
+                            <h2 class="text-light pl-4"><b><?= $cardapio[3]['nome'] ?></b></h2>
+                        </div>
+                        <div class="bg-light pt-2 px-4">
+                            <?php foreach ($cardapio[3]['produtos'] as $key => $value) : ?>
+                                <div class="pb-2">
+                                    <div class="linewrapper">
+                                        <span class="h4"><b><?= $value['nome'] ?></b></span>
+                                        <div class="middle"></div>
+                                        <span class="text-title">R$ <?= number_format($value['preco'], 2, ",", ".") ?></span>
+                                    </div>
+                                    <div class="ingredients"><?= $value['descricao'] ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 pt-4" style="margin-top: -5.5rem!important;">
+                        <div class="bg-title py-3">
+                            <h2 class="text-light pl-4"><b><?= $cardapio[2]['nome'] ?></b></h2>
+                        </div>
+                        <div class="bg-light pt-2 px-4">
+                            <?php foreach ($cardapio[2]['produtos'] as $key => $value) : ?>
+                                <div class="pb-2">
+                                    <div class="linewrapper">
+                                        <span class="h4"><b><?= $value['nome'] ?></b></span>
+                                        <div class="middle"></div>
+                                        <span class="text-title">R$ <?= number_format($value['preco'], 2, ",", ".") ?></span>
+                                    </div>
+                                    <div class="ingredients"><?= $value['descricao'] ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 pt-4">
+                        <div class="bg-title py-3">
+                            <h2 class="text-light pl-4"><b><?= $cardapio[4]['nome'] ?></b></h2>
+                        </div>
+                        <div class="bg-light pt-2 px-4">
+                            <?php foreach ($cardapio[4]['produtos'] as $key => $value) : ?>
+                                <div class="pb-2">
+                                    <div class="linewrapper">
+                                        <span class="h4"><b><?= $value['nome'] ?></b></span>
+                                        <div class="middle"></div>
+                                        <span class="text-title">R$ <?= number_format($value['preco'], 2, ",", ".") ?></span>
+                                    </div>
+                                    <div class="ingredients"><?= $value['descricao'] ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 pt-4">
+                        <div class="bg-title py-3">
+                            <h2 class="text-light pl-4"><b><?= $cardapio[1]['nome'] ?></b></h2>
+                        </div>
+                        <div class="bg-light pt-2 px-4">
+                            <?php foreach ($cardapio[1]['produtos'] as $key => $value) : ?>
+                                <div class="pb-2">
+                                    <div class="linewrapper">
+                                        <span class="h4"><b><?= $value['nome'] ?></b></span>
+                                        <div class="middle"></div>
+                                        <span class="text-title">R$ <?= number_format($value['preco'], 2, ",", ".") ?></span>
+                                    </div>
+                                    <div class="ingredients"><?= $value['descricao'] ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 pt-4" style="margin-top: -3.5rem!important;">
+                        <div class="bg-title py-3">
+                            <h2 class="text-light pl-4"><b><?= $cardapio[5]['nome'] ?></b></h2>
+                        </div>
+                        <div class="bg-light pt-2 px-4">
+                            <?php foreach ($cardapio[5]['produtos'] as $key => $value) : ?>
+                                <div class="pb-2">
+                                    <div class="linewrapper">
+                                        <span class="h4"><b><?= $value['nome'] ?></b></span>
+                                        <div class="middle"></div>
+                                        <span class="text-title">R$ <?= number_format($value['preco'], 2, ",", ".") ?></span>
+                                    </div>
+                                    <div class="ingredients"><?= $value['descricao'] ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="bg-title py-3 mt-4">
+                            <h2 class="text-light pl-4"><b>Onde estamos</b></h2>
+                        </div>
+                        <div class="bg-light py-2 px-4">
+                            <h5 class="pl-4 pb-2 text-center">Horário de atendimento: das 17hs até 23hs</h5>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1012.4944726844747!2d-54.57527582428262!3d-25.4511598767081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f69b0544337e57%3A0xa72aae348c6ca711!2sRua%20C%2C%20937%2C%20PR%2C%20Brasil!5e0!3m2!1spt-BR!2sbr!4v1590088419578!5m2!1spt-BR!2sbr" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                            <h5 class="text-center pt-2">rua C, em frente ao Brasília Materiais de Construção<br>Vila C velha</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

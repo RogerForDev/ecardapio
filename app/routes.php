@@ -7,7 +7,7 @@ $app->post('/admin/login', 'App\Controllers\Admin\LoginAction:logar');
 
 $app->group('/admin', function(){
 
-    $this->get('', 'App\Controllers\Admin\HomeAction:index');
+    $this->get('', 'App\Controllers\Admin\ProdutoController:index');
     
     //USER
     $this->get('/users', 'App\Controllers\Admin\UserController:index');
@@ -34,3 +34,4 @@ $app->group('/admin', function(){
 $app->get('/', 'App\Controllers\Site\HomeAction:index');
 $app->post('/cadastrar', 'App\Controllers\Site\HomeController:cadastrar');
 $app->post('/logar', 'App\Controllers\Site\HomeController:logar');
+$app->get('/cardapio', 'App\Controllers\Site\HomeController:cardapio');

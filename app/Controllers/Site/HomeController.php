@@ -3,6 +3,8 @@
 namespace app\controllers\site;
 
 use App\controllers\Controller;
+use App\models\admin\Categoria;
+use App\models\admin\Produto;
 use App\models\site\Post;
 use App\models\admin\User;
 use App\src\Validate;
@@ -102,5 +104,21 @@ class HomeController extends Controller
 			flash('message', error('Erro ao cadastrar, tente novamente'));
 			redirect(PATH);
 		}
+	}
+	public function cardapio($request, $response)
+	{
+		$produto = new Produto;
+		$categoria = new Categoria;
+		
+        $categorias = $categoria->select()->get();
+
+        foreach($categorias as &$cat){
+            $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+        }
+		$vars = [
+			'page' => 'cardapio',
+			'cardapio' => $categorias
+		];
+		return $this->view->render($response, 'cardapio/index.phtml', $vars);
 	}
 }
