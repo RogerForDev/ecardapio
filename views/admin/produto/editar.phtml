@@ -32,10 +32,7 @@
                      </div>
                  </div>
                  <div class="modal-footer">
-                     <a href="#" data-toggle="modal" data-target="#modal_remove_<?= $value['id_produto'] ?>" class="btn btn-danger mr-auto text-light" data-dismiss="modal"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</a>
-                     <div class="modal custom-modal" tabindex="-1" role="dialog" aria-hidden="true" id="modal_remove_<?= $value['id_produto'] ?>">
-                         <?= printAlert("Deseja realmente remover esse produto?", PATH . "/admin/produtos/" . $value['id_produto'] . "/delete"); ?>
-                     </div>
+                     <a href="javascript:;" onclick="remove('<?= PATH. '/admin/produtos/' . $value['id_produto'] . '/delete' ?>')" class="btn btn-danger mr-auto text-light"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</a>                     
                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                      <button type="submit" class="btn btn-primary">Salvar</button>
                  </div>

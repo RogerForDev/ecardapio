@@ -98,7 +98,7 @@ class ProdutoController extends Controller
     public function delete($request, $response, $args)
     {   
         $item = new Produto;
-		$deleted = $item->find('id_item', $args['id'])->delete();
+		$deleted = $item->find('id_produto', $args['id'])->delete();
 
 		if ($deleted) {
 			flash('message', success('Deletado com sucesso'));
