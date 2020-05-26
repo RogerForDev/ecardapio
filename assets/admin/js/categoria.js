@@ -40,10 +40,6 @@
 //     });
 // });
 
-$(document).ready(function() {
-    $('#imagem-categoria').filer({});       
-});
-
 $(document).on("submit", "#form-categoria", function(event)
 {
     event.preventDefault();

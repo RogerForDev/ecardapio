@@ -1,0 +1,46 @@
+<div class="modal fade custom-modal" id="modalCategoria" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form id="form-categoria" role="form" method="post" action="<?= PATH ?>admin/categorias/create" enctype="multipart/form-data" data-parsley-validate novalidate>
+                <div class="modal-header bg-primary text-light">
+                    <h5 class="modal-title" id="modal_add_user">Adicionar nova categoria</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="input_file">Imagem</label>
+                                <input type="file" name="imagem-categoria" data-jfiler-limit="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="desperson">Nome*</label>
+                                <input type="text" id="desperson" name="nome" class="form-control" parsley-trigger="change" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Ativo</label>
+                                <select name="ativo" class="form-control">
+                                    <option value="1">SIM</option>
+                                    <option value="0">NÃO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="salvar-categoria" type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

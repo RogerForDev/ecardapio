@@ -10,9 +10,7 @@
                     <h1 class="main-title text-light py-3"><?= $usuario['estabelecimento']?></h1>
                 </div>
             </div>
-            <!-- end row -->
-
-           
+            <!-- end row -->           
 
             <?php foreach ($cardapio as $key => $cat) : ?>
                 <div class="row">
@@ -26,7 +24,11 @@
                         <div class="col-xl-3 col-6 pb-3">
                             <div class="card shadow text-left text-dark">
                                 <a href="" data-toggle="modal" class="text-dark" data-target="#modaleditProduct<?= $value['id_produto'] ?>" title="Clique para editar o produto" data-toggle="tooltip" data-placement="top">
+                                <?php if($value["imagem"] != ""): ?>
+                                    <img class="card-img-top" src="<?= PATH.$value['imagem'] ?>">
+                                <?php else: ?>
                                     <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
+                                <?php endif; ?>
                                     <div class="card-body p-2">
                                         <h5 class="card-title text-center"><?= $value['nome'] ?></h5>
                                         <p class="card-text text-center" style="min-height:63px"><?= $value['descricao'] ?></p>
@@ -35,49 +37,8 @@
                                 </a>
                             </div>
                         </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade custom-modal" id="modaleditProduct<?= $value['id_produto'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-primary text-light">
-                                        <h5 class="modal-title"><?= $value['nome'] ?></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="<?= PATH . "admin/produtos/" . $value['id_produto'] ?>" method="POST">
-                                        <div class="modal-body">
-                                            <div class="container-fluid">
-                                                <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria'] ?>">
-                                                <div class="form-group">
-                                                    <label for="prod-nome">Nome</label>
-                                                    <input type="text" class="form-control" name="nome" value="<?= $value['nome'] ?>" placeholder="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Descrição</label>
-                                                    <textarea class="form-control" name="descricao" rows="3"><?= $value['descricao'] ?></textarea>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col-xl-6">
-                                                        <label for="prod-preco">Preço(R$)</label>
-                                                        <input type="number" min="0.00" step="0.01" value="<?= $value['preco'] ?>" class="form-control" name="preco" placeholder="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a href="#" data-toggle="modal" data-target="#modal_remove_<?= $value['id_produto'] ?>" class="btn btn-danger mr-auto text-light" data-dismiss="modal"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</a>
-                                            <div class="modal custom-modal" tabindex="-1" role="dialog" aria-hidden="true" id="modal_remove_<?= $value['id_produto'] ?>">
-                                                <?= printAlert("Deseja realmente remover esse produto?", PATH . "/admin/produtos/" . $value['id_produto'] . "/delete"); ?>
-                                            </div>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Modal Editar produto-->
+                       <?php include "produto/editar.phtml"; ?>
                     <?php endforeach; ?>
                     <div class="col-xl-3 pb-3">
                         <div class="card text-left">
@@ -92,45 +53,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Modal -->
-                <div class="modal fade custom-modal" id="modalNewProduct<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Novo produto da categoria <?= $cat['nome'] ?></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="<?= PATH ?>admin/produtos/create" method="POST">
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria'] ?>">
-                                        <div class="form-group">
-                                            <label for="prod-nome">Nome</label>
-                                            <input type="text" class="form-control" name="nome" placeholder="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Descrição</label>
-                                            <textarea class="form-control" name="descricao" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="col-xl-6">
-                                                <label for="prod-preco">Preço(R$)</label>
-                                                <input type="number" min="0.00" step="0.01" value="0.00" class="form-control" name="preco" placeholder="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Salvar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <!-- Modal Novo Produto -->
+                <?php include "produto/novo.phtml"; ?>
             <?php endforeach; ?>
 
             <div class="row">
@@ -138,54 +62,8 @@
                     <input style="cursor: pointer" data-toggle="modal" data-target="#modalCategoria" type="text" class="bg-cat-title py-3 h5 w-100 border-0 text-center" readonly="true" title="Clique para cadastrar uma nova categoria!" data-toggle="tooltip" data-placement="top" value="Nova categoria">
                 </div>
             </div>
-
-            <!-- Modal Categoria -->
-            <div class="modal fade custom-modal" id="modalCategoria" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <form id="form-categoria" role="form" method="post" action="<?= PATH ?>admin/categorias/create" enctype="multipart/form-data" data-parsley-validate novalidate>
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_add_user">Adicionar nova categoria</h5>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="input_file">Imagem</label>
-                                            <input type="file" name="imagem-categoria" id="imagem-categoria" data-jfiler-limit="1">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="desperson">Nome*</label>
-                                            <input type="text" id="desperson" name="nome" class="form-control" parsley-trigger="change" required />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>Ativo</label>
-                                            <select name="ativo" class="form-control">
-                                                <option value="1">SIM</option>
-                                                <option value="0">NÃO</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button id="salvar-categoria" type="submit" class="btn btn-primary">Salvar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <!-- Modal Nova Categoria -->
+            <?php include "categoria/novo.phtml"; ?>
 
             <!-- end row -->
 

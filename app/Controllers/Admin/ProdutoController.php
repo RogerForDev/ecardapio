@@ -2,12 +2,13 @@
 
 namespace App\Controllers\Admin;
 
-use App\Controllers\Controller;
-use App\models\admin\Cardapio;
-use App\models\admin\Categoria;
-use App\models\admin\Produto;
-use App\models\admin\User;
+use App\src\Upload;
 use App\src\Validate;
+use App\models\admin\User;
+use App\models\admin\Produto;
+use App\models\admin\Cardapio;
+use App\Controllers\Controller;
+use App\models\admin\Categoria;
 
 class ProdutoController extends Controller
 {
@@ -38,15 +39,19 @@ class ProdutoController extends Controller
     public function create()
     {
         $validate = new Validate;
-
+        
         $data = (array) $validate->validate([
             'nome' => 'required:min@3'
         ]);
-        
+            
         if($validate->hasErrors()) {
             return back();
         }
-
+        
+        if(isset($_FILES)){
+            $upload = new Upload(); 
+            $data['imagem'] = $upload->upload("imagem-produto", "produto");
+        }
         $item = new Produto;
 
         $id_produto = $item->create($data);
@@ -65,17 +70,22 @@ class ProdutoController extends Controller
 
         $validate = new Validate;
 
-		$data = $validate->validate([
+		$data = (array) $validate->validate([
 			'nome' => 'required'
 		]);
 
 		if ($validate->hasErrors()) {
 			return back();
         }
+
+        if(isset($_FILES)){
+            $upload = new Upload(); 
+            $data['imagem'] = $upload->upload("imagem-produto", "produto");
+        }
         
         $item = new Produto;
 
-		$updated = $item->find('id_produto', $args['id'])->update((array) $data);
+		$updated = $item->find('id_produto', $args['id'])->update( $data);
 
 		if ($updated) {
 			flash('message', success('Atualizado com sucesso'));

@@ -6,7 +6,7 @@ use App\Controllers\Controller;
 use App\models\admin\Categoria;
 use App\models\admin\Cardapio;
 use App\src\Validate;
-use App\Util\Upload;
+use App\src\Upload;
 
 class CategoriaController extends Controller
 {
@@ -28,7 +28,7 @@ class CategoriaController extends Controller
 
         if(isset($_FILES)){
             $upload = new Upload(); 
-            $result = $upload->upload("imagem-categoria");
+            $result = $upload->upload("imagem-categoria", "categoria");
         }
 
         if(isset($_POST['nome']) && !empty($_POST['nome'])){
