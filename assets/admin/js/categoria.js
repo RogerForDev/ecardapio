@@ -22,7 +22,7 @@ $(document).on("submit", "#form-categoria", function(event)
                     timer: 1500
                 });
 
-                let html = "<div class='row'><div id='"+mensagem.nome+"' class='col-xl-12'><input type='text' class='bg-cat-title py-3 h5 w-100 border-0 text-center' readonly='true' title='Clique para editar o nome da categoria' data-toggle='tooltip' data-placement='top' value="+mensagem.nome+"></div></div>";
+                let html = "<div class='row'><div id='"+mensagem.nome+"' class='col-xl-12'><input data-id='"+mensagem.id+"' type='text' class='bg-cat-title py-3 h5 w-100 border-0 text-center nome-categoria' readonly='true' title='Clique para editar o nome da categoria' data-toggle='tooltip' data-placement='top' value="+mensagem.nome+"></div></div>";
                 $("#conteudo").append(html);
 
                 let linha = $("<br><div class='row'></div>");
@@ -50,5 +50,44 @@ $(document).on("click", ".novo-produto-generico", function(){
     let idCategoria = $(this).data("id");
     $("#id-categoria-generico").val(idCategoria);
     $("#titulo-produto").html("Novo produto da categoria "+categoria);
+});
+
+$(document).on("focusin", ".nome-categoria", function(){
+    $(this).removeAttr('readonly');
+});
+
+$(document).on("focusout", ".nome-categoria", function(){
+    $(this).attr('readonly');
+    let nome = $(this).val();
+    let idCategoria = $(this).data("id");
+    url = $("#path").val();
+    url += "admin/categorias/update";
+
+    $.ajax({
+        url: url,
+        type: 'POST',            
+        data: {id : idCategoria, nome : nome},
+        success: function (data, status){
+            // console.log(data);return;
+            mensagem = JSON.parse(data);
+            if(mensagem.type == "sucesso"){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: mensagem.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: mensagem.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        }
+    });
 });
 

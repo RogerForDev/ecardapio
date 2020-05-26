@@ -20,4 +20,9 @@ class Categoria extends Model {
 
         return $this->get();
     }
+
+    // public function updateById($nome, $id_categoria){
+    //     $this->sql = "update {$this->table} set nome = {$nome} where id_categoria = {$id_categoria}";
+    //     return $this->get();
+    // }
 }
