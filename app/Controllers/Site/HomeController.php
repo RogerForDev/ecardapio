@@ -117,7 +117,8 @@ class HomeController extends Controller
         }
 		$vars = [
 			'page' => 'cardapio',
-			'cardapio' => $categorias
+			'cardapio' => $categorias,
+			'usuario' => User::getFromSession()
 		];
 		return $this->view->render($response, 'cardapio/index.phtml', $vars);
 	}

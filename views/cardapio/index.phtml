@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <title>Title</title>
+    <title><?= $usuario['estabelecimento'] ?> - eCardapio</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -61,9 +61,9 @@
     <div class="container-fluid bg-fundo">
         <div class="row bg-header py-5">
             <div class="col-xl-6 text-center">
-                <div class="pl-5 title-header  text-light">Tapioca Ceará</div>
+                <div class="pl-5 title-header  text-light"><?= $usuario['estabelecimento'] ?></div>
                 <img src="https://i2.wp.com/multarte.com.br/wp-content/uploads/2018/10/logo-whatsapp-png-transparente17.png?fit=1024%2C727&ssl=1" class="pb-2" width="80px" alt="">
-                <div class="d-inline-block pt-4 text-light h3"><b>(45) 99141-0790</b></div>
+                <div class="d-inline-block pt-4 text-light h3"><b><?= $usuario['whatsapp'] ?></b></div>
             </div>
             <div class="col-xl-6">
             </div>
@@ -178,7 +178,7 @@
                         <div class="bg-light py-2 px-4">
                             <h5 class="pl-4 pb-2 text-center">Horário de atendimento: das 17hs até 23hs</h5>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1012.4944726844747!2d-54.57527582428262!3d-25.4511598767081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f69b0544337e57%3A0xa72aae348c6ca711!2sRua%20C%2C%20937%2C%20PR%2C%20Brasil!5e0!3m2!1spt-BR!2sbr!4v1590088419578!5m2!1spt-BR!2sbr" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                            <h5 class="text-center pt-2">rua C, em frente ao Brasília Materiais de Construção<br>Vila C velha</h5>
+                            <h5 class="text-center pt-2"><?= $usuario['rua'] ?><br><?= $usuario['bairro'] ?></h5>
                         </div>
                     </div>
                 </div>
