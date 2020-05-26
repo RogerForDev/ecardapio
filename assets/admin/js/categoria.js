@@ -1,44 +1,3 @@
-// $("#salvar-categoria").on("click", function(){
-//     let form = new FormData();
-//     var file_data = $('input[type="file"]')[0].files; // for multiple files
-//     for(var i = 0;i<file_data.length;i++){
-//         form.append("file_"+i, file_data[i]);
-//     }
-//     var other_data = $('#form-categoria').serializeArray();
-//     $.each(other_data,function(key,input){
-//         form.append(input.name,input.value);
-//     });
-//     url = $(this).data("url");
-//     $.ajax({
-//         method: "POST",
-//         url : url,
-//         data: form,
-//         contentType: false,
-//         processData: false,
-//         success:function(result){
-//             alert(result);
-//             mensagem = JSON.parse(result);
-
-//             if(mensagem.type == "sucesso"){
-//                 Swal.fire({
-//                     icon: 'success',
-//                     title: 'Sucesso',
-//                     text: mensagem.message,
-//                     showConfirmButton: false,
-//                     timer: 1500
-//                 })
-//             }else{
-//                 Swal.fire({
-//                     icon: 'error',
-//                     title: 'Erro',
-//                     text: mensagem.message,
-//                     showConfirmButton: false,
-//                     timer: 1500
-//                 })
-//             }
-//         }   
-//     });
-// });
 
 $(document).on("submit", "#form-categoria", function(event)
 {
@@ -63,8 +22,16 @@ $(document).on("submit", "#form-categoria", function(event)
                     timer: 1500
                 });
 
-                let html = "<div class='row'><div class='col-xl-12'><input type='text' class='bg-cat-title py-3 h5 w-100 border-0 text-center' readonly='true' title='Clique para editar o nome da categoria' data-toggle='tooltip' data-placement='top' value="+mensagem.nome+"></div></div>";
+                let html = "<div class='row'><div id='"+mensagem.nome+"' class='col-xl-12'><input data-id='"+mensagem.id+"' type='text' class='bg-cat-title py-3 h5 w-100 border-0 text-center nome-categoria' readonly='true' title='Clique para editar o nome da categoria' data-toggle='tooltip' data-placement='top' value="+mensagem.nome+"></div></div>";
                 $("#conteudo").append(html);
+
+                let linha = $("<br><div class='row'></div>");
+                let card = $("<div class='col-xl-3 pb-3'><div class='card text-left'><div class='card-body py-4'><a href='' class='novo-produto-generico' data-toggle='modal' data-target='#modalNewProductGeneric' data-id='"+mensagem.id+"' data-categoria='"+mensagem.nome+"'><h3 class='card-title text-center text-dark'><i class='fa fa-plus fa-2x'></i><br>Adicionar produto</h3></a></div></div></div>");
+                linha.append(card);
+
+                $("#conteudo").append(linha);
+
+                $("#modalCategoria").modal("hide");
             }else{
                 Swal.fire({
                     icon: 'error',
@@ -77,3 +44,50 @@ $(document).on("submit", "#form-categoria", function(event)
         }
     });
 });
+
+$(document).on("click", ".novo-produto-generico", function(){
+    let categoria = $(this).data("categoria");
+    let idCategoria = $(this).data("id");
+    $("#id-categoria-generico").val(idCategoria);
+    $("#titulo-produto").html("Novo produto da categoria "+categoria);
+});
+
+$(document).on("focusin", ".nome-categoria", function(){
+    $(this).removeAttr('readonly');
+});
+
+$(document).on("focusout", ".nome-categoria", function(){
+    $(this).attr('readonly');
+    let nome = $(this).val();
+    let idCategoria = $(this).data("id");
+    url = $("#path").val();
+    url += "admin/categorias/update";
+
+    $.ajax({
+        url: url,
+        type: 'POST',            
+        data: {id : idCategoria, nome : nome},
+        success: function (data, status){
+            // console.log(data);return;
+            mensagem = JSON.parse(data);
+            if(mensagem.type == "sucesso"){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: mensagem.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: mensagem.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        }
+    });
+});
+

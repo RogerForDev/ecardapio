@@ -4,6 +4,8 @@
     <!-- Start content -->
     <div class="content" style="background: url(<?= PATH . "/assets/admin/images/pattern.png" ?>);">
 
+        <input type="hidden" id="path" value="<?= PATH ?>">
+
         <div id="conteudo" class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -15,7 +17,7 @@
             <?php foreach ($cardapio as $key => $cat) : ?>
                 <div class="row">
                     <div class="col-xl-12">
-                        <input type="text" class="bg-cat-title py-3 h5 w-100 border-0 text-center" readonly="true" title="Clique para editar o nome da categoria" data-toggle="tooltip" data-placement="top" value="<?= $cat['nome'] ?>">
+                        <input data-id="<?=$cat['id_categoria']?>" type="text" class="bg-cat-title py-3 h5 w-100 border-0 text-center nome-categoria" readonly="true" title="Clique para editar o nome da categoria" data-toggle="tooltip" data-placement="top" value="<?= $cat['nome'] ?>">
                     </div>
                 </div>
                 <br>
@@ -56,6 +58,9 @@
                 <!-- Modal Novo Produto -->
                 <?php include "produto/novo.phtml"; ?>
             <?php endforeach; ?>
+        </div>
+
+        <div class="container">
 
             <div class="row">
                 <div class="col-xl-12">
@@ -64,10 +69,9 @@
             </div>
             <!-- Modal Nova Categoria -->
             <?php include "categoria/novo.phtml"; ?>
-
-            <!-- end row -->
-
+            <?php include "produto/novoGenerico.phtml"; ?>
         </div>
+        <!-- end row -->
         <!-- END container-fluid -->
 
     </div>
