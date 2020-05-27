@@ -1,3 +1,7 @@
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+
 function remove(url){
     Swal.fire({
         title: 'Tem certeza?',
@@ -14,7 +18,7 @@ function remove(url){
             'Excluido!',
             'Esse item foi excluido.',
             'success'
-          )
+          );
           window.location.href = url; 
         }
       });

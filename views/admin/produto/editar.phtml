@@ -10,10 +10,11 @@
              <form action="<?= PATH . "admin/produtos/" . $value['id_produto'] ?>" method="POST" enctype="multipart/form-data">
                  <div class="modal-body">
                      <div class="container-fluid">
-                         <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria'] ?>" accept="image/*">
+                         <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria'] ?>">
+                         <input type="hidden" name="imagem" value="<?= $value['imagem'] ?>">
                          <div class="form-group">
                              <label for="input_file">Imagem</label>
-                             <input type="file" name="imagem-produto" data-jfiler-limit="1">
+                             <input type="file" name="imagem-produto" data-jfiler-limit="1" accept="image/*">
                          </div>
                          <div class="form-group">
                              <label for="prod-nome">Nome</label>
@@ -30,10 +31,10 @@
                              </div>
                              <div class="col-xl-6">
                                  <label for="prod-ativo">Ativo</label>
-                                 <div class="custom-control custom-switch">
-                                     <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                                     <label class="custom-control-label" for="customSwitch1">Ative ou desative o produto</label>
-                                 </div>
+                                 <select name="ativo" class="form-control">
+                                    <option value="1" <?= ($value['ativo'] == 1)?"selected":"" ?>>SIM</option>
+                                    <option value="0" <?= ($value['ativo'] == 0)?"selected":"" ?>>NÃO</option>
+                                </select>
                              </div>
                          </div>
                      </div>

@@ -18,3 +18,9 @@
 .bg-cat-title:hover {
     background-color: #ffffff;
 }
+
+.btn-delete-cat{
+    right: -29px;
+    top: -3px;
+    z-index: 9;
+}

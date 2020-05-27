@@ -17,18 +17,18 @@
             <?php foreach ($cardapio as $key => $cat) : ?>
                 <div class="row">
                     <div class="col-xl-12">
-                        <input data-id="<?=$cat['id_categoria']?>" type="text" onmouseover="showSaveButton('<?= $key ?>')" onmouseout="hideSaveButton('<?= $key ?>')" class="bg-cat-title py-3 h5 w-100 border-0 text-center nome-categoria" readonly="true" title="Clique para editar o nome da categoria" data-toggle="tooltip" data-placement="top" value="<?= $cat['nome'] ?>">
-                        <a href="javascript:;" id="btnSaveCat<?= $key ?>" class="position-absolute px-5 py-2 d-none" style="right: 0px;top: -2px;z-index:9;" href="#" title="Excluir categoria" onclick="remove('<?= PATH.'admin/categorias/'.$cat['id_categoria'].'/delete' ?>')" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash fa-3x text-danger pr-2"  aria-hidden="true"></i></a>
+                        <input data-id="<?=$cat['id_categoria']?>" type="text" onmouseover="showSaveButton('<?= $key ?>')" onmouseout="hideSaveButton('<?= $key ?>')" class="bg-cat-title py-3 h5 w-100 border-0 text-center nome-categoria" readonly="true" data-html="true" title="<i class='fa fa-pencil pr-2' aria-hidden='true'></i>Clique para editar o nome da categoria" data-toggle="tooltip" data-placement="top" value="<?= $cat['nome'] ?>">
+                        <a href="javascript:;" id="btnSaveCat<?= $key ?>" class="position-absolute px-5 py-2 d-none btn-delete-cat" href="#" title="Excluir categoria" onclick="remove('<?= PATH.'admin/categorias/'.$cat['id_categoria'].'/delete' ?>')" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash fa-3x text-danger pr-2"  aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <?php foreach ($cat['produtos'] as $key => $value) : ?>
-                        <div class="col-xl-3 col-6 pb-3">
+                        <div class="col-xl-3 col-6 pb-3 mt-3" data-html="true" title="<i class='fa fa-pencil pr-2' aria-hidden='true'></i>Clique para editar o produto" data-toggle="tooltip" data-placement="top">
                             <div class="card shadow text-left text-dark">
-                                <a href="" data-toggle="modal" class="text-dark" data-target="#modaleditProduct<?= $value['id_produto'] ?>" title="Clique para editar o produto" data-toggle="tooltip" data-placement="top">
+                                <a href="" data-toggle="modal" class="text-dark" data-target="#modaleditProduct<?= $value['id_produto'] ?>">
                                 <?php if($value["imagem"] != ""): ?>
-                                    <img class="card-img-top" src="<?= PATH.$value['imagem'] ?>">
+                                    <img class="card-img-top" src="<?= thumbUrl(PATH.$value['imagem'], 260, 220) ?>">
                                 <?php else: ?>
                                     <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
                                 <?php endif; ?>

@@ -78,7 +78,7 @@ class ProdutoController extends Controller
 			return back();
         }
 
-        if(isset($_FILES)){
+        if($_FILES["imagem-produto"]["error"] != 4){
             $upload = new Upload(); 
             $data['imagem'] = $upload->upload("imagem-produto", "produto");
         }
