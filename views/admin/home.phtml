@@ -1,6 +1,6 @@
 
 <div class="content-page pt-5">
-
+    <?php include "users/editar.phtml"; ?>
     <!-- Start content -->
     <div class="content" style="background: url(<?= PATH . "/assets/admin/images/pattern.png" ?>);">
 
@@ -8,8 +8,9 @@
 
         <div id="conteudo" class="container">
             <div class="row">
-                <div class="col-xl-12">
-                    <h1 class="main-title text-light py-3"><?= $usuario['estabelecimento']?></h1>
+                <div class="col-xl-12 mt-4 py-3">
+                    <span class="main-title text-light h1"><?= $usuario['estabelecimento']?></span>
+                    <a name="" id="" class="btn btn-outline-light  float-right ml-auto" href="#" role="button"><i class="fa fa-paint-brush  pr-3" aria-hidden="true"></i>Trocar Aparência</a>
                 </div>
             </div>
             <!-- end row -->           

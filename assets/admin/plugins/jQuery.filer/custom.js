@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$(":file").filer({
+	$(".file-input").filer({
 		limit: 1,
 		maxSize: 1,
 		extensions: ["png", "jpg"],
