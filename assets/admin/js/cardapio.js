@@ -1,5 +1,30 @@
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
+
+  $('#colorPicker1').colorpicker({format: "hex"}).blur(function(){
+    $(this).css('background-color',$(this).val());
+  });
+  $('#colorPicker2').colorpicker({format: "hex"}).blur(function(){
+    $(this).css('background-color',$(this).val());
+  });
+  $('#colorPicker3').colorpicker({format: "hex"}).blur(function(){
+    $(this).css('background-color',$(this).val());
+  });
+  $('#colorPicker4').colorpicker({format: "hex"}).blur(function(){
+    $(this).css('background-color',$(this).val());
+  }); 
+  $('#font').fontselect().change(function(){
+        
+    // replace + signs with spaces for css
+    var font = $(this).val().replace(/\+/g, ' ');
+    
+    // split font into family and weight
+    font = font.split(':');
+    
+    // set family on paragraphs 
+    $('#font-example').css('font-family', font[0]);
+  }); 
+
 })
 
 function remove(url){

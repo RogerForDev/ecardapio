@@ -1,0 +1,90 @@
+<!-- Modal -->
+<div class="modal fade" id="modalTemas" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h5 class="modal-title">Alterar aparência</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                               
+                                
+                                <h3>Selecione um tema</h3>
+                            </div>
+                            <!-- end card-header -->
+                            <div class="card-body">
+                                <table class="table table-hover" id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nome do Tema</th>
+                                            <th>Paleta de cores</th>
+                                            <th>Fonte</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($temas as $value) { ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $value['id_tema'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $value['nome'] ?>
+                                                </td>
+                                                <td>
+                                                    <i class="fa fa-square fa-2x" style="color:<?= $value['cor_primaria'] ?>" title="Cor Primária"></i>
+                                                    <i class="fa fa-square fa-2x" style="color:<?= $value['cor_secundaria'] ?>" title="Cor Secondária"></i>
+                                                    <i class="fa fa-square fa-2x" style="color:<?= $value['texto_escuro'] ?>" title="Texto escuro"></i>
+                                                    <i class="fa fa-square fa-2x" style="color:<?= $value['texto_claro'] ?>" title="Texto claro"></i>
+                                                </td>
+                                                <td>
+                                                    <a href="https://fonts.google.com/specimen/<?= $value['fonte'] ?>" target="_blank" title="Visualizar no Google Fonts">
+                                                        <span class="badge badge-primary">
+                                                            <?= $value['fonte'] ?>
+                                                        </span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <div class="pull-right">
+
+                                                        <a href="<?= PATH ?>/admin/themes/<?= $value['idtheme'] ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>
+                                                            Editar</a>
+
+
+                                                        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_remove_<?= $value['idtheme'] ?>">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i><span>&nbsp;Excluir</span>
+                                                        </a>
+                                                        <div class="modal custom-modal" tabindex="-1" role="dialog" aria-hidden="true" id="modal_remove_<?= $value['idtheme'] ?>">
+                                                            <?= printAlert("Deseja realmente remover esse tema?", PATH . "/admin/themes/" . $value['idtheme'] . "/delete"); ?>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- end card-body -->
+
+                        </div>
+                        <!-- end card -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

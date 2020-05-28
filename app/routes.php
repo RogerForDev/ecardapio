@@ -27,6 +27,12 @@ $app->group('/admin', function(){
     $this->post('/produtos/create', 'App\Controllers\Admin\ProdutoController:create');
     $this->post('/produtos/{id}', 'App\Controllers\Admin\ProdutoController:update');
     $this->get('/produtos/{id}/delete', 'App\Controllers\Admin\ProdutoController:delete');
+
+    //TEMA
+    $this->get('/temas', 'App\Controllers\Admin\TemaController:index');
+    $this->post('/temas/create', 'App\Controllers\Admin\TemaController:create');
+    $this->post('/temas/{id}', 'App\Controllers\Admin\TemaController:update');
+    $this->get('/temas/{id}/delete', 'App\Controllers\Admin\TemaController:delete');
     
 })->add(App\Middleware\Admin\AuthMiddleware::class);
 

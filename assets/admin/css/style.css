@@ -24,3 +24,7 @@
     top: -3px;
     z-index: 9;
 }
+.input-group-addon {
+    line-height: inherit !important;
+    font-size: 1rem !important;
+}

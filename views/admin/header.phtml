@@ -8,14 +8,20 @@
     <title>eCardapio - Painel Administrativo</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= PATH ?>assets/admin/images/favicon.ico">
+    <link rel="shortcut icon" href="<?= PATH ?>assets/admin/images/favicon.png" type="image/x-icon">
 
     <!-- Bootstrap CSS -->
     <link href="<?= PATH ?>assets/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Font Awesome CSS -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
+    
+    <!-- Colorpicker CSS -->
+    <link href="<?= PATH ?>assets/admin/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet">
+    
+    <!-- Fontpicker CSS -->
+    <link href="<?= PATH ?>assets/admin/plugins/fontselect/fontselect-alternate.css" rel="stylesheet">
+    
     <!-- Custom CSS -->
     <link href="<?= PATH ?>assets/admin/css/style.css" rel="stylesheet" type="text/css" />
 
@@ -51,20 +57,20 @@
 
 <body>
 
-    <nav class="navbar bg-primary fixed-top py-0" style="box-shadow: 0px -6px 13px 5px #000000b0;">
+    <nav class="navbar bg-primary fixed-top py-1" style="box-shadow: 0px -6px 13px 5px #000000b0;">
         <a href="<?= PATH ?>admin"><img alt="Logo" src="<?= PATH ?>assets/site/img/icon-ecardapio-white.png" width="80px" /></a>
 
         <?= message('message') ?>
 
-        <a href="<?= PATH ?>cardapio" class="btn btn-outline-light my-2 my-sm-0 ml-auto mr-3" target="_blank" rel="noopener noreferrer" ><i class="fa fa-eye pr-2" aria-hidden="true"></i>Visualizar</a>
+        <a href="<?= PATH ?>cardapio" class="btn btn-outline-light my-2 my-sm-0 ml-auto mr-3" target="_blank" rel="noopener noreferrer" ><i class="fa fa-eye pr-2" aria-hidden="true"></i><span class="d-none d-sm-inline-block">Visualizar</span></a>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Buscar produto">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fa fa-search pr-2" aria-hidden="true"></i>Buscar</button>
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fa fa-search pr-2" aria-hidden="true"></i><span class="d-none d-sm-inline-block">Buscar</span></button>
         </form>
 
         <div class="btn-group">
             <button type="button" class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" width="50px" alt="Profile image" class="bg-light rounded-circle">
+            <img src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" width="40px" alt="Profile image" class="bg-light rounded-circle">
             </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item">Olá, <?= getUsername() ?></small></a>

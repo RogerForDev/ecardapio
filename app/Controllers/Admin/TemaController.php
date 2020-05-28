@@ -5,35 +5,20 @@ namespace App\Controllers\Admin;
 use App\src\Upload;
 use App\src\Validate;
 use App\models\admin\User;
-use App\models\admin\Produto;
+use App\models\admin\Tema;
 use App\models\admin\Cardapio;
 use App\Controllers\Controller;
 use App\models\admin\Categoria;
-use App\models\admin\Tema;
 
-class ProdutoController extends Controller
+class TemaController extends Controller
 {
     public function index($request, $response)
     {
-        $produto = new Produto;
-        $categoria = new Categoria;       
-        $tema = new Tema;       
-
-       // $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
-        
-       // $lista = $produto->getProdByCardapio($id_cardapio);
-        
-        $categorias = $categoria->select()->get();
-
-        foreach($categorias as &$cat){
-            $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
-        }
+        $tema = new Tema;
 
         $vars = [
             "page" => "home",	
-            "cardapio" => $categorias, 
-            "usuario" => User::getFromSession(),
-            "temas" => $tema->select()->get()
+            "temas" => $tema->select()->all()
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);
@@ -53,15 +38,14 @@ class ProdutoController extends Controller
         
         if(isset($_FILES)){
             $upload = new Upload(); 
-            $data['imagem'] = $upload->upload("imagem-produto", "produto");
+            $data['imagem'] = $upload->upload("imagem-tema", "tema");
         }
-        $item = new Produto;
 
-        $id_produto = $item->create($data);
+        $item = new Tema;
+
+        $id_tema = $item->create($data);
         
-        if($id_produto){
-            $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
-            $item->saveProdCardapio($id_cardapio, $id_produto);
+        if($id_tema){
             flash('message', success('Cadastrado com sucesso!'));
             return back();
         }
@@ -81,14 +65,14 @@ class ProdutoController extends Controller
 			return back();
         }
 
-        if($_FILES["imagem-produto"]["error"] != 4){
+        if($_FILES["imagem-tema"]["error"] != 4){
             $upload = new Upload(); 
-            $data['imagem'] = $upload->upload("imagem-produto", "produto");
+            $data['imagem'] = $upload->upload("imagem-tema", "tema");
         }
         
-        $item = new Produto;
+        $item = new Tema;
 
-		$updated = $item->find('id_produto', $args['id'])->update( $data);
+		$updated = $item->find('id_tema', $args['id'])->update( $data);
 
 		if ($updated) {
 			flash('message', success('Atualizado com sucesso'));
@@ -100,8 +84,8 @@ class ProdutoController extends Controller
     }
     public function delete($request, $response, $args)
     {   
-        $item = new Produto;
-		$deleted = $item->find('id_produto', $args['id'])->delete();
+        $item = new Tema;
+		$deleted = $item->find('id_tema', $args['id'])->delete();
 
 		if ($deleted) {
 			flash('message', success('Deletado com sucesso'));
