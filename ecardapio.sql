@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `tb_cardapio_produto` (
   KEY `id_produto` (`id_produto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela ecardapio.tb_cardapio_produto: ~54 rows (aproximadamente)
+-- Copiando dados para a tabela ecardapio.tb_cardapio_produto: ~64 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_cardapio_produto` DISABLE KEYS */;
 INSERT INTO `tb_cardapio_produto` (`id_cardapio`, `id_produto`) VALUES
 	(1, 1),
@@ -100,7 +100,8 @@ INSERT INTO `tb_cardapio_produto` (`id_cardapio`, `id_produto`) VALUES
 	(1, 61),
 	(1, 62),
 	(1, 63),
-	(1, 64);
+	(1, 64),
+	(1, 65);
 /*!40000 ALTER TABLE `tb_cardapio_produto` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela ecardapio.tb_categoria
@@ -112,9 +113,9 @@ CREATE TABLE IF NOT EXISTS `tb_categoria` (
   `ativo` tinyint(4) NOT NULL DEFAULT '1',
   `id_cardapio` int(11) NOT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela ecardapio.tb_categoria: ~8 rows (aproximadamente)
+-- Copiando dados para a tabela ecardapio.tb_categoria: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_categoria` DISABLE KEYS */;
 INSERT INTO `tb_categoria` (`id_categoria`, `nome`, `icone`, `imagem`, `ativo`, `id_cardapio`) VALUES
 	(1, 'Lanches', NULL, NULL, 1, 0),
@@ -122,10 +123,7 @@ INSERT INTO `tb_categoria` (`id_categoria`, `nome`, `icone`, `imagem`, `ativo`, 
 	(3, 'Crepe Suiço', NULL, NULL, 1, 0),
 	(4, 'Tapioca Salgada', NULL, NULL, 1, 0),
 	(11, 'Tapioca doce', NULL, NULL, 1, 1),
-	(12, 'Açaí', NULL, NULL, 1, 1),
-	(16, 'Roger', NULL, 'C:/laragon/www/ecardapio/uploads/images/2020/05/26/15904516355ecc5db370e65/arquivo5becbd4d1e3034701508400322761f81.jpg', 1, 1),
-	(17, 'Teste2', NULL, 'C:/laragon/www/ecardapio/uploads/categoria/2020/05/26/15904519385ecc5ee292346/arquivod8d2199b599b1300f3462f39647c703a.jpg', 1, 1),
-	(18, 'Roger2', NULL, 'C:/laragon/www/ecardapio/uploads/categoria/2020/05/26/15904526435ecc61a34a7f0/arquivo029884db58539d4fa9baad74aa9b1709.jpg', 1, 1);
+	(12, 'Açaí', NULL, NULL, 1, 1);
 /*!40000 ALTER TABLE `tb_categoria` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela ecardapio.tb_produto
@@ -139,12 +137,12 @@ CREATE TABLE IF NOT EXISTS `tb_produto` (
   `ativo` int(11) DEFAULT '1',
   PRIMARY KEY (`id_produto`),
   KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela ecardapio.tb_produto: ~55 rows (aproximadamente)
+-- Copiando dados para a tabela ecardapio.tb_produto: ~53 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_produto` DISABLE KEYS */;
 INSERT INTO `tb_produto` (`id_produto`, `nome`, `descricao`, `id_categoria`, `imagem`, `preco`, `ativo`) VALUES
-	(1, 'X-Salada', 'Hambúrguer - Maionese - Alface - Tomate Milho - Queijo e Presunto - Batata-palha', 1, 'uploads/produto/2020/05/26/15904529895ecc62fd01185/arquivo207209ca59b97766e744782e819e8e2e.jpg', 7.50, 1),
+	(1, 'X-Salada', 'Hambúrguer - Maionese - Alface - Tomate Milho - Queijo e Presunto - Batata-palha', 1, 'uploads/produto/2020/05/27/0a0d1ca4e7fea971b090f6a7d7ccccd1.jpg', 7.50, 0),
 	(2, 'X – EGG', 'Hambúrguer - Maionese - Alface – Tomate - Milho - Queijo e Presunto - Batata-palha – Ovo Frito', 1, 'uploads/produto/2020/05/26/15905107295ecd448904e66/arquivo21fa1227b45a89babcdabb9d4f9c8ea0.png', 8.00, 1),
 	(3, 'HOT-DOG PRENSADO', 'Salsicha Defumada - Maionese - Alface - Tomate - Milho - Batata-palha – Catchup', 1, 'uploads/produto/2020/05/26/64c3fa6d31a69abc2b4f530c70026517.jpg', 8.00, 1),
 	(4, 'X – BACON', 'Hambúrguer - Maionese - Alface – Tomate Milho - Queijo e Presunto – Bacon - Batata-palha', 1, 'uploads/produto/2020/05/26/b98d3621df9cec0886f22baaf40eb9b7.jpg', 9.00, 1),
@@ -196,9 +194,7 @@ INSERT INTO `tb_produto` (`id_produto`, `nome`, `descricao`, `id_categoria`, `im
 	(54, 'Tapioca de queijo com goiabada', '', 11, '', 8.00, 1),
 	(55, 'Tapioca de leite condensado com coco', '', 11, '', 8.00, 1),
 	(56, 'Camadinha 400ml', 'Açaí em camadas de leite ninho com leite condensado', 12, '', 15.00, 1),
-	(57, 'Açaí 300ml', 'Açaí puro', 12, '', 8.00, 1),
-	(63, 'asasas', 'asasas', 1, 'uploads/produto/2020/05/26/18eaa731540b41a262a912bfc3cd403f.jpg', 0.00, 1),
-	(64, 'ccacaca', 'cacac', 1, 'uploads/produto/2020/05/26/e4ee86a26ac107a4e580535ddc5f3260.jpg', 0.00, 1);
+	(57, 'Açaí 300ml', 'Açaí puro', 12, '', 8.00, 1);
 /*!40000 ALTER TABLE `tb_produto` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela ecardapio.tb_tema
@@ -206,14 +202,19 @@ CREATE TABLE IF NOT EXISTS `tb_tema` (
   `id_tema` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) DEFAULT NULL,
   `cor_primaria` varchar(50) DEFAULT NULL,
-  `background` varchar(255) DEFAULT NULL,
+  `imagem` varchar(255) DEFAULT NULL,
+  `cor_secundaria` varchar(50) DEFAULT NULL,
+  `texto_claro` varchar(50) DEFAULT NULL,
+  `texto_escuro` varchar(50) DEFAULT NULL,
+  `fonte` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_tema`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela ecardapio.tb_tema: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela ecardapio.tb_tema: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_tema` DISABLE KEYS */;
-INSERT INTO `tb_tema` (`id_tema`, `nome`, `cor_primaria`, `background`) VALUES
-	(1, 'padrao', NULL, NULL);
+INSERT INTO `tb_tema` (`id_tema`, `nome`, `cor_primaria`, `imagem`, `cor_secundaria`, `texto_claro`, `texto_escuro`, `fonte`) VALUES
+	(1, 'padrao', '#dc3545', NULL, NULL, NULL, NULL, 'caveat'),
+	(2, 'teste', '#a23052', 'uploads/tema/2020/05/28/caf5763394ee0bfe97252652590eb4fa.jpg', '#702428', '#d6d4d4', '#2e2e2e', 'Anton');
 /*!40000 ALTER TABLE `tb_tema` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela ecardapio.tb_usuario
@@ -244,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuario` (
 -- Copiando dados para a tabela ecardapio.tb_usuario: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_usuario` DISABLE KEYS */;
 INSERT INTO `tb_usuario` (`id_usuario`, `nome`, `login`, `senha`, `email`, `ativo`, `estabelecimento`, `horario`, `sobre`, `categoria`, `cidade`, `rua`, `bairro`, `numero`, `telefone`, `whatsapp`, `facebook`, `instagram`, `flag_cartao`, `flag_wifi`) VALUES
-	(1, 'Administrador', 'admin', '$2y$12$58zQvfbvUSWYtfL.y5VR7eyvQkX6E7Y3cML91nvIgLzRMTyeFJtQy', 'admin@mail.com', 1, 'Tapioca Ceara', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1, 'Administrador', 'admin', '$2y$12$58zQvfbvUSWYtfL.y5VR7eyvQkX6E7Y3cML91nvIgLzRMTyeFJtQy', 'admin@mail.com', 1, 'Tapioca Ceará', NULL, NULL, NULL, 'Foz do Iguaçu', 'rua C, em frente ao Brasília Materiais de Construção', 'Itaipu C', '', NULL, '(45) 99141-0790', NULL, NULL, 1, 1),
 	(11, 'Teste2', 'teste', '$2y$12$Qs0O7oDCnv083zaITSEZ..0P48GIjVn6fG7dFnjke7Av0LbpfnA..', 'teste@teste.com', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `tb_usuario` ENABLE KEYS */;
 
