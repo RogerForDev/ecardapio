@@ -57,7 +57,7 @@ class CategoriaController extends Controller
         $categoria = $categoria->create($data);
 
         if($categoria){
-            echo json_encode(array("type" => "sucesso", "message" => "Categoria cadastrado com sucesso!", "nome" => $data['nome'], "id" => $categoria));
+            echo json_encode(array("type" => "sucesso", "message" => "Categoria cadastrado com sucesso!", "nome" => $data['nome'], "id" => $categoria, "path" => PATH));
             exit;
         }
         
