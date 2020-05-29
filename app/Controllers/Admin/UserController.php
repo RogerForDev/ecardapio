@@ -53,8 +53,14 @@ class UserController extends Controller
 
 		$data = $validate->validate([
 			'nome' => 'required',
-			'email' => 'required:email'
-		]);
+            'email' => 'required:email',
+            'estabelecimento' => 'required',
+            'horario' => 'required',
+            'cidade' => 'required',
+            'rua' => 'required',
+            'bairro' => 'required',
+            'numero' => 'required'
+        ]);
 
 		if ($validate->hasErrors()) {
 			return back();
@@ -62,14 +68,15 @@ class UserController extends Controller
         
         $user = new User;
 
-		$updated = $user->find('id_usuario', $args['id'])->update((array) $data);
+		$updated = $user->find('id_usuario', $data->id_usuario)->update((array) $data);
 
 		if ($updated) {
-			flash('message', success('Atualizado com sucesso'));
+            $_SESSION[User::SESSION] = get_object_vars($data);
+			flash('message', success('Usuário Atualizado com sucesso'));
 			return back();
 		}
 
-		flash('message', error('Erro ao atualizar'));
+		flash('message', error('Erro ao atualizar o usuário'));
 		back(); 
     }
     public function delete($request, $response, $args)

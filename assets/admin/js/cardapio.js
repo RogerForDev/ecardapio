@@ -48,13 +48,3 @@ function remove(url){
         }
       });
 }
-
-function showSaveButton(n){
-    // $('#input-name'+n).removeAttr('readonly');
-    $('#btnSaveCat'+n).removeClass('d-none');    
-}
-
-function hideSaveButton(n){
-    // $('#input-name'+n).attr('readonly', 'true');
-    $('#btnSaveCat'+n).addClass('d-none');
-}

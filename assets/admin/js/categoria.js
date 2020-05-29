@@ -52,11 +52,11 @@ $(document).on("click", ".novo-produto-generico", function(){
     $("#titulo-produto").html("Novo produto da categoria "+categoria);
 });
 
-$(document).on("focusin", ".nome-categoria", function(){
+$(document).on("mouseenter", ".nome-categoria", function(){
     $(this).removeAttr('readonly');
 });
 
-$(document).on("focusout", ".nome-categoria", function(){
+$(document).on("mouseleave", ".nome-categoria", function(){
     $(this).attr('readonly');
     let nome = $(this).val();
     let idCategoria = $(this).data("id");
@@ -89,5 +89,15 @@ $(document).on("focusout", ".nome-categoria", function(){
             }
         }
     });
+});
+
+$(document).on("mouseenter", ".nome-categoria", function(){
+    // $('#input-name'+n).removeAttr('readonly');
+    $(".deletar-categoria").removeClass('d-none');    
+});
+
+$(document).on("mouseleave", ".nome-categoria", function(){
+    // $('#input-name'+n).attr('readonly', 'true');
+    $(".deletar-categoria").addClass('d-none');
 });
 
