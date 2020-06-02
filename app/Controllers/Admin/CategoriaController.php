@@ -46,12 +46,11 @@ class CategoriaController extends Controller
         }
         
         $categoria = new Categoria;
-        $cardapio = new Cardapio;
 
-        $cardapio = $cardapio->getFromUser();
+        
 
         $data['imagem'] = $result;
-        $data['id_cardapio'] = $cardapio['id_cardapio'];
+        $data['id_cardapio'] = Cardapio::getFromUser()['id_cardapio'];
         // print_r($data);exit;
 
         $categoria = $categoria->create($data);

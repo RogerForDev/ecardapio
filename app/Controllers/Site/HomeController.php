@@ -3,8 +3,10 @@
 namespace app\controllers\site;
 
 use App\controllers\Controller;
+use App\models\admin\Cardapio;
 use App\models\admin\Categoria;
 use App\models\admin\Produto;
+use App\models\admin\Tema;
 use App\models\site\Post;
 use App\models\admin\User;
 use App\src\Validate;
@@ -109,16 +111,22 @@ class HomeController extends Controller
 	{
 		$produto = new Produto;
 		$categoria = new Categoria;
+		$tema = new Tema;
+		$cardapio = new Cardapio;
 		
-        $categorias = $categoria->select()->get();
+		$cardapio = Cardapio::getFromUser();
+
+		$categorias = $categoria->select()->where('id_cardapio', $cardapio['id_cardapio'])->orderBy('ordem', 'asc')->get();
 
         foreach($categorias as &$cat){
             $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
-        }
+		}
+		
 		$vars = [
 			'page' => 'cardapio',
 			'cardapio' => $categorias,
-			'usuario' => User::getFromSession()
+			'usuario' => User::getFromSession(),
+			'tema' => $tema->select()->findBy('id_tema', $cardapio['id_tema'])
 		];
 		return $this->view->render($response, 'cardapio/index.phtml', $vars);
 	}

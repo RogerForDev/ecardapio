@@ -19,11 +19,11 @@ class ProdutoController extends Controller
         $categoria = new Categoria;       
         $tema = new Tema;       
 
-       // $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
+        $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
         
        // $lista = $produto->getProdByCardapio($id_cardapio);
         
-        $categorias = $categoria->select()->get();
+        $categorias = $categoria->select()->where("id_cardapio", $id_cardapio)->get();
 
         foreach($categorias as &$cat){
             $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
@@ -110,5 +110,18 @@ class ProdutoController extends Controller
 
 		flash('message', error('Erro ao deletar'));
 		back();
+    }
+
+    public function define_tema($request, $response, $args){
+        $cardapio = new Cardapio;
+
+        $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
+
+        $defined = $cardapio->find('id_cardapio', $id_cardapio)->update(['id_tema'=>$args['id']]);
+
+        if($defined){
+            flash('message', success('Atualizado com sucesso'));
+			return back();
+        }
     }
 }

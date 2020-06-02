@@ -27,6 +27,7 @@ $app->group('/admin', function(){
     $this->post('/produtos/create', 'App\Controllers\Admin\ProdutoController:create');
     $this->post('/produtos/{id}', 'App\Controllers\Admin\ProdutoController:update');
     $this->get('/produtos/{id}/delete', 'App\Controllers\Admin\ProdutoController:delete');
+    $this->get('/cardapio/{id}', 'App\Controllers\Admin\ProdutoController:define_tema');
 
     //TEMA
     $this->get('/temas', 'App\Controllers\Admin\TemaController:index');

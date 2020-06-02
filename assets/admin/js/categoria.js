@@ -12,6 +12,7 @@ $(document).on("submit", "#form-categoria", function(event)
         contentType: false,
         success: function (data, status){
             mensagem = JSON.parse(data);
+            console.log(data);
 
             if(mensagem.type == "sucesso"){
                 Swal.fire({
@@ -33,6 +34,7 @@ $(document).on("submit", "#form-categoria", function(event)
 
                 $("#modalCategoria").modal("hide");
             }else{
+                console.log(data);
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro',
@@ -41,6 +43,9 @@ $(document).on("submit", "#form-categoria", function(event)
                     timer: 1500
                 })
             }
+        },
+        error: function(e){
+            console.log(e.responseText);
         }
     });
 });
@@ -68,7 +73,7 @@ $(document).on("focusout", ".nome-categoria", function(){
         type: 'POST',            
         data: {id : idCategoria, nome : nome},
         success: function (data, status){
-            // console.log(data);return;
+             console.log(data);
             mensagem = JSON.parse(data);
             if(mensagem.type == "sucesso"){
                 Swal.fire({
@@ -79,6 +84,7 @@ $(document).on("focusout", ".nome-categoria", function(){
                     timer: 1500
                 });
             }else{
+                console.log(data);
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro',
@@ -87,6 +93,8 @@ $(document).on("focusout", ".nome-categoria", function(){
                     timer: 1500
                 })
             }
+        }, error: function(e){
+            console.log(e);
         }
     });
 });
