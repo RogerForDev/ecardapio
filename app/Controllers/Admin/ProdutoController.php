@@ -15,6 +15,7 @@ class ProdutoController extends Controller
 {
     public function index($request, $response)
     {
+        $cardapio = new Cardapio;
         $produto = new Produto;
         $categoria = new Categoria;       
         $tema = new Tema;       
@@ -22,8 +23,10 @@ class ProdutoController extends Controller
        // $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
         
        // $lista = $produto->getProdByCardapio($id_cardapio);
+
+        $cardapio = $cardapio->getFromUser();
         
-        $categorias = $categoria->select()->get();
+        $categorias = $categoria->select()->where("id_cardapio", $cardapio['id_cardapio'])->get();
 
         foreach($categorias as &$cat){
             $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();

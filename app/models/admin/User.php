@@ -14,6 +14,11 @@ class User extends Model {
     const SUCCESS = 'UserSuccess';
     const ERROR_REGISTER = 'ErrorRegister';
 
+    public static function getFromId($id){
+        $user = new User;
+        return $user->select()->findBy('id_usuario',$id);
+    }
+
     public static function getFromSession()
     {
         if(isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['id_usuario'] > 0){
