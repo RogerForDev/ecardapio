@@ -101,6 +101,8 @@ class HomeController extends Controller
 		$created = $user->create($data);
 
 		if($created){
+			$usuario = $user->getFromId($created);
+			$_SESSION[User::SESSION] = $usuario;
 			return $this->view->render($response, 'site/index.phtml', ['page' => 'cadastro-cardapio']);
 		}else{
 			flash('message', error('Erro ao cadastrar, tente novamente'));
