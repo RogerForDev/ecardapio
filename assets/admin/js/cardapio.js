@@ -4,6 +4,13 @@ $(document).ready(function(){
   $('#altera-horario').mask('00:00:00', {reverse: true});
 });
 
+$(".altera-imagem").on("click", function(){
+  id = $(this).data("id");
+  $(this).slideUp("2000", function(){
+    $("#imagem-input"+id).slideDown();
+  });
+});
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 
