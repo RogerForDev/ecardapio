@@ -1,3 +1,5 @@
+
+
 $(".layout").on("click", function(){
     let layout = $(this).data("layout");
     let url = $(this).data("url");
