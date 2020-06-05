@@ -34,7 +34,8 @@ class ProdutoController extends Controller
 
         $vars = [
             "page" => "home",	
-            "cardapio" => $categorias, 
+            "categorias" => $categorias, 
+            "cardapio" => $cardapio,
             "usuario" => User::getFromSession(),
             "temas" => $tema->select()->get()
         ];
@@ -123,8 +124,7 @@ class ProdutoController extends Controller
         $defined = $cardapio->find('id_cardapio', $id_cardapio)->update(['id_tema'=>$args['id']]);
 
         if($defined){
-            flash('message', success('Atualizado com sucesso'));
-			return back();
+            echo 1;
         }
     }
 }

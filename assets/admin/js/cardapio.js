@@ -61,3 +61,17 @@ function remove(url){
         }
       });
 }
+function ativarTema(url){
+  $.get(url, function(data){
+    if(data == 1){
+      Swal.fire(
+        'Salvo!',
+        'O cardapio foi salvo com o tema selecionado.',
+        'success'
+      );
+    }
+  });
+  setTimeout(function(){
+    location.reload(true);
+  }, 1500); 
+}
