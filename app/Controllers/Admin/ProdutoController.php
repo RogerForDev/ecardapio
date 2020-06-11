@@ -89,6 +89,12 @@ class ProdutoController extends Controller
             $upload = new Upload(); 
             $data['imagem'] = $upload->upload("imagem-produto", "produto");
         }
+
+        if(isset($_POST['ativo'])){
+            $data['ativo'] = 1;
+        }else{
+            $data['ativo'] = 0;
+        }
         
         $item = new Produto;
 
@@ -122,6 +128,17 @@ class ProdutoController extends Controller
         $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
 
         $defined = $cardapio->find('id_cardapio', $id_cardapio)->update(['id_tema'=>$args['id']]);
+
+        if($defined){
+            echo 1;
+        }
+    }
+    public function define_layout($request, $response, $args){
+        $cardapio = new Cardapio;
+
+        $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
+
+        $defined = $cardapio->find('id_cardapio', $id_cardapio)->update(['id_layout'=>$args['id']]);
 
         if($defined){
             echo 1;

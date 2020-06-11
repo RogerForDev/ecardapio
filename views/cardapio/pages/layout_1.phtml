@@ -6,51 +6,18 @@
         background-repeat: no-repeat;
     }
 
-    .bg-title {
-        background: linear-gradient(-3deg, #f8f9fa 28%, <?= $tema['cor_primaria'] ?> 31%);
-    }
-
-    .bg-fundo {
-        background-color: <?= $tema['cor_secundaria'] ?>;
-    }
-
-    .text-title {
-        color: <?= $tema['cor_primaria'] ?>;
-        font-weight: bold;
-        font-size: 20pt;
-    }
-
-    .linewrapper {
-        display: flex;
-        align-items: baseline;
-    }
-
-    .middle {
-        border-bottom: 1px dotted #000;
-        flex-grow: 1;
-        margin: 0 5px;
-    }
-
-    .ingredients {
-        margin-top: -0.5rem;
-        font-weight: bold;
-        font-size: 10pt;
-    }
-
     .title-header {
         font-size: 80px;
         font-family: <?= $tema['fonte'] ?>;
         line-height: 1;
     }
 
-    .card {
-        background-color: unset !important;
+    .bg-fundo {
+        background-color: <?= $tema['cor_secundaria'] ?>;
     }
 
-    @media (min-width: 576px) {
-        .card-columns {
-            column-count: 2;
-        }
+    .bg-primaria {
+        background-color: <?= $tema['cor_primaria'] ?>;
     }
 
     .text-claro {
@@ -74,30 +41,57 @@
             <div class="col-xl-6">
             </div>
         </div>
-        <div class="row">
-            <div class="card-columns mt-4 px-4">
-                <?php foreach ($cardapio as $key => $val) : ?>
-                    <div class="card">
-                        <div class="bg-title py-3">
-                            <h2 class="text-light pl-4"><b><?= $val['nome'] ?></b></h2>
+        <?php foreach ($cardapio as $key => $val) : ?>
+            <div class="row" id="cat-<?= $val['id_categoria'] ?>">
+                <div class="col-12">
+                    <div class="text-center py-4">
+                        <div class="dropdown open">
+                            <a class="dropdown-toggle text-light h3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $val['nome'] ?></a>
+                            <div class="dropdown-menu dropdown-menu-center bg-dark ">
+                                <?php foreach ($cardapio as $key => $value) : ?>
+                                    <a class="dropdown-item text-light" href="#cat-<?= $value['id_categoria'] ?>"><?= $value['nome'] ?></a>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                        <div class="bg-light pt-2 px-4">
-                            <?php foreach ($val['produtos'] as $key => $value) : ?>
-                                <div class="pb-2">
-                                    <div class="linewrapper">
-                                        <span class="text-title"><?= $value['nome'] ?></span>
-                                        <div class="middle"></div>
-                                        <span class="text-title">R$ <?= number_format($value['preco'], 2, ",", ".") ?></span>
-                                    </div>
-                                    <div class="ingredients"><?= $value['descricao'] ?></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <?php foreach ($val['produtos'] as $key => $value) : ?>
+                    <div class="col-xl-3 pb-4">
+                        <div class="bg-light">
+                            <div class=" text-center">
+                                <?php if ($value["imagem"] != "") : ?>
+                                    <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
+                                <?php else : ?>
+                                    <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
+                                <?php endif; ?>
+                                <div class="card-body bg-primaria text-claro">
+                                    <h5 class="card-title"><?= $value['nome'] ?></h5>
+                                    <select name="" class="star">
+                                        <option value="">--</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4" selected>4</option>
+                                        <option value="5">5</option>
+                                    </select><br>
+                                    <p class="card-text pt-2"><?= $value['descricao'] ?></p>
                                 </div>
-                            <?php endforeach; ?>
+                                <div class="card-footer bg-primaria text-claro border-top-0">
+                                    <h5 class="text-claro">R$<?= number_format($value['preco'], 2, ",", ".") ?></h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
+            </div>
+        <?php endforeach; ?>
+        <div class="row">
+            <div class="col-12">
                 <div class="card">
                     <div class="bg-title py-3">
-                        <h2 class="text-light pl-4"><b>Onde estamos</b></h2>
+                        <h2 class="text-center pl-4"><b>Onde estamos</b></h2>
                     </div>
                     <div class="bg-light py-2 px-4">
                         <h5 class="pl-4 pb-2 text-center">Horário de atendimento: <?= $usuario['horario'] ?></h5>
@@ -107,4 +101,5 @@
                 </div>
             </div>
         </div>
+
     </div>

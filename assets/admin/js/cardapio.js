@@ -14,19 +14,19 @@ $(".altera-imagem").on("click", function(){
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 
-  $('#colorPicker1').colorpicker({format: "hex"}).blur(function(){
+  $('.colorPicker1').colorpicker({format: "hex"}).blur(function(){
     $(this).css('background-color',$(this).val());
   });
-  $('#colorPicker2').colorpicker({format: "hex"}).blur(function(){
+  $('.colorPicker2').colorpicker({format: "hex"}).blur(function(){
     $(this).css('background-color',$(this).val());
   });
-  $('#colorPicker3').colorpicker({format: "hex"}).blur(function(){
+  $('.colorPicker3').colorpicker({format: "hex"}).blur(function(){
     $(this).css('background-color',$(this).val());
   });
-  $('#colorPicker4').colorpicker({format: "hex"}).blur(function(){
+  $('.colorPicker4').colorpicker({format: "hex"}).blur(function(){
     $(this).css('background-color',$(this).val());
   }); 
-  $('#font').fontselect().change(function(){
+  $('.font-example').fontselect().change(function(){
         
     // replace + signs with spaces for css
     var font = $(this).val().replace(/\+/g, ' ');
@@ -35,7 +35,7 @@ $(function () {
     font = font.split(':');
     
     // set family on paragraphs 
-    $('#font-example').css('font-family', font[0]);
+    $('.text-example').css('font-family', font[0]);
   }); 
 
 })
@@ -61,12 +61,12 @@ function remove(url){
         }
       });
 }
-function ativarTema(url){
+function setUpdate(url){
   $.get(url, function(data){
     if(data == 1){
       Swal.fire(
         'Salvo!',
-        'O cardapio foi salvo com o tema selecionado.',
+        'Alterações salvas com sucesso.',
         'success'
       );
     }

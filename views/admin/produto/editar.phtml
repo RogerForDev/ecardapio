@@ -13,14 +13,14 @@
                          <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria'] ?>">
                          <input type="hidden" name="imagem" value="<?= $value['imagem'] ?>">
                          <label for="input_file">Alterar imagem</label>
-                         <div class="altera-imagem" data-id="<?=$value['id_produto']?>" style="text-align: center; cursor: pointer;">
-                         <?php if(!empty($value['imagem'])): ?>
-                             <img src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
-                         <?php else: ?> 
-                            <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
-                         <?php endif;?>
+                         <div class="altera-imagem" data-id="<?= $value['id_produto'] ?>" style="text-align: center; cursor: pointer;">
+                             <?php if (!empty($value['imagem'])) : ?>
+                                 <img src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
+                             <?php else : ?>
+                                 <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
+                             <?php endif; ?>
                          </div>
-                         <div id="imagem-input<?=$value['id_produto']?>" style="display: none;" class="form-group">
+                         <div id="imagem-input<?= $value['id_produto'] ?>" style="display: none;" class="form-group">
                              <input type="file" name="imagem-produto" class="file-input" data-jfiler-limit="1" accept="image/*">
                          </div>
                          <div class="form-group">
@@ -36,12 +36,14 @@
                                  <label for="prod-preco">Preço(R$)</label>
                                  <input type="number" min="0.00" step="0.01" value="<?= $value['preco'] ?>" class="form-control" name="preco" placeholder="">
                              </div>
-                             <div class="col-xl-6">
-                                 <label for="prod-ativo">Ativo</label>
-                                 <select name="ativo" class="form-control">
-                                    <option value="1" <?= ($value['ativo'] == 1)?"selected":"" ?>>SIM</option>
-                                    <option value="0" <?= ($value['ativo'] == 0)?"selected":"" ?>>NÃO</option>
-                                </select>
+                             <div class="col-xl-6 pl-5">
+                                 <div class="form-group">
+                                     <label for="prod-ativo">Ativo</label><br>
+                                    <label class="switch float-left">
+                                        <input type="checkbox" class="success" name="ativo" value="<?= $value['ativo'] ?>" <?= ($value['ativo'] == 1)?"checked":"" ?> >
+                                        <span class="slider round"></span>
+                                    </label>
+                                 </div>
                              </div>
                          </div>
                      </div>

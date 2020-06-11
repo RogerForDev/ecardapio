@@ -65,6 +65,8 @@ class TemaController extends Controller
 			return back();
         }
 
+        dd($_FILES);
+
         if($_FILES["imagem-tema"]["error"] != 4){
             $upload = new Upload(); 
             $data['imagem'] = $upload->upload("imagem-tema", "tema");
@@ -72,13 +74,14 @@ class TemaController extends Controller
         
         $item = new Tema;
 
-		$updated = $item->find('id_tema', $args['id'])->update( $data);
+        $updated = $item->find('id_tema', $args['id'])->update($data);
+        
+        dd($updated);
 
 		if ($updated) {
 			flash('message', success('Atualizado com sucesso'));
 			return back();
 		}
-
 		flash('message', error('Erro ao atualizar'));
 		back(); 
     }
