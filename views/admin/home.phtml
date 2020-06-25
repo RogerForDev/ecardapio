@@ -3,7 +3,7 @@
     <?php include "tema/novo.phtml"; ?>
     <?php include "tema/index.phtml"; ?>
     <!-- Start content -->
-    <div class="content" style="background: url(<?= PATH . "/assets/admin/images/pattern2.png" ?>);">
+    <div class="content" style="background: url(<?= PATH . "/assets/admin/images/pattern2.png" ?>); background-attachment:fixed;">
 
         <input type="hidden" id="path" value="<?= PATH ?>">
 
@@ -53,7 +53,7 @@
                         <!-- Modal Editar produto-->
                         <?php include "produto/editar.phtml"; ?>
                     <?php endforeach; ?>
-                    <div class="col-xl-3 pb-3">
+                    <div class="col-xl-3 pb-3 mt-3">
                         <div class="card text-left">
                             <div class="card-body py-4">
                                 <a href="" data-toggle="modal" data-target="#modalNewProduct<?= $key ?>">

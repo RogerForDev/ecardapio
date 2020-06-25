@@ -10,6 +10,7 @@ use App\models\admin\Cardapio;
 use App\Controllers\Controller;
 use App\models\admin\Categoria;
 use App\models\admin\Tema;
+use App\models\admin\Avaliacao;
 
 class ProdutoController extends Controller
 {
@@ -143,5 +144,18 @@ class ProdutoController extends Controller
         if($defined){
             echo 1;
         }
+    }
+    public function avaliar($request, $response, $args){
+       $avaliacao = new Avaliacao;
+
+       $data = $_POST;
+
+       $data['id_produto'] = $args['id'];
+
+       $created = $avaliacao->create($data);
+
+       if($created){
+            echo 1;   
+       }
     }
 }

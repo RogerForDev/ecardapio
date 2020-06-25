@@ -26,6 +26,7 @@ $app->group('/admin', function(){
     $this->get('/produtos', 'App\Controllers\Admin\ProdutoController:index');
     $this->post('/produtos/create', 'App\Controllers\Admin\ProdutoController:create');
     $this->post('/produtos/{id}', 'App\Controllers\Admin\ProdutoController:update');
+    $this->post('/produtos/avaliar/{id}', 'App\Controllers\Admin\ProdutoController:avaliar');
     $this->get('/produtos/{id}/delete', 'App\Controllers\Admin\ProdutoController:delete');
     $this->get('/cardapio/tema/{id}', 'App\Controllers\Admin\ProdutoController:define_tema');
     $this->get('/cardapio/layout/{id}', 'App\Controllers\Admin\ProdutoController:define_layout');

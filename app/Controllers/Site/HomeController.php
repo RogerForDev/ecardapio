@@ -2,14 +2,15 @@
 
 namespace app\controllers\site;
 
-use App\controllers\Controller;
-use App\models\admin\Cardapio;
-use App\models\admin\Categoria;
-use App\models\admin\Produto;
-use App\models\admin\Tema;
-use App\models\site\Post;
-use App\models\admin\User;
 use App\src\Validate;
+use App\models\site\Post;
+use App\models\admin\Tema;
+use App\models\admin\User;
+use App\models\admin\Produto;
+use App\models\admin\Cardapio;
+use App\controllers\Controller;
+use App\models\admin\Avaliacao;
+use App\models\admin\Categoria;
 
 class HomeController extends Controller
 {
@@ -115,6 +116,7 @@ class HomeController extends Controller
 		$categoria = new Categoria;
 		$tema = new Tema;
 		$cardapio = new Cardapio;
+		$avaliacao = new Avaliacao;
 		
 		$cardapio = Cardapio::getFromUser();
 
