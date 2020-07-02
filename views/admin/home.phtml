@@ -40,7 +40,7 @@
                                     <?php if ($value["imagem"] != "") : ?>
                                         <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
                                     <?php else : ?>
-                                        <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
+                                        <img class="card-img-top" src="<?= PATH ?>uploads/produto/253x180.png" alt="">
                                     <?php endif; ?>
                                     <div class="card-body p-2">
                                         <h5 class="card-title text-center"><?= $value['nome'] ?></h5>
