@@ -24,6 +24,7 @@ $app->group('/admin', function(){
 
     //PRODUTO
     $this->get('/produtos', 'App\Controllers\Admin\ProdutoController:index');
+    $this->get('/produtos/busca', 'App\Controllers\Admin\ProdutoController:busca');
     $this->post('/produtos/create', 'App\Controllers\Admin\ProdutoController:create');
     $this->post('/produtos/{id}', 'App\Controllers\Admin\ProdutoController:update');
     $this->post('/produtos/avaliar/{id}', 'App\Controllers\Admin\ProdutoController:avaliar');
