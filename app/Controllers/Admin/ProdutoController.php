@@ -44,6 +44,40 @@ class ProdutoController extends Controller
         return $this->view->render($response, '/admin/index.phtml', $vars);
     }
 
+    public function busca($request, $response){
+        $cardapio = new Cardapio;
+        $produto = new Produto;
+        $categoria = new Categoria; 
+        $tema = new Tema;
+
+        $filtro = $_GET['produto'];
+        $cardapio = $cardapio->getFromUser();
+
+        $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
+
+        $categorias = $categoria->select()->where("id_cardapio", $id_cardapio)->get();
+
+        foreach($categorias as &$cat){
+            $cat['produtos'] = $produtos = $produto->getProdByName($id_cardapio, $filtro, $cat['id_categoria']);
+        }
+        
+        foreach($categorias as $key => $cat){
+            if(empty($cat['produtos'])){
+                unset($categorias[$key]);
+            }
+        }
+
+        $vars = [
+            "page" => "home",	
+            "categorias" => $categorias, 
+            "cardapio" => $cardapio,
+            "usuario" => User::getFromSession(),
+            "temas" => $tema->select()->get()
+        ];
+
+        return $this->view->render($response, '/admin/index.phtml', $vars);
+    }
+
     public function create()
     {
         $validate = new Validate;
