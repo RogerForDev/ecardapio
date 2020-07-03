@@ -87,7 +87,7 @@
                         </a>
                     </div>
                     <!-- Modal -->
-                    <div class="modal fade" id="modalAvaliacao<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal fade av" id="modalAvaliacao<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header bg-primaria text-claro">
@@ -109,7 +109,7 @@
                                         <hr>
                                         <h4 class="card-title">Avaliação</h4>
 
-                                        <form action="<?= PATH . "admin/produtos/avaliar/" . $value['id_produto'] ?>" method="post">
+                                        <form id="form-avaliacao" action="<?= PATH . "admin/produtos/avaliar/" . $value['id_produto'] ?>" method="post">
                                             <div class="form-group">
                                                 <label>Nome</label>
                                                 <input type="text" class="form-control" name="nome" placeholder="Digite seu nome" required>

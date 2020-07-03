@@ -1,9 +1,15 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="assets/cardapios/js/jquery.fontstar.js" ></script>
+
+<!-- parsley -->
+<script src="<?= PATH ?>assets/admin/plugins/parsleyjs/parsley.min.js"></script>
+<script src="<?= PATH ?>assets/admin/plugins/parsleyjs/pt-br.js"></script>
+
+<!--sweet alert-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
     $(document).ready(function() {
         $('.star').fontstar({
@@ -24,6 +30,70 @@
             console.log("hello " + value);
         });
     });
+
+    $(document).ready(function(){
+        //resposta avaliação
+        let mensagem_avaliacao = "<?php echo (isset($_SESSION['mensagem-avaliacao']) && !empty($_SESSION['mensagem-avaliacao'])) ? $_SESSION['mensagem-avaliacao'] : 0?>";
+        if(mensagem_avaliacao == "success"){
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso',
+                text: "Muito obrigado, agradecemos sua avaliação!",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }else if(mensagem_avaliacao == "error"){
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: "Ocorreu um erro interno :(",
+                showConfirmButton: false,
+                timer: 2000
+            })
+        }
+        "<?php $_SESSION["mensagem-avaliacao"] = ""?>"
+    })
+
+    // $(document).on("submit", "#form-avaliacao", function(event){
+    //     event.preventDefault();
+
+    //     var url=$(this).attr("action");
+    //     $.ajax({
+    //         url: url,
+    //         type: 'POST',            
+    //         data: new FormData(this),
+    //         processData: false,
+    //         contentType: false,
+    //         success: function (data, status){
+    //             mensagem = JSON.parse(data);
+    //             console.log(data);
+
+    //             if(mensagem.type == "sucesso"){
+    //                 Swal.fire({
+    //                     icon: 'success',
+    //                     title: 'Sucesso',
+    //                     text: mensagem.message,
+    //                     showConfirmButton: false,
+    //                     timer: 1500
+    //                 });
+
+    //                 $(".av").modal("hide");
+    //             }else{
+    //                 console.log(data);
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Erro',
+    //                     text: mensagem.message,
+    //                     showConfirmButton: false,
+    //                     timer: 1500
+    //                 })
+    //             }
+    //         },
+    //         error: function(e){
+    //             console.log(e.responseText);
+    //         }
+    //     });
+    // });
 </script>
 </body>
 
