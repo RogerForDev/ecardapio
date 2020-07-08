@@ -189,7 +189,15 @@ class ProdutoController extends Controller
        $created = $avaliacao->create($data);
 
        if($created){
-            echo 1;   
+            $_SESSION['mensagem-avaliacao'] = "success";
+            return back();
+            // echo json_encode(array("type" => "sucesso", "message" => "Muito obrigado, agradecemos sua avaliação!"));
+            // exit;    
+       }else{
+            $_SESSION['mensagem-avaliacao'] = "error";     
+            return back(); 
+            // echo json_encode(array("type" => "erro", "message" => "Ocorreu um erro interno :("));
+            // exit;  
        }
     }
 }
