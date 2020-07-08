@@ -124,7 +124,12 @@ class HomeController extends Controller
 
         foreach($categorias as &$cat){
             $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+			foreach ($cat['produtos'] as &$val){
+				$val['avaliacoes'] = $avaliacao->select()->where('id_produto', $val['id_produto'])->get();
+			}
 		}
+
+		//dd($categorias);
 		
 		$vars = [
 			'page' => 'layout_'.$cardapio['id_layout'],
