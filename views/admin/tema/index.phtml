@@ -13,7 +13,7 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12">
-                                <h4 class="py-3">Selecione um layout</h4>
+                                <h4 class="py-3">Escolha um layout</h4>
                                 <div class="card-deck pb-3 justify-content-center">
                                     <?php $layouts = [
                                         1 => ['nome' => 'Grade c/ imagem'],
@@ -24,7 +24,7 @@
                                         <?php if ($cardapio['id_layout'] != $key) : ?>
                                             <a href="#" onclick="setUpdate('<?= PATH . 'admin/cardapio/layout/' . $key ?>')">
                                                 <div class="card card-link text-center">
-                                                    <img class="card-img-top pt-3 mx-auto w-75" src="assets/site/img/menu-<?= $key ?>.svg">
+                                                    <img class="card-img-top pt-3 mx-auto w-75" src="<?= PATH ?>assets/site/img/menu-<?= $key ?>.svg">
                                                     <div class="card-body">
                                                         <h5 class="text-dark"><?= $value['nome'] ?></h5>
                                                     </div>
@@ -33,7 +33,7 @@
                                         <?php else : ?>
                                             <a >
                                                 <div class="card text-center card-selected">
-                                                    <img class="card-img-top pt-3 mx-auto w-75" src="assets/site/img/menu-<?= $key ?>.svg">
+                                                    <img class="card-img-top pt-3 mx-auto w-75" src="<?= PATH ?>assets/site/img/menu-<?= $key ?>.svg">
                                                     <div class="card-body">
                                                         <h5 class="text-dark"><?= $value['nome'] ?></h5>
                                                     </div>
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h4 class="py-2">Selecione um tema</h4>
+                        <h4 class="py-2">Escolha um tema</h4>
                         <table class="table table-hover" id="datatable">
                             <thead>
                                 <tr>

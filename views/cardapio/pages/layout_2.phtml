@@ -62,18 +62,7 @@
     }
 </style>
 
-<body>
-
-    <div class="container-fluid bg-fundo">
-        <div class="row bg-header py-5">
-            <div class="col-xl-6 text-center py-4">
-                <div class="pl-5 title-header text-claro"><?= $usuario['estabelecimento'] ?></div>
-                <img src="https://i2.wp.com/multarte.com.br/wp-content/uploads/2018/10/logo-whatsapp-png-transparente17.png?fit=1024%2C727&ssl=1" class="pb-2" width="80px" alt="">
-                <div class="d-inline-block pt-4 text-light h3"><b><?= $usuario['whatsapp'] ?></b></div>
-            </div>
-            <div class="col-xl-6">
-            </div>
-        </div>
+    <div class="container">
         <div class="row">
             <div class="card-columns mt-4 px-4">
                 <?php foreach ($cardapio as $key => $val) : ?>
@@ -106,5 +95,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
+</div>
