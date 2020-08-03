@@ -35,6 +35,9 @@ $app->group('/admin', function(){
     //CARDAPIO
     $this->post('/cardapios/create', 'App\Controllers\Admin\CardapioController:create');
 
+    //PLANOS
+    $this->get('/planos', 'App\Controllers\Admin\PlanoController:index');
+
     //TEMA
     $this->get('/temas', 'App\Controllers\Admin\TemaController:index');
     $this->post('/temas/create', 'App\Controllers\Admin\TemaController:create');
