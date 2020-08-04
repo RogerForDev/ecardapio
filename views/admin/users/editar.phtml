@@ -143,7 +143,7 @@
                                          <div class="form-group mr-4">
                                              <label for="prod-ativo">Gratuito</label><br>
                                              <label class="switch float-left">
-                                                 <input type="checkbox" checked class="success" name="ativo" value="" >
+                                                 <input data-url="<?= PATH ?>admin/planos/update" id="free" type="checkbox" class="success" name="ativo" <?=($usuario['flag_assinante'] == 1)?"checked value='1' disabled":"value='0'"?>>
                                                  <span class="slider round"></span>
                                              </label>
                                          </div>
@@ -154,7 +154,7 @@
                                             <div class="form-group mr-4">
                                                 <label for="prod-ativo">Premium</label><br>
                                                 <label class="switch float-left">
-                                                    <input type="checkbox" class="success" name="ativo" value="" >
+                                                    <input data-url="<?= PATH ?>admin/planos/update" id="premium" type="checkbox" class="success" name="ativo" <?=($usuario['flag_assinante'] == 2)?"checked value='1' disabled":"value='0'"?>>
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>

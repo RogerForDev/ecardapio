@@ -38,6 +38,7 @@ $app->group('/admin', function(){
 
     //PLANOS
     $this->get('/planos', 'App\Controllers\Admin\PlanoController:index');
+    $this->post('/planos/update', 'App\Controllers\Admin\PlanoController:update');
 
     //TEMA
     $this->get('/temas', 'App\Controllers\Admin\TemaController:index');

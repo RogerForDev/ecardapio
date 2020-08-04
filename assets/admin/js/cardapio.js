@@ -90,3 +90,85 @@ function submitBackground(url){
     location.reload(true);
   }, 1500); 
 }
+
+$("#premium").on("change", function(){
+  let opt = $(this).val();
+  let url = $(this).data("url");
+  if(opt == 0){
+    var check = 2;
+    $(this).val(1);
+  }
+
+  $.ajax({
+    url: url,
+    type: 'POST',            
+    data: {check:check},
+    success: function (data, status){
+      mensagem = JSON.parse(data);
+      if(mensagem.type == "sucesso"){
+        $("#premium").attr('disabled','disabled');
+        $("#free").attr("checked", false);
+        $("#free").attr('disabled',false);
+        $("#free").val("0");
+        Swal.fire({
+          icon: 'success',
+          title: 'Sucesso',
+          text: mensagem.message,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: mensagem.message,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }, error: function(e){
+      console.log(e);
+    }
+  });
+});
+
+$("#free").on("change", function(){
+  let opt = $(this).val();
+  let url = $(this).data("url");
+  if(opt == 0){
+    var check = 1;
+    $(this).val(1);
+  }
+
+  $.ajax({
+    url: url,
+    type: 'POST',            
+    data: {check:check},
+    success: function (data, status){
+      mensagem = JSON.parse(data);
+      if(mensagem.type == "sucesso"){
+        $("#free").attr('disabled','disabled');
+        $("#premium").attr("checked", false);
+        $("#premium").attr('disabled',false);
+        $("#premium").val("0");
+        Swal.fire({
+          icon: 'success',
+          title: 'Sucesso',
+          text: "Você voltou ao plano gratuito com sucesso!",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: mensagem.message,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }, error: function(e){
+      console.log(e);
+    }
+  });
+});
