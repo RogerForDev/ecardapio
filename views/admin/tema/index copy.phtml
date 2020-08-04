@@ -1,0 +1,119 @@
+<!-- Modal -->
+<div class="modal fade" id="modalTemas" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h5 class="modal-title">Alterar aparência</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body px-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="py-3">Escolha um layout</h4>
+                                <div class="card-deck pb-3 justify-content-center">
+                                    <?php $layouts = [
+                                        1 => ['nome' => 'Grade c/ imagem'],
+                                        2 => ['nome' => '2 Coluna s/ imagem'],
+                                        3 => ['nome' => '2 Coluna s/ imagem']
+                                    ];
+                                    foreach ($layouts as $key => $value) : ?>
+                                        <?php if ($cardapio['id_layout'] != $key) : ?>
+                                            <a href="#" onclick="setUpdate('<?= PATH . 'admin/cardapio/layout/' . $key ?>')">
+                                                <div class="card card-link text-center">
+                                                    <img class="card-img-top pt-3 mx-auto w-75" src="<?= PATH ?>assets/site/img/menu-<?= $key ?>.svg">
+                                                    <div class="card-body">
+                                                        <h5 class="text-dark"><?= $value['nome'] ?></h5>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        <?php else : ?>
+                                            <a >
+                                                <div class="card text-center card-selected">
+                                                    <img class="card-img-top pt-3 mx-auto w-75" src="<?= PATH ?>assets/site/img/menu-<?= $key ?>.svg">
+                                                    <div class="card-body">
+                                                        <h5 class="text-dark"><?= $value['nome'] ?></h5>
+                                                    </div>
+                                                </div>                                                
+                                            </a>
+                                    <?php endif;
+                                    endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="py-2">Escolha um tema</h4>
+                        <table class="table table-hover" id="datatable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nome do Tema</th>
+                                    <th>Paleta de cores</th>
+                                    <th>Fonte</th>
+                                    <th></th>
+                                    <th>Ativo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($temas as $value) : ?>
+                                    <tr>
+                                        <td>
+                                            <?= $value['id_tema'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $value['nome'] ?>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-square fa-2x" style="color:<?= $value['cor_primaria'] ?>" title="Cor Primária"></i>
+                                            <i class="fa fa-square fa-2x" style="color:<?= $value['cor_secundaria'] ?>" title="Cor Secondária"></i>
+                                            <i class="fa fa-square fa-2x" style="color:<?= $value['texto_escuro'] ?>" title="Texto escuro"></i>
+                                            <i class="fa fa-square fa-2x" style="color:<?= $value['texto_claro'] ?>" title="Texto claro"></i>
+                                        </td>
+                                        <td>
+                                            <a href="https://fonts.google.com/specimen/<?= $value['fonte'] ?>" target="_blank" title="Visualizar no Google Fonts">
+                                                <span class="badge badge-primary">
+                                                    <?= $value['fonte'] ?>
+                                                </span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <div class="text-center">
+                                                <a href="#" data-toggle="modal" data-target="#modaleditarTema<?= $value['id_tema'] ?>" class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i>
+                                                    Editar</a>
+                                                <a href="#" class="btn btn-danger btn-sm" onclick="remove('<?= PATH . '/admin/themes/' . $value['id_tema'] . '/delete' ?>')">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i><span>&nbsp;Excluir</span>
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                        <td class="float-left">
+                                            <?php if ($cardapio['id_tema'] == $value['id_tema']) : ?>
+                                                <label class="switch ">
+                                                    <input type="checkbox" class="success" checked="checked" disabled="disabled">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            <?php else : ?>
+                                                <label class="switch ">
+                                                    <input type="checkbox" class="success" onclick="setUpdate('<?= PATH ?>/admin/cardapio/tema/<?= $value['id_tema'] ?>')">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                    <?php include "editar.phtml" ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success">Salvar</button>
+            </div> -->
+        </div>
+    </div>
+</div>

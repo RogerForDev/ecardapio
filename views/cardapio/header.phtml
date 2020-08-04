@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <div class="container-fluid bg-fundo" style="background: url(<?= PATH . "/assets/admin/images/pattern2.png" ?>); background-attachment:fixed;">
+    <div class="container-fluid bg-fundo" <?= (isset($fundo))?'style="background: url('.PATH .$fundo.'); background-attachment:fixed;"':''?>>
         <div class="row bg-header py-5">
             <div class="col-xl-6 text-center py-4">
                 <div class="pl-5 title-header text-claro"><?= $usuario['estabelecimento'] ?></div>
