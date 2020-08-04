@@ -12,42 +12,44 @@
                      <div class="container">
                          <div class="row">
 
-                            <input type="hidden" name="id_usuario" value="<?=$usuario['id_usuario']?>">
-    
+                             <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>">
+
                              <div class="col-lg-9 col-xl-9">
 
-                                 <h4>Dados pessoais:</h4><hr>
-    
+                                 <h4>Dados pessoais:</h4>
+                                 <hr>
+
                                  <div class="row">
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Nome completo</label>
-                                             <input class="form-control" name="nome" type="text" value="<?=$usuario['nome']?>" required />
+                                             <input class="form-control" name="nome" type="text" value="<?= $usuario['nome'] ?>" required />
                                          </div>
                                      </div>
-    
+
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Email</label>
-                                             <input class="form-control" name="email" type="email" value="<?=$usuario['email']?>" required />
+                                             <input class="form-control" name="email" type="email" value="<?= $usuario['email'] ?>" required />
                                          </div>
                                      </div>
                                  </div>
 
-                                 <h4>Dados da Empresa:</h4><hr>
-    
+                                 <h4>Dados da Empresa:</h4>
+                                 <hr>
+
                                  <div class="row">
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Estabelecimento</label>
-                                             <input class="form-control" name="estabelecimento" type="text" value="<?=$usuario['estabelecimento']?>" required/>
+                                             <input class="form-control" name="estabelecimento" type="text" value="<?= $usuario['estabelecimento'] ?>" required />
                                          </div>
                                      </div>
-    
+
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Horário de atendimento</label>
-                                             <input id="altera-horario" class="form-control" name="horario" type="text" value="<?=$usuario['horario']?>" required/>
+                                             <input id="altera-horario" class="form-control" name="horario" type="text" value="<?= $usuario['horario'] ?>" required />
                                          </div>
                                      </div>
                                  </div>
@@ -56,14 +58,14 @@
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Categoria Estabelecimento</label>
-                                             <input class="form-control" name="categoria" type="text" value="<?=$usuario['categoria']?>"/>
+                                             <input class="form-control" name="categoria" type="text" value="<?= $usuario['categoria'] ?>" />
                                          </div>
                                      </div>
-    
+
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Cidade</label>
-                                             <input class="form-control" name="cidade" type="text" value="<?=$usuario['cidade']?>" required/>
+                                             <input class="form-control" name="cidade" type="text" value="<?= $usuario['cidade'] ?>" required />
                                          </div>
                                      </div>
                                  </div>
@@ -72,94 +74,121 @@
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Rua</label>
-                                             <input class="form-control" name="rua" type="text" value="<?=$usuario['rua']?>" required/>
+                                             <input class="form-control" name="rua" type="text" value="<?= $usuario['rua'] ?>" required />
                                          </div>
                                      </div>
-    
+
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Bairro</label>
-                                             <input class="form-control" name="bairro" type="text" value="<?=$usuario['bairro']?>" required/>
+                                             <input class="form-control" name="bairro" type="text" value="<?= $usuario['bairro'] ?>" required />
                                          </div>
                                      </div>
                                  </div>
 
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>Número</label>
-                                            <input class="form-control" name="numero" type="text" value="<?=$usuario['numero']?>" required/>
-                                        </div>
-                                    </div>
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Número</label>
+                                             <input class="form-control" name="numero" type="text" value="<?= $usuario['numero'] ?>" required />
+                                         </div>
+                                     </div>
 
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>Telefone</label>
-                                            <input id="altera-telefone" class="form-control" name="telefone" type="text" value="<?=$usuario['telefone']?>" />
-                                        </div>
-                                    </div>
-                                </div>
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Telefone</label>
+                                             <input id="altera-telefone" class="form-control" name="telefone" type="text" value="<?= $usuario['telefone'] ?>" />
+                                         </div>
+                                     </div>
+                                 </div>
 
-                                <div class="row">
-                                <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>Whatsapp</label>
-                                            <input id="altera-whats" class="form-control" name="whatsapp" type="text" value="<?=$usuario['whatsapp']?>" />
-                                        </div>
-                                    </div>
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Whatsapp</label>
+                                             <input id="altera-whats" class="form-control" name="whatsapp" type="text" value="<?= $usuario['whatsapp'] ?>" />
+                                         </div>
+                                     </div>
 
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>Facebook</label>
-                                            <input class="form-control" name="facebook" type="text" value="<?=$usuario['facebook']?>" />
-                                        </div>
-                                    </div>
-                                </div>
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Facebook</label>
+                                             <input class="form-control" name="facebook" type="text" value="<?= $usuario['facebook'] ?>" />
+                                         </div>
+                                     </div>
+                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>Instagram</label>
-                                            <input class="form-control" name="instagram" type="text" value="<?=$usuario['instagram']?>" />
-                                        </div>
-                                    </div>
-                                </div>
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Instagram</label>
+                                             <input class="form-control" name="instagram" type="text" value="<?= $usuario['instagram'] ?>" />
+                                         </div>
+                                     </div>
+                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label>Sobre</label>
-                                            <textarea name="sobre" class="form-control" rows="4"><?=$usuario['sobre']?></textarea>
-                                        </div>
-                                    </div>
-                                </div>
+                                 <div class="row">
+                                     <div class="col-lg-12">
+                                         <div class="form-group">
+                                             <label>Sobre</label>
+                                             <textarea name="sobre" class="form-control" rows="4"><?= $usuario['sobre'] ?></textarea>
+                                         </div>
+                                     </div>
+                                 </div>
 
-                                <a href="<?= PATH ?>admin/planos">planos</a>
-    
+                                 <h4>Assinatura:</h4>
+                                 <hr>
+                                 <div class="row">
+                                     <div class="col-lg-6 d-flex">
+                                         <div class="form-group mr-4">
+                                             <label for="prod-ativo">Gratuito</label><br>
+                                             <label class="switch float-left">
+                                                 <input type="checkbox" checked class="success" name="ativo" value="" >
+                                                 <span class="slider round"></span>
+                                             </label>
+                                         </div>
+                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, voluptatum adipisci quisquam quod dolorem ad ullam num<br>
+                                         <a href="<?= PATH ?>admin/planos">Saiba mais</a></p>
+                                        </div>
+                                        <div class="col-lg-6 d-flex">
+                                            <div class="form-group mr-4">
+                                                <label for="prod-ativo">Premium</label><br>
+                                                <label class="switch float-left">
+                                                    <input type="checkbox" class="success" name="ativo" value="" >
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, voluptatum adipisci quisquam quod dolorem ad ullam num<br>
+                                            <a href="<?= PATH ?>admin/planos">Saiba mais</a>
+                                         </p>
+                                     </div>
+                                 </div>
+
+
                              </div>
-    
-    
-    
+
+
+
                              <div class="col-lg-3 col-xl-3 border-left">
-    
+
                                  <div class="m-b-10"></div>
-    
+
                                  <div id="avatar_image">
                                      <img style="max-width:100px; height:auto;" src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" />
                                      <br />
                                      <i class="fa fa-trash-o fa-fw"></i> <a class="delete_image" href="#">Remover avatar</a>
-    
+
                                  </div>
                                  <div id="image_deleted_text"></div>
-    
-    
+
+
                                  <div class="m-b-10"></div>
-    
+
                                  <div class="form-group">
                                      <label>Alterar avatar</label>
                                      <input type="file" name="image" class="form-control">
                                  </div>
-    
+
                              </div>
                          </div>
                      </div>
