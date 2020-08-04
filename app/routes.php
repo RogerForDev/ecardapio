@@ -31,6 +31,7 @@ $app->group('/admin', function(){
     $this->get('/produtos/{id}/delete', 'App\Controllers\Admin\ProdutoController:delete');
     $this->get('/cardapio/tema/{id}', 'App\Controllers\Admin\ProdutoController:define_tema');
     $this->get('/cardapio/layout/{id}', 'App\Controllers\Admin\ProdutoController:define_layout');
+    $this->post('/cardapio/background', 'App\Controllers\Admin\ProdutoController:define_background');
 
     //CARDAPIO
     $this->post('/cardapios/create', 'App\Controllers\Admin\CardapioController:create');

@@ -134,6 +134,7 @@ class HomeController extends Controller
 		$vars = [
 			'page' => 'layout_'.$cardapio['id_layout'],
 			'cardapio' => $categorias,
+			'fundo' => $cardapio['imagem'],
 			'usuario' => User::getFromSession(),
 			'tema' => $tema->select()->findBy('id_tema', $cardapio['id_tema'])
 		];

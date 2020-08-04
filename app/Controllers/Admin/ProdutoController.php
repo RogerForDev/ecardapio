@@ -179,6 +179,23 @@ class ProdutoController extends Controller
             echo 1;
         }
     }
+    public function define_background($request, $response, $args){
+        $cardapio = new Cardapio;
+
+        $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
+
+        if(isset($_FILES)){
+            $upload = new Upload(); 
+            $imagem = $upload->upload("imagem-fundo", "tema");
+        }
+
+        $defined = $cardapio->find('id_cardapio', $id_cardapio)->update(['imagem'=>$imagem]);
+
+        if($defined){
+            flash('message', success('Atualizado com sucesso'));
+			return back();
+        }
+    }
     public function avaliar($request, $response, $args){
        $avaliacao = new Avaliacao;
 
