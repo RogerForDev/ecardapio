@@ -10,8 +10,16 @@ class PlanoController extends Controller{
     public function index($request, $response)
     {
 
+        $usuario = $_SESSION[User::SESSION];
+        $id = $usuario['id_usuario']; 
+
+        $user = new User;
+
+        $data = $user->select()->findBy('id_usuario', $id);
+
         $vars = [
             "page"=> "planos",
+            "usuario"=> $data,
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);

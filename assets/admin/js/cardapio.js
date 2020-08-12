@@ -172,3 +172,36 @@ $("#free").on("change", function(){
     }
   });
 });
+
+$(".assinar-plano").on("click", function(){
+  let url = $(this).data("url");
+  $.ajax({
+    url: url,
+    type: 'POST',            
+    data: {check:2},
+    success: function (data, status){
+      mensagem = JSON.parse(data);
+      if(mensagem.type == "sucesso"){
+        $(".assinar-plano").attr('disabled','disabled');
+        $(".assinar-plano").html("Você já é assinante");
+        Swal.fire({
+          icon: 'success',
+          title: 'Sucesso',
+          text: mensagem.message,
+          showConfirmButton: false,
+          timer: 3000
+        });
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: mensagem.message,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }, error: function(e){
+      console.log(e);
+    }
+  });
+})
