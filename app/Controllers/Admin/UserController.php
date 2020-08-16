@@ -68,7 +68,13 @@ class UserController extends Controller
         
         $user = new User;
 
-		$updated = $user->find('id_usuario', $data->id_usuario)->update((array) $data);
+        $estab = $user->select()->findBy('estabelecimento', $data->estabelecimento);
+        if(!empty($estab) && ($estab['email'] != $data->email)){
+            flash('message', error('Um estabelecimento com esse nome já está cadastrado no sistema!'));
+            back(); 
+        }
+
+        $updated = $user->find('id_usuario', $data->id_usuario)->update((array) $data);
 
 		if ($updated) {
             $_SESSION[User::SESSION] = get_object_vars($data);
