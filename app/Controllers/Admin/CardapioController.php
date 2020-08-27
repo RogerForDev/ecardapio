@@ -9,41 +9,26 @@ use App\src\Validate;
 
 class CardapioController extends Controller
 {
-    // public function index($request, $response)
-    // {
-    //     $user = new User;
-    //     $users = $user->select()->orderBy('id_usuario', 'DESC')->get();
-
-    //     $vars = [
-    //         "page"=> "users/users",		
-    //         "users" => $users
-    //     ];
-    
-    //     return $this->view->render($response, '/admin/index.phtml', $vars);
-    // }
-    public function create()
+    public function create($request, $response)
     {
-        $data = array();
-        
-        if(isset($_POST['id_layout']) && !empty($_POST['id_layout'])){
-            $data['id_layout'] = addslashes(htmlspecialchars($_POST['id_layout']));
-        }else{
-            echo json_encode(array("type" => "erro", "message" => "Layout não informado!!"));
-            exit;  
-        }
-        
+        $data['id_layout'] = filter_input(INPUT_POST,'layout', FILTER_SANITIZE_NUMBER_INT);
+        $data['id_tema'] = filter_input(INPUT_POST,'tema', FILTER_SANITIZE_NUMBER_INT);
+    
         $user = $_SESSION[User::SESSION];
-        $data['id_usuario'] = $user['id_usuario']; 
+        $data['id_usuario'] = $user['id_usuario'];
+
+        $data['slug'] = slugify($user['estabelecimento']);
         
         $cardapio = new Cardapio;
         $cardapio = $cardapio->create($data);
 
         if($cardapio){
-            echo json_encode(array("type" => "sucesso", "message" => "Cadapio cadastrado com sucesso!", "id" => $cardapio, "path" => PATH."admin"));
+            redirect(PATH.'admin');
+            // echo json_encode(array("type" => "sucesso", "message" => "Cardapio cadastrado com sucesso!", "id" => $cardapio, "path" => PATH."admin"));
             exit;
         }
         
-		echo json_encode(array("type" => "erro", "message" => "Ocorreu um erro interno!"));
-        exit;         
+		//echo json_encode(array("type" => "erro", "message" => "Ocorreu um erro interno!"));
+       // exit;         
     }        
 }

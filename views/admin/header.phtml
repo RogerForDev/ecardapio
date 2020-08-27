@@ -63,7 +63,7 @@
 
         <?= message('message') ?>
 
-        <a href="<?= PATH ?>cardapio" class="btn btn-outline-light my-2 my-sm-0 ml-xl-auto mr-xl-3" target="_blank" rel="noopener noreferrer" ><i class="fa fa-eye pr-xl-2" aria-hidden="true"></i><span class="d-none d-sm-inline-block">Visualizar</span></a>
+        <a href="<?= PATH.'web/'.slugify($usuario['estabelecimento']) ?>" class="btn btn-outline-light my-2 my-sm-0 ml-xl-auto mr-xl-3" target="_blank" rel="noopener noreferrer" ><i class="fa fa-eye pr-xl-2" aria-hidden="true"></i><span class="d-none d-sm-inline-block">Visualizar</span></a>
         <form action="<?= PATH ?>admin/produtos/busca" method="GET" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-2 w-auto" name="produto" type="text" placeholder="Buscar produto">
             <button class="btn btn-transparent text-dark my-2 my-sm-0 btn-search" type="submit"><i class="fa fa-search pr-2" aria-hidden="true"></i></button>
@@ -74,7 +74,7 @@
             <img src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" width="40px" alt="Profile image" class="bg-light rounded-circle">
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item">Olá, <?= getUsername() ?></small></a>
+                <a class="dropdown-item">Olá, <?= $usuario['nome'] ?></small></a>
                 <a href="" data-toggle="modal" data-target="#modaleditUser" class="dropdown-item"><i class="fa fa-user"></i> <span>Perfil</span></a>
                 <a href="<?= PATH ?>admin/logout" class="dropdown-item"><i class="fa fa-power-off"></i> <span>Logout</span></a>
             </div>

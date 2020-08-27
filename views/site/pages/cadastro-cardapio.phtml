@@ -1,35 +1,96 @@
-<div class="align-items-center d-flex py-5 cover section-primary" style="background-image: url('<?= PATH ?>assets/site/img/styleguide/cover_light.jpg<?= PATH ?>');">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
+<link rel="stylesheet" href="<?= PATH ?>assets/site/css/form-cadastro.css">
+<div class="align-items-center d-flex py-5 cover section-primary" style="background-image: url('<?= PATH ?>assets/site/img/styleguide/cover_light.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form action="<?= PATH ?>admin/cardapios/create" method="post">
           <h3 class="text-center pb-4 py-4">1º - Escolha um layout</h3>
-        </div>
-      </div>
-      <div class="row">
-        <div data-layout="1" data-url="<?= PATH ?>admin/cardapios/create" class="col-lg-4 layout">
-          <div class="text-center bg-template bg-light-opacity py-3"> <img class="card-img-top mx-auto w-75 px-2 pt-3" src="<?= PATH ?>assets/site/img/menu-1.svg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="text-dark pb-2"><b>1 Coluna Simples</b></h5>
-              <p class="card-text text-dark">Banner no topo, titulo da categoria, item possui apenas o titulo e o preço</p>
+          <div class="form-row justify-content-center">
+            <div class="radio-tile-group">
+              <div class="input-container">
+                <input class="radio-button" type="radio" value="3" name="layout">
+                <div class="radio-tile text-center">
+                  <img class="m-4" src="<?= PATH ?>assets/site/img/menu-3.svg" width="175" height="224" alt="Card image cap">
+                  <h5 class="text-dark"><b>1 Coluna simples</b></h5>
+                  <p class="text-dark">Banner no topo, titulo da categoria, lista de produtos simples</p>
+                </div>
+              </div>
+              <div class="input-container">
+                <input class="radio-button" type="radio" value="2" name="layout">
+                <div class="radio-tile text-center">
+                  <img class="m-4" src="<?= PATH ?>assets/site/img/menu-2.svg" width="175" height="224" alt="Card image cap">
+                  <h5 class="text-dark"><b>2 Coluna simples</b></h5>
+                  <p class="text-dark">Banner no topo 2 colunas com a categoria e lista de produtos simples</p>
+                </div>
+              </div>
+              <div class="input-container">
+                <input class="radio-button" type="radio" value="1" name="layout">
+                <div class="radio-tile text-center">
+                  <img class="m-4" src="<?= PATH ?>assets/site/img/menu-1.svg" width="175" height="224" alt="Card image cap">
+                  <h5 class="text-dark"><b>Grade com imagens</b></h5>
+                  <p class="text-dark">Banner no topo, 3 colunas,<br>com cada item possui uma foto, titulo do item, descrição e preço</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div data-layout="2" data-url="<?= PATH ?>admin/cardapios/create" class="col-lg-4 layout">
-          <div class="text-center bg-template bg-light-opacity py-3"> <img class="card-img-top mx-auto w-75 px-2 pt-3" src="<?= PATH ?>assets/site/img/menu-2.svg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="text-dark pb-2"><b>Itens com foto</b></h5>
-              <p class="card-text text-dark">Banner no topo, grid de 3 colunas, com cada item possui uma foto, titulo do item, descrição e preço</p>
+          <div class="my-5 py-1" id="temas" tabindex="-1"></div>
+          <h3 class="text-center pb-4 py-4">2º - Escolha um tema</h3>
+          <div class="form-row justify-content-center">
+            <div class="radio-tile-group">
+              <div class="input-container">
+                <input class="radio-button" type="radio" value="1" name="tema">
+                <div class="radio-tile text-center" id="tema-1">
+                  
+                </div>
+              </div>
+              <div class="input-container">
+                <input class="radio-button" type="radio" value="2" name="tema">
+                <div class="radio-tile text-center">
+                 
+                </div>
+              </div>
+              <div class="input-container">
+                <input class="radio-button" type="radio" value="3" name="tema">
+                <div class="radio-tile text-center">
+                  
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div data-layout="3" data-url="<?= PATH ?>admin/cardapios/create" class="col-lg-4 layout">
-          <div class="text-center bg-template bg-light-opacity py-3"> <img class="card-img-top mx-auto w-75 px-2 pt-3" src="<?= PATH ?>assets/site/img/menu-3.svg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="text-dark pb-2"><b>2 Colunas + imagem</b></h5>
-              <p class="card-text text-dark">Banner no topo, grid de 3 colunas, com cada item possui uma foto, titulo do item, descrição e preço</p>
-            </div>
+          <div class="form-row py-5">
+            <button type="submit" name="" id="btn-submit" class="btn btn-success py-3 px-5 btn-lg mx-auto w-75">Continuar</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
+<script>
+  $("input[name=layout]").on('change', () => {
+    console.log($(this).val());
+    var target = $("#temas");
+    $('html, body').animate({
+        scrollTop: target.offset().top
+      },
+      500,
+      function() {
+        // Callback after animation
+        // Must change focus!
+        var $target = $(target);
+        $target.focus();
+        if ($target.is(":focus")) { // Checking if the target was focused
+          return false;
+        } else {
+          $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+          $target.focus(); // Set focus again
+        };
+      });
+  });
+  $(document).ready(function(){
+    if(($("input[name=layout]").prop('checked') == true) && ($("input[name=tema]").prop('checked') == true)){
+      $('#btn-submit').removeAttr('disabled');
+    }
+  })
+
+
+</script>

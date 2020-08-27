@@ -1,6 +1,6 @@
 <style>
     .bg-header {
-        background: url(<?= $tema['imagem'] ?>);
+        background: url(<?= PATH.$tema['imagem'] ?>);
         background-size: cover;
         background-position: right;
         background-repeat: no-repeat;
@@ -32,18 +32,24 @@
         padding-left: 0px;
 
     }
+    .dropdown-item:focus,
+    .dropdown-item:hover {
+        color: #16181b;
+        text-decoration: none;
+        background-color: <?= $tema['cor_primaria'] ?> !important;
+    }
 </style>
 
 <div class="container">
     <?php foreach ($cardapio as $key => $val) : ?>
-        <div class="row" id="cat-<?= $val['id_categoria'] ?>">
+        <div class="row" id="<?= slugify($val['nome']) ?>">
             <div class="col-12">
                 <div class="text-center py-4">
                     <div class="dropdown open">
                         <a class="dropdown-toggle text-light h3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $val['nome'] ?></a>
                         <div class="dropdown-menu dropdown-menu-center bg-dark ">
                             <?php foreach ($cardapio as $key => $value) : ?>
-                                <a class="dropdown-item text-light" href="#cat-<?= $value['id_categoria'] ?>"><?= $value['nome'] ?></a>
+                                <a class="dropdown-item text-light" href="#<?= slugify($value['nome']) ?>"><?= $value['nome'] ?></a>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -203,3 +209,87 @@
     </div>
 </div>
 </div>
+<!--sweet alert-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="<?= PATH ?>assets/cardapios/js/jquery.fontstar.js" ></script>
+<script>
+    window.addEventListener('load', () => {
+        $('.star').fontstar({
+            // custom icons
+            icon: "fa fa-star-o fa-lg",
+            iconfull: "fa fa-star fa-lg",
+
+            // color on hover
+            hovercolor: "#F39F25",
+
+            // star color
+            starcolor: "#969696",
+
+            // is selectable
+            selectable: true
+
+        }, function(value, self) {
+            console.log("hello " + value);
+        });
+        let mensagem_avaliacao = "<?php echo (isset($_SESSION['mensagem-avaliacao']) && !empty($_SESSION['mensagem-avaliacao'])) ? $_SESSION['mensagem-avaliacao'] : 0?>";
+        if(mensagem_avaliacao == "success"){
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso',
+                text: "Muito obrigado, agradecemos sua avaliação!",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }else if(mensagem_avaliacao == "error"){
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: "Ocorreu um erro interno :(",
+                showConfirmButton: false,
+                timer: 2000
+            })
+        }
+        "<?php $_SESSION["mensagem-avaliacao"] = ""?>"
+    });
+
+    // $(document).on("submit", "#form-avaliacao", function(event){
+    //     event.preventDefault();
+
+    //     var url=$(this).attr("action");
+    //     $.ajax({
+    //         url: url,
+    //         type: 'POST',            
+    //         data: new FormData(this),
+    //         processData: false,
+    //         contentType: false,
+    //         success: function (data, status){
+    //             mensagem = JSON.parse(data);
+    //             console.log(data);
+
+    //             if(mensagem.type == "sucesso"){
+    //                 Swal.fire({
+    //                     icon: 'success',
+    //                     title: 'Sucesso',
+    //                     text: mensagem.message,
+    //                     showConfirmButton: false,
+    //                     timer: 1500
+    //                 });
+
+    //                 $(".av").modal("hide");
+    //             }else{
+    //                 console.log(data);
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Erro',
+    //                     text: mensagem.message,
+    //                     showConfirmButton: false,
+    //                     timer: 1500
+    //                 })
+    //             }
+    //         },
+    //         error: function(e){
+    //             console.log(e.responseText);
+    //         }
+    //     });
+    // });
+</script>

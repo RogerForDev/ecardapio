@@ -17,17 +17,8 @@ class HomeController extends Controller
 
 	public function index($request, $response)
 	{
-
-		$post = new Post;
-		$posts = $post->posts();
-
-
-
 		$vars = [
 			'page' => 'home',
-			'title' => 'Blog ASW',
-			'posts' => $posts,
-			'links' => $post->links()
 		];
 
 		return $this->view->render($response, 'site/index.phtml', $vars);
@@ -80,9 +71,12 @@ class HomeController extends Controller
         } else {
             return 0;
         }
-    }
+	}
+	public function cadastrar($request, $response){
+		return $this->view->render($response, 'site/index.phtml', ['page' => 'cadastro-cardapio']);
+	}
 
-	public function cadastrar($request, $response)
+	public function new_user($request, $response)
 	{
 		$validate = new Validate;
 
@@ -104,23 +98,28 @@ class HomeController extends Controller
 		if($created){
 			$usuario = $user->getFromId($created);
 			$_SESSION[User::SESSION] = $usuario;
-			return $this->view->render($response, 'site/index.phtml', ['page' => 'cadastro-cardapio']);
+			return $response->withRedirect(PATH.'cadastrar');
 		}else{
 			flash('message', error('Erro ao cadastrar, tente novamente'));
 			redirect(PATH);
 		}
 	}
-	public function cardapio($request, $response)
+	public function cardapio($request, $response, $args)
 	{
 		$produto = new Produto;
 		$categoria = new Categoria;
 		$tema = new Tema;
 		$cardapio = new Cardapio;
 		$avaliacao = new Avaliacao;
-		
-		$cardapio = Cardapio::getFromUser();
+		$usuario = new User;
 
-		$categorias = $categoria->select()->where('id_cardapio', $cardapio['id_cardapio'])->orderBy('ordem', 'asc')->get();
+		$cardapio = $cardapio->select()->findBy('slug', $args['slug']);
+		
+	//	dd($cardapio);
+
+		if($cardapio){
+			$categorias = $categoria->select()->where('id_cardapio', $cardapio['id_cardapio'])->orderBy('ordem', 'asc')->get();
+		}
 
         foreach($categorias as &$cat){
             $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
@@ -135,7 +134,7 @@ class HomeController extends Controller
 			'page' => 'layout_'.$cardapio['id_layout'],
 			'cardapio' => $categorias,
 			'fundo' => $cardapio['imagem'],
-			'usuario' => User::getFromSession(),
+			'usuario' => $usuario->select()->findBy('id_usuario', $cardapio['id_usuario']),
 			'tema' => $tema->select()->findBy('id_tema', $cardapio['id_tema'])
 		];
 		return $this->view->render($response, 'cardapio/index.phtml', $vars);

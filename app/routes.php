@@ -49,7 +49,8 @@ $app->group('/admin', function(){
 })->add(App\Middleware\Admin\AuthMiddleware::class);
 
 // SITE
-$app->get('/', 'App\Controllers\Site\HomeAction:index');
-$app->post('/cadastrar', 'App\Controllers\Site\HomeController:cadastrar');
+$app->get('/', 'App\Controllers\Site\HomeController:index');
+$app->get('/cadastrar', 'App\Controllers\Site\HomeController:cadastrar')->add(App\Middleware\Admin\AuthMiddleware::class);
+$app->post('/cadastrar', 'App\Controllers\Site\HomeController:new_user');
 $app->post('/logar', 'App\Controllers\Site\HomeController:logar');
-$app->get('/cardapio', 'App\Controllers\Site\HomeController:cardapio');
+$app->get('/web/{slug}', 'App\Controllers\Site\HomeController:cardapio');
