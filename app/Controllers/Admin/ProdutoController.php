@@ -202,6 +202,7 @@ class ProdutoController extends Controller
        $data = $_POST;
 
        $data['id_produto'] = $args['id'];
+       $data['data'] =date('Y/m/d H:i:s');
 
        $created = $avaliacao->create($data);
 
