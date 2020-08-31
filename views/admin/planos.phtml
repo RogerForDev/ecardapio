@@ -66,7 +66,7 @@ section.pricing {
 <div class="content-page pt-5">
     <section class="pricing py-5" style="background: url(<?= PATH . "/assets/admin/images/pattern2.png" ?>); background-attachment:fixed;">
         <div class="container">
-            <div class="row">
+            <div class="row" style="justify-content: center; align-items: center;">
                 <!-- Free Tier -->
                 <div class="col-lg-4">
                     <div class="card mb-5 mb-lg-0">
@@ -88,27 +88,7 @@ section.pricing {
                     </div>
                     </div>
                 </div>
-                <!-- Plus Tier -->
-                <div class="col-lg-4">
-                    <div class="card mb-5 mb-lg-0">
-                    <div class="card-body">
-                        <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
-                        <h6 class="card-price text-center">R$9<span class="period">/mensal</span></h6>
-                        <hr>
-                        <ul class="fa-ul">
-                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Criação de cardápio</li>
-                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Impressão do cardápio</li>
-                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Customização<small><strong>(parcial)</strong></small></li>
-                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Compartilhamento via QRCode</li>
-                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Remoção de anúncios</li>
-                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Wallpaper para cardápio</li>
-                        <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Mais opções de layouts</li>
-                        <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Suporte exclusivo</li>
-                        </ul>
-                        <button data-url="<?= PATH ?>admin/planos/update" <?=($usuario['flag_assinante'] == 2)?"disabled":""?> class="btn btn-block btn-primary text-uppercase assinar-plano"><?=($usuario['flag_assinante'] == 2)?"Você já é um assinante":"Assinar"?></button>
-                    </div>
-                    </div>
-                </div>
+              
                 <!-- Pro Tier -->
                 <div class="col-lg-4">
                     <div class="card">
@@ -117,7 +97,7 @@ section.pricing {
                         <h6 class="card-price text-center">R$49<span class="period">/mensal</span></h6>
                         <hr>
                         <ul class="fa-ul">
-                        <li><span class="fa-li"><i class="fa fa-check"></i></span><strong>Criação de cardápio</strong></li>
+                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Criação de cardápio</li>
                         <li><span class="fa-li"><i class="fa fa-check"></i></span>Impressão do cardápio</li>
                         <li><span class="fa-li"><i class="fa fa-check"></i></span>Customização<small><strong>(parcial)</strong></small></li>
                         <li><span class="fa-li"><i class="fa fa-check"></i></span>Compartilhamento via QRCode</li>

@@ -122,9 +122,23 @@ class HomeController extends Controller
 		}
 
         foreach($categorias as &$cat){
-            $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+			$cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
 			foreach ($cat['produtos'] as &$val){
+				$soma_avaliacao = 0;
+				$numero_avaliacao = 0;
 				$val['avaliacoes'] = $avaliacao->select()->where('id_produto', $val['id_produto'])->get();
+				foreach($val['avaliacoes'] as &$ava){
+					$numero_avaliacao++;
+					$soma_avaliacao += $ava['nota'];
+				}
+
+				if($soma_avaliacao != 0){
+					$media_avaliacao = ceil($soma_avaliacao / $numero_avaliacao);
+				}else{
+					$media_avaliacao = 99;
+				}
+				
+				$val['media'] = $media_avaliacao;
 			}
 		}
 

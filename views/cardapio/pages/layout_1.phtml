@@ -69,9 +69,14 @@
                             <?php endif; ?>
                             <div class="card-body bg-primaria text-claro">
                                 <h5 class="card-title"><?= $value['nome'] ?></h5>
-                                <?php for ($i = 0; $i < 5; $i++) : ?>
+                                <?php if($value['media'] != 99) : for ($i = 1; $i <= 5; $i++) : if($i <= $value['media']) : ?>
                                     <i class="fa fa-star" aria-hidden="true"></i>
-                                <?php endfor; ?>
+                                <?php else : ?>
+                                    <i class="fa fa fa-star-o" aria-hidden="true"></i>
+                                <?php endif;
+                                endfor; else: ?>
+                                    <h6>Esse item ainda não foi avaliado.</h6>
+                                <?php endif; ?>
                                 <br>
                                 <p class="card-text pt-2"><?= $value['descricao'] ?></p>
                             </div>
