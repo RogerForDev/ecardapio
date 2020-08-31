@@ -51,6 +51,7 @@
                             <?php foreach ($cardapio as $key => $value) : ?>
                                 <a class="dropdown-item text-light" href="#<?= slugify($value['nome']) ?>"><?= $value['nome'] ?></a>
                             <?php endforeach; ?>
+                            <a class="dropdown-item text-light" href="<?= PATH.'web/'.slugify($usuario['estabelecimento']).'/2' ?>">Ordenar por avaliação</a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +70,7 @@
                             <?php endif; ?>
                             <div class="card-body bg-primaria text-claro">
                                 <h5 class="card-title"><?= $value['nome'] ?></h5>
-                                <?php if($value['media'] != 99) : for ($i = 1; $i <= 5; $i++) : if($i <= $value['media']) : ?>
+                                <?php if($value['media'] != -1) : for ($i = 1; $i <= 5; $i++) : if($i <= $value['media']) : ?>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 <?php else : ?>
                                     <i class="fa fa fa-star-o" aria-hidden="true"></i>

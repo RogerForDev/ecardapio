@@ -135,10 +135,24 @@ class HomeController extends Controller
 				if($soma_avaliacao != 0){
 					$media_avaliacao = ceil($soma_avaliacao / $numero_avaliacao);
 				}else{
-					$media_avaliacao = 99;
+					$media_avaliacao = -1;
 				}
 				
 				$val['media'] = $media_avaliacao;
+			}
+
+			if($args['flag'] == 2){
+				usort(
+
+					$cat['produtos'],
+				
+					 function( $a, $b ) {
+				
+						 if( $a['media'] == $b['media'] ) return 0;
+				
+						 return ( ( $a['media'] > $b['media'] ) ? -1 : 1 );
+					 }
+				);
 			}
 		}
 
