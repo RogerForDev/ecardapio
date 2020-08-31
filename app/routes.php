@@ -53,4 +53,5 @@ $app->get('/', 'App\Controllers\Site\HomeController:index');
 $app->get('/cadastrar', 'App\Controllers\Site\HomeController:cadastrar')->add(App\Middleware\Admin\AuthMiddleware::class);
 $app->post('/cadastrar', 'App\Controllers\Site\HomeController:new_user');
 $app->post('/logar', 'App\Controllers\Site\HomeController:logar');
-$app->get('/web/{slug}', 'App\Controllers\Site\HomeController:cardapio');
+$app->get('/web/{slug}/{flag}', 'App\Controllers\Site\HomeController:cardapio');
+$app->get('/produtos/busca', 'App\Controllers\Site\HomeController:busca_produto');

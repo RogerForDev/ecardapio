@@ -122,9 +122,37 @@ class HomeController extends Controller
 		}
 
         foreach($categorias as &$cat){
-            $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+			$cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
 			foreach ($cat['produtos'] as &$val){
+				$soma_avaliacao = 0;
+				$numero_avaliacao = 0;
 				$val['avaliacoes'] = $avaliacao->select()->where('id_produto', $val['id_produto'])->get();
+				foreach($val['avaliacoes'] as &$ava){
+					$numero_avaliacao++;
+					$soma_avaliacao += $ava['nota'];
+				}
+
+				if($soma_avaliacao != 0){
+					$media_avaliacao = ceil($soma_avaliacao / $numero_avaliacao);
+				}else{
+					$media_avaliacao = -1;
+				}
+				
+				$val['media'] = $media_avaliacao;
+			}
+
+			if($args['flag'] == 2){
+				usort(
+
+					$cat['produtos'],
+				
+					 function( $a, $b ) {
+				
+						 if( $a['media'] == $b['media'] ) return 0;
+				
+						 return ( ( $a['media'] > $b['media'] ) ? -1 : 1 );
+					 }
+				);
 			}
 		}
 
@@ -139,4 +167,57 @@ class HomeController extends Controller
 		];
 		return $this->view->render($response, 'cardapio/index.phtml', $vars);
 	}
+
+	public function busca_produto($request, $response){
+		
+		$produto = new Produto;
+		$categoria = new Categoria;
+		$tema = new Tema;
+		$cardapio = new Cardapio;
+		$avaliacao = new Avaliacao;
+		$usuario = new User;
+
+		$filtro = $_GET['produto'];
+		$slug = $_GET['slug'];
+
+		$cardapio = $cardapio->select()->findBy('slug', $slug);
+		
+		$id_cardapio = Cardapio::getFromUser()['id_cardapio'];
+
+		if($cardapio){
+			$categorias = $categoria->select()->where('id_cardapio', $cardapio['id_cardapio'])->orderBy('ordem', 'asc')->get();
+		}
+
+        foreach($categorias as &$cat){
+			$cat['produtos'] = $produto->getProdByName($id_cardapio, $filtro, $cat['id_categoria']);
+			foreach ($cat['produtos'] as &$val){
+				$soma_avaliacao = 0;
+				$numero_avaliacao = 0;
+				$val['avaliacoes'] = $avaliacao->select()->where('id_produto', $val['id_produto'])->get();
+				foreach($val['avaliacoes'] as &$ava){
+					$numero_avaliacao++;
+					$soma_avaliacao += $ava['nota'];
+				}
+
+				if($soma_avaliacao != 0){
+					$media_avaliacao = ceil($soma_avaliacao / $numero_avaliacao);
+				}else{
+					$media_avaliacao = -1;
+				}
+				
+				$val['media'] = $media_avaliacao;
+			}
+		}
+
+		//dd($categorias);
+		
+		$vars = [
+			'page' => 'layout_'.$cardapio['id_layout'],
+			'cardapio' => $categorias,
+			'fundo' => $cardapio['imagem'],
+			'usuario' => $usuario->select()->findBy('id_usuario', $cardapio['id_usuario']),
+			'tema' => $tema->select()->findBy('id_tema', $cardapio['id_tema'])
+		];
+		return $this->view->render($response, 'cardapio/index.phtml', $vars);
+    }
 }
