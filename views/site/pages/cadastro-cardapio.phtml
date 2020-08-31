@@ -34,25 +34,38 @@
             </div>
           </div>
           <div class="my-5 py-1" id="temas" tabindex="-1"></div>
-          <h3 class="text-center pb-4 py-4">2º - Escolha um tema</h3>
+          <h3 class="text-center pt-4">2º - Escolha um tema</h3>
+          <h6 class="text-center pb-4">Pode ser alterado depois</h6>
           <div class="form-row justify-content-center">
             <div class="radio-tile-group">
               <div class="input-container">
                 <input class="radio-button" type="radio" value="1" name="tema">
-                <div class="radio-tile text-center" id="tema-1">
-                  
+                <div class="radio-tile text-center">
+                  <h4 class="text-dark">Tema 1</h4>
+                  <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:#dc3545">Cor principal</div>
+                  <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:#292524">Cor secundaria</div>
+                  <div class="rounded bg-transparent border border-dark py-2 w-100 mb-2 font-weight-bold" style="color:#212529"><strong>Cor do texto escuro</strong></div>
+                  <div class="rounded bg-dark py-2 w-100 mb-2 font-weight-bold" style="color:#ffffff"><strong>Cor do texto claro</strong></div>
                 </div>
               </div>
               <div class="input-container">
                 <input class="radio-button" type="radio" value="2" name="tema">
                 <div class="radio-tile text-center">
-                 
+                <h4 class="text-dark">Tema 2</h4>
+                  <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:#a23052">Cor principal</div>
+                  <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:#702428">Cor secundaria</div>
+                  <div class="rounded bg-transparent border border-dark font-weight-bold py-2 w-100 mb-2" style="color:#2e2e2e"><strong>Cor do texto escuro</strong></div>
+                  <div class="rounded bg-dark py-2 w-100 mb-2 font-weight-bold" style="color:#d6d4d4"><strong>Cor do texto claro</strong></div>
                 </div>
               </div>
               <div class="input-container">
                 <input class="radio-button" type="radio" value="3" name="tema">
                 <div class="radio-tile text-center">
-                  
+                <h4 class="text-dark">Tema 3</h4>
+                  <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:#dc3545">Cor principal</div>
+                  <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:#292524">Cor secundaria</div>
+                  <div class="rounded bg-transparent border font-weight-bold border-dark py-2 w-100 mb-2" style="color:#212529"><strong>Cor do texto escuro</strong></div>
+                  <div class="rounded bg-dark py-2 w-100 font-weight-bold mb-2" style="color:#ffffff"><strong>Cor do texto claro</strong></div>
                 </div>
               </div>
             </div>
@@ -67,7 +80,6 @@
 </div>
 <script>
   $("input[name=layout]").on('change', () => {
-    console.log($(this).val());
     var target = $("#temas");
     $('html, body').animate({
         scrollTop: target.offset().top
@@ -86,11 +98,4 @@
         };
       });
   });
-  $(document).ready(function(){
-    if(($("input[name=layout]").prop('checked') == true) && ($("input[name=tema]").prop('checked') == true)){
-      $('#btn-submit').removeAttr('disabled');
-    }
-  })
-
-
 </script>

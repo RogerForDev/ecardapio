@@ -18,13 +18,11 @@
 
     <div class="container-fluid bg-fundo" <?= (isset($fundo))?'style="background: url('.PATH .$fundo.'); background-attachment:fixed;"':''?>>
         <div class="row bg-header py-5">
-            <div class="col-xl-6 text-center py-4">
-                <div class="pl-5 title-header text-claro"><?= $usuario['estabelecimento'] ?></div>
+            <div class="col-xl-12 text-center py-4">
+                <div class=" title-header text-claro"><?= $usuario['estabelecimento'] ?></div>
                 <div class="d-flex flex-row align-items-center justify-content-center pt-4">
                     <i class="fa fa-whatsapp fa-3x text-success mr-3" aria-hidden="true"></i>
                     <strong class="text-light h3"><?= $usuario['whatsapp'] ?></strong>
                 </div>
-            </div>
-            <div class="col-xl-6">
-            </div>
+            </div>            
         </div>

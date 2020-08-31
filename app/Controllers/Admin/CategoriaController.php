@@ -26,30 +26,15 @@ class CategoriaController extends Controller
     {
         $data = array();
 
-        if(isset($_FILES)){
-            $upload = new Upload(); 
-            $result = $upload->upload("imagem-categoria", "categoria");
-        }
-
         if(isset($_POST['nome']) && !empty($_POST['nome'])){
             $data['nome'] = addslashes(htmlspecialchars($_POST['nome']));
         }else{
             echo json_encode(array("type" => "erro", "message" => "Nome da categoria não informado!"));
             exit;  
         }
-
-        if(isset($_POST['nome']) && !empty($_POST['nome'])){
-            $data['ativo'] = addslashes(htmlspecialchars($_POST['ativo']));
-        }else{
-            echo json_encode(array("type" => "erro", "message" => "Não foi informado se a categoria estará ativa ou não!"));
-            exit;  
-        }
         
         $categoria = new Categoria;
 
-        
-
-        $data['imagem'] = $result;
         $data['id_cardapio'] = Cardapio::getFromUser()['id_cardapio'];
         // print_r($data);exit;
 
