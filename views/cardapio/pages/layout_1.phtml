@@ -41,16 +41,16 @@
 </style>
 
 <div class="container">
-    <?php foreach ($cardapio as $key => $val) : ?>
+    <?php foreach ($cardapio as $key => $val) : if(!empty($val['produtos'])) :?>
         <div class="row" id="<?= slugify($val['nome']) ?>">
             <div class="col-12">
                 <div class="text-center py-4">
                     <div class="dropdown open">
                         <a class="dropdown-toggle text-light h3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $val['nome'] ?></a>
                         <div class="dropdown-menu dropdown-menu-center bg-dark ">
-                            <?php foreach ($cardapio as $key => $value) : ?>
+                            <?php foreach ($cardapio as $key => $value) : if(!empty($value['produtos'])) : ?>
                                 <a class="dropdown-item text-light" href="#<?= slugify($value['nome']) ?>"><?= $value['nome'] ?></a>
-                            <?php endforeach; ?>
+                            <?php endif; endforeach; ?>
                             <a class="dropdown-item text-light" href="<?= PATH.'web/'.slugify($usuario['estabelecimento']).'/2' ?>">Ordenar por avaliação</a>
                         </div>
                     </div>
@@ -199,7 +199,7 @@
                 </div>
             <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
+    <?php endif; endforeach; ?>
     <div class="row">
         <div class="col-12">
             <div class="card">
