@@ -32,7 +32,15 @@ class HomeController extends Controller
 		$result = $this->login($email, $password);
     
 		if($result){
-			return $response->withRedirect(PATH.'admin');
+			$cardapio = new Cardapio;
+			$user = new User;
+			$usuario = $user->select()->findBy('email', $email);
+			$car = $cardapio->select()->findBy("id_usuario", $usuario['id_usuario']);
+			if(!empty($car)){
+				return $response->withRedirect(PATH.'admin');
+			}else{
+				return $response->withRedirect(PATH.'cadastrar');
+			}
 		}else{
 			return $response->withRedirect(PATH);
 		}
@@ -66,6 +74,7 @@ class HomeController extends Controller
 		}
 		return false;		
 	}
+
 	public function logout($request, $response)
     {
         unset($_SESSION[User::SESSION]);
@@ -73,7 +82,9 @@ class HomeController extends Controller
         return $response->withRedirect(PATH);
     }
 	public function cadastrar($request, $response){
-		return $this->view->render($response, 'site/index.phtml', ['page' => 'cadastro-cardapio']);
+		$tema = new Tema;
+		$temas = $tema->select()->where('id_usuario', 0)->get();
+		return $this->view->render($response, 'site/index.phtml', ['page' => 'cadastro-cardapio', 'temas' => $temas]);
 	}
 
 	public function new_user($request, $response)
