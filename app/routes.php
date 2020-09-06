@@ -51,5 +51,3 @@ $app->post('/cadastrar', 'App\Controllers\Site\HomeController:new_user');
 $app->post('/logar', 'App\Controllers\Site\HomeController:logar');
 $app->post('/verify_login', 'App\Controllers\Site\HomeController:verify_logar');
 $app->get('/web/{slug}', 'App\Controllers\Site\HomeController:cardapio');
-$app->get('/json/{slug}/{flag}', 'App\Controllers\Site\HomeController:cardapio_json');
-$app->get('/produtos/busca', 'App\Controllers\Site\HomeController:busca_produto');
