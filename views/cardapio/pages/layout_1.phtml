@@ -67,12 +67,12 @@
         <div class="col-12">
             <div class="pt-3 d-flex justify-content-center align-items-center">
                 <a class="btn btn-light rounded-pill mr-4" href="<?= PATH . 'web/' . slugify($usuario['estabelecimento']) . '?sort=top' ?>" role="button"><i class="fa fa-sort-amount-desc mr-2" aria-hidden="true"></i>Melhor avaliados</a>
-                <form action="<?= PATH ?>produtos/busca" method="GET">
+                <form action="" method="GET">
                     <div class="input-group">
                         <div class="input-group-prepend rounded-pill">
                             <div class="input-group-text pr-0 bg-light"><i class="fa fa-search mr-2" aria-hidden="true"></i></div>
                         </div>
-                        <input type="text" class="border-0 py-2" id="search" name="produto" placeholder="Buscar produtos">
+                        <input type="text" class="border-0 py-2" id="search" name="busca" placeholder="Buscar produtos">
                         <div class="input-group-append">
                             <span class="input-group-text bg-light"></span>
                         </div>

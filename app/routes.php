@@ -1,13 +1,9 @@
 <?php
 
-// ADMINISTRAÇAO
-$app->get('/admin/login', 'App\Controllers\Admin\LoginAction:index');
-$app->get('/admin/logout', 'App\Controllers\Admin\LoginAction:logout');
-$app->post('/admin/login', 'App\Controllers\Admin\LoginAction:logar');
-
 $app->group('/admin', function(){
 
     $this->get('', 'App\Controllers\Admin\ProdutoController:index');
+    $this->get('/logout', 'App\Controllers\Site\HomeController:logout');
     
     //USER
     $this->get('/users', 'App\Controllers\Admin\UserController:index');
@@ -29,12 +25,12 @@ $app->group('/admin', function(){
     $this->post('/produtos/{id}', 'App\Controllers\Admin\ProdutoController:update');
     $this->post('/produtos/avaliar/{id}', 'App\Controllers\Admin\ProdutoController:avaliar');
     $this->get('/produtos/{id}/delete', 'App\Controllers\Admin\ProdutoController:delete');
+    
+    //CARDAPIO
+    $this->post('/cardapios/create', 'App\Controllers\Admin\CardapioController:create');
     $this->get('/cardapio/tema/{id}', 'App\Controllers\Admin\ProdutoController:define_tema');
     $this->get('/cardapio/layout/{id}', 'App\Controllers\Admin\ProdutoController:define_layout');
     $this->post('/cardapio/background', 'App\Controllers\Admin\ProdutoController:define_background');
-
-    //CARDAPIO
-    $this->post('/cardapios/create', 'App\Controllers\Admin\CardapioController:create');
 
     //PLANOS
     $this->get('/planos', 'App\Controllers\Admin\PlanoController:index');

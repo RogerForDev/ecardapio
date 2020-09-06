@@ -66,6 +66,12 @@ class HomeController extends Controller
 		}
 		return false;		
 	}
+	public function logout($request, $response)
+    {
+        unset($_SESSION[User::SESSION]);
+        session_destroy();
+        return $response->withRedirect(PATH);
+    }
 	public function cadastrar($request, $response){
 		return $this->view->render($response, 'site/index.phtml', ['page' => 'cadastro-cardapio']);
 	}
@@ -109,6 +115,8 @@ class HomeController extends Controller
 		$avaliacao = new Avaliacao;
 		$usuario = new User;
 
+		$filtro = $_GET['busca'];
+
 		$cardapio = $cardapio->select()->findBy('slug', $args['slug']);
 
 		if($cardapio){
@@ -116,7 +124,11 @@ class HomeController extends Controller
 		}
 
         foreach($categorias as &$cat){
-			$cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+			if($filtro){
+				$cat['produtos'] = $produto->getProdByName($cardapio['id_cardapio'], $filtro, $cat['id_categoria']);
+			}else{
+				$cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+			}
 			foreach ($cat['produtos'] as &$val){
 				$soma_avaliacao = 0;
 				$numero_avaliacao = 0;
@@ -168,7 +180,9 @@ class HomeController extends Controller
 		$tema = new Tema;
 		$cardapio = new Cardapio;
 		$avaliacao = new Avaliacao;
-		$usuario = new User;
+	
+
+		$filtro = $_GET['produto'];
 
 		$cardapio = $cardapio->select()->findBy('slug', $args['slug']);
 
@@ -177,7 +191,11 @@ class HomeController extends Controller
 		}
 
         foreach($categorias as &$cat){
-			$cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+			if($filtro){
+				$cat['produtos'] = $produto->getProdByName($cardapio['id_cardapio'], $filtro, $cat['id_categoria']);
+			}else{
+				$cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+			}
 			foreach ($cat['produtos'] as &$val){
 				$soma_avaliacao = 0;
 				$numero_avaliacao = 0;
