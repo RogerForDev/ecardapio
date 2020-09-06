@@ -16,13 +16,13 @@
 
     <!-- Font Awesome CSS -->
     <link href="<?= PATH ?>assets/admin/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    
+
     <!-- Colorpicker CSS -->
     <link href="<?= PATH ?>assets/admin/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet">
-    
+
     <!-- Fontpicker CSS -->
     <link href="<?= PATH ?>assets/admin/plugins/fontselect/fontselect-alternate.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link href="<?= PATH ?>assets/admin/css/style.css" rel="stylesheet" type="text/css" />
 
@@ -53,19 +53,47 @@
         }
 
         ::-webkit-scrollbar {
-        width:10px;
-        height: 10px;
+            width: 10px;
+            height: 10px;
         }
-        
+
         /* aqui é para personalizar o fundo da barra, neste caso estou colocando um fundo cinza escuro*/
         ::-webkit-scrollbar-track {
-        background:#333;
+            background: #333;
         }
 
         /* aqui é a alça da barra, que demonstra a altura que você está na página
         estou colocando uma cor azul clara nela*/
         ::-webkit-scrollbar-thumb {
-        background: #F55e61;
+            background: #F55e61;
+        }
+
+        #box-qrcode {
+            right: 2rem;
+            bottom: 1.5rem;
+        }
+
+        @media screen {
+            #printSection {
+                display: none;
+            }
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #printSection,
+            #printSection * {
+                visibility: visible;
+            }
+
+            #printSection {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
         }
     </style>
     <!-- END CSS for this page -->
@@ -79,14 +107,22 @@
 
         <?= message('message') ?>
 
-        <a href="<?= PATH.'web/'.slugify($usuario['estabelecimento']).'/1' ?>" class="btn btn-outline-light my-2 my-sm-0 ml-xl-auto mr-xl-3" target="_blank" rel="noopener noreferrer" ><i class="fa fa-eye pr-xl-2" aria-hidden="true"></i><span class="d-none d-sm-inline-block">Visualizar</span></a>
+        <div class="btn-group my-2 my-sm-0 ml-xl-auto mr-xl-3">
+            <a href="<?= PATH . 'web/' . slugify($usuario['estabelecimento']) ?>" class="btn btn-outline-light px-lg-4" target="_blank" rel="noopener noreferrer"><i class="fa fa-eye pr-xl-2" aria-hidden="true"></i><span class="d-none d-sm-inline-block">Visualizar</span></a>
+            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalQR"><i class="fa fa-qrcode pr-2" aria-hidden="true"></i>Gerar QRCode</a>
+            </div>
+        </div>
         <form action="<?= PATH ?>admin/produtos/busca" method="GET" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-2 w-auto" name="produto" type="text" placeholder="Buscar produto">
             <button class="btn btn-transparent text-dark my-2 my-sm-0 btn-search" type="submit"><i class="fa fa-search pr-2" aria-hidden="true"></i></button>
         </form>
         <div class="btn-group">
             <button type="button" class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" width="40px" alt="Profile image" class="bg-light rounded-circle">
+                <img src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" width="40px" alt="Profile image" class="bg-light rounded-circle">
             </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item">Olá, <?= $usuario['nome'] ?></small></a>
@@ -94,5 +130,31 @@
                 <a href="<?= PATH ?>admin/logout" class="dropdown-item"><i class="fa fa-power-off"></i> <span>Logout</span></a>
             </div>
         </div>
-        
     </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalQR" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-light">
+                    <h5 class="modal-title">Gerar QRCode do cardápio</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center" id="printThis">
+                    <div class="position-absolute" id="box-qrcode">
+                        <div class="d-flex align-items-end" >
+                            <p class="text-light text-center px-5 font-weight-bold">Acesse www.e-cardapio.com.br/web/<?= $cardapio['slug'] ?> e crie o seu agora mesmo, ou escaneie o código QR ao lado</p>
+                            <img src="" id="qr" alt="">
+                        </div>
+                    </div>
+                    <img src="<?= PATH ?>assets/admin/images/banner-qr.jpg" class="d-block w-100">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" onclick="printElement()"><i class="fa fa-print mr-2" aria-hidden="true"></i>Imprimir</button>
+                </div>
+            </div>
+        </div>
+    </div>

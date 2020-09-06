@@ -75,21 +75,6 @@ function setUpdate(url){
     location.reload(true);
   }, 1500); 
 }
-function submitBackground(url){
-  var data = 
-  $.post(url+'/admin/cardapio/background', data, function(res){
-    if(res == 1){
-      Swal.fire(
-        'Salvo!',
-        'Alterações salvas com sucesso.',
-        'success'
-      );
-    }
-  });
-  setTimeout(function(){
-    location.reload(true);
-  }, 1500); 
-}
 
 $("#premium").on("change", function(){
   let opt = $(this).val();
@@ -204,4 +189,21 @@ $(".assinar-plano").on("click", function(){
       console.log(e);
     }
   });
-})
+});
+
+function printElement() {
+  var elem = document.getElementById("printThis");
+  var domClone = elem.cloneNode(true);
+
+  var $printSection = document.getElementById("printSection");
+
+  if (!$printSection) {
+      var $printSection = document.createElement("div");
+      $printSection.id = "printSection";
+      document.body.appendChild($printSection);
+  }
+
+  $printSection.innerHTML = "";
+  $printSection.appendChild(domClone);
+  window.print();
+}

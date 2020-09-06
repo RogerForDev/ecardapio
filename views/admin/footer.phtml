@@ -28,7 +28,16 @@
 <script src="<?= PATH ?>assets/admin/plugins/parsleyjs/pt-br.js"></script>
 <script src="<?= PATH ?>assets/admin/plugins/jQuery.filer/jquery.filer.min.js"></script>
 <script src="<?= PATH ?>assets/admin/plugins/jQuery.filer/custom.js"></script>
-
+<script src="<?= PATH ?>assets/admin/plugins/qrious/qrious.min.js"></script>
+<script>
+      (function() {
+        var qr = new QRious({
+		  size: 180,
+          value: '<?= PATH.'web/'.$cardapio['slug'] ?>'
+		});
+		$('#qr').attr('src', qr.toDataURL());
+      })();
+</script>
 </body>
 
 </html>

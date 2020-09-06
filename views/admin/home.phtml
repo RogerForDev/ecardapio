@@ -3,7 +3,7 @@
     <?php include "tema/novo.phtml"; ?>
     <?php include "tema/index.phtml"; ?>
     <!-- Start content -->
-    <div class="content" style="background: url(<?= PATH . "/assets/admin/images/pattern2.png" ?>); background-attachment:fixed;">
+    <div class="content bg-primary" style="background: url(<?= PATH . "/assets/admin/images/pattern2.png" ?>); background-attachment:fixed;">
 
         <input type="hidden" id="path" value="<?= PATH ?>">
 
@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <input data-id="<?= $cat['id_categoria'] ?>" type="text" class="bg-cat-title py-3 h5 w-100 border-0 text-center nome-categoria" readonly="true" data-html="true" title="<i class='fa fa-pencil pr-2' aria-hidden='true'></i>Clique para editar o nome da categoria" data-toggle="tooltip" data-placement="top" value="<?= $cat['nome'] ?>">
-                        <a href="javascript:;" class="position-absolute px-5 py-2 d-none btn-delete-cat deletar-categoria" href="#" title="Excluir categoria" onclick="remove('<?= PATH . 'admin/categorias/' . $cat['id_categoria'] . '/delete' ?>')" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash fa-3x text-danger pr-2" aria-hidden="true"></i></a>
+                        <a href="javascript:;" class="position-absolute py-2 d-none btn-delete-cat deletar-categoria" href="#" title="Excluir categoria" onclick="remove('<?= PATH . 'admin/categorias/' . $cat['id_categoria'] . '/delete' ?>')" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash fa-3x text-danger pr-2" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <br>

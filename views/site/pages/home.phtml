@@ -32,16 +32,17 @@ background: #F55e61;
         </div>
         <div class="col-lg-5 p-3 bg-form">
           <!--form cadastro-->
-          <form id="form-cadastro" action="<?=PATH?>cadastrar" class="section-light pt-2 px-4" method="post" data-parsley-validate novalidate>
+          <form id="form-cadastro" action="<?= PATH ?>cadastrar" class="section-light pt-2 px-4" method="post" data-parsley-validate novalidate>
             <h4 class="mb-3 text-center">Crie o seu agora mesmo</h4>
             <?= message('message') ?>
             <div class="form-group">
-              <label>Nome</label>
-              <input required parsley-trigger="change" name="nome" class="form-control" placeholder="Digite seu nome"> </div>
+              <label>Nome do comércio</label>
+              <input required parsley-trigger="change" name="estabelecimento" class="form-control" placeholder="Digite o nome do comércio"> </div>            
+              <?= @$erro_cadastro['estabelecimento'][0] ?>
             <div class="form-group">
-              <label>Login</label>
-              <input required parsley-trigger="change" name="login" type="text" class="form-control" placeholder="Digite seu login"> </div>
-              <?= message('login') ?>
+              <label>E-mail</label>
+              <input required parsley-trigger="change" name="email" type="email" class="form-control" placeholder="Digite seu email"> </div>
+              <?= @$erro_cadastro['email'][0] ?>
               <div class="form-group">
               <label>Senha</label>
               <input required parsley-trigger="change" name="senha" type="password" class="form-control" placeholder="Digite uma senha"> </div>
@@ -52,16 +53,16 @@ background: #F55e61;
           </form>
 
           <!--form login-->
-          <form id="form-login" style="display: none;" action="<?=PATH?>logar" class="section-light pt-4 pb-2 px-4" method="post" data-parsley-validate novalidate>
-            <h4 class="mb-3 text-center">Login</h4>
-            <?= message('message') ?>
+          <form id="form-login" style="display: none;" action="<?= PATH ?>logar" class="section-light pt-4 pb-2 px-4" method="post" data-parsley-validate novalidate>
+            <h4 class="mb-3 text-center">Entrar</h4>
+            <div class="alert alert-primary text-center" style="display: none;" id="msg-error">Usuário ou senha inválidos</div>
             <div class="form-group">
-              <label>Login</label>
-              <input required parsley-trigger="change" name="login" type="text" class="form-control" placeholder="Digite seu login"> </div>
+              <label>E-mail</label>
+              <input required parsley-trigger="change" name="email" type="email" class="form-control" placeholder="Digite seu email"> </div>
             <div class="form-group">
               <label>Senha</label>
               <input required parsley-trigger="change" name="senha" type="password" class="form-control" placeholder="Digite sua senha"> </div>
-            <button type="submit" class="btn mt-4 btn-block p-2 btn-secondary font-20"> Entrar </button>
+            <button type="button" id="btn-submit-login" class="btn mt-4 btn-block p-2 btn-secondary font-20">Entrar</button>
             <button id="botao-cadastro" type="button" class="btn btn-block p-2 font-20 btn-link text-white">
               <b>Não possuo conta</b>
             </button>
@@ -174,4 +175,21 @@ background: #F55e61;
         $("#form-cadastro").slideDown();
       });
     });
+    
+    $("#btn-submit-login").on("click", function(e){
+     // e.preventDefault();
+      $(this).html('<i class="fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i>');
+      let data = $("#form-login").serialize();
+      $.post("<?= PATH ?>verify_login", data)
+        .then((res) => {
+        console.log(res);
+        if(res.status == "success"){
+          $("#form-login").submit();
+        }else{
+          $(this).text("Entrar");
+          $('#msg-error').fadeIn();
+        }
+      });
+    });
+  
   </script>

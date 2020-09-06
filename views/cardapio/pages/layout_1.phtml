@@ -1,6 +1,6 @@
 <style>
     .bg-header {
-        background: url(<?= PATH.$tema['imagem'] ?>);
+        background: url(<?= PATH . $tema['imagem'] ?>);
         background-size: cover;
         background-position: right;
         background-repeat: no-repeat;
@@ -21,185 +21,226 @@
     }
 
     .text-claro {
-        color: <?= $tema['texto_claro'] ?>
+        color: <?= $tema['texto_claro'] ?>;
     }
 
     .text-escuro {
-        color: <?= $tema['texto_escuro'] ?>
+        color: <?= $tema['texto_escuro'] ?>;
     }
 
     .fontstar {
         padding-left: 0px;
 
     }
+
     .dropdown-item:focus,
     .dropdown-item:hover {
         color: #16181b;
         text-decoration: none;
         background-color: <?= $tema['cor_primaria'] ?> !important;
     }
+
+    .input-group {
+        width: auto;
+    }
+
+    .input-group-text {
+        border-radius: 1.25rem;
+        border: 0 !important;
+    }
+
+    #search {
+        width: 115px;
+        padding: 0.45rem 0;
+    }
+
+    textarea,
+    select,
+    input,
+    button {
+        outline: none;
+    }
 </style>
 
 <div class="container">
-    <?php foreach ($cardapio as $key => $val) : if(!empty($val['produtos'])) :?>
-        <div class="row" id="<?= slugify($val['nome']) ?>">
-            <div class="col-12">
-                <div class="text-center py-4">
-                    <div class="dropdown open">
-                        <a class="dropdown-toggle text-light h3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $val['nome'] ?></a>
-                        <div class="dropdown-menu dropdown-menu-center bg-dark ">
-                            <?php foreach ($cardapio as $key => $value) : if(!empty($value['produtos'])) : ?>
-                                <a class="dropdown-item text-light" href="#<?= slugify($value['nome']) ?>"><?= $value['nome'] ?></a>
-                            <?php endif; endforeach; ?>
-                            <a class="dropdown-item text-light" href="<?= PATH.'web/'.slugify($usuario['estabelecimento']).'/2' ?>">Ordenar por avaliação</a>
+    <div class="row">
+        <div class="col-12">
+            <div class="pt-3 d-flex justify-content-center align-items-center">
+                <a class="btn btn-light rounded-pill mr-4" href="<?= PATH . 'web/' . slugify($usuario['estabelecimento']) . '?sort=top' ?>" role="button"><i class="fa fa-sort-amount-desc mr-2" aria-hidden="true"></i>Melhor avaliados</a>
+                <form action="<?= PATH ?>produtos/busca" method="GET">
+                    <div class="input-group">
+                        <div class="input-group-prepend rounded-pill">
+                            <div class="input-group-text pr-0 bg-light"><i class="fa fa-search mr-2" aria-hidden="true"></i></div>
+                        </div>
+                        <input type="text" class="border-0 py-2" id="search" name="produto" placeholder="Buscar produtos">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-light"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php foreach ($cardapio as $key => $val) : if (!empty($val['produtos'])) : ?>
+            <div class="row" id="<?= slugify($val['nome']) ?>">
+                <div class="col-12">
+                    <div class="text-center py-4">
+                        <div class="dropdown open">
+                            <a class="dropdown-toggle text-light h3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="cat-nome-<?= $key ?>"><?= $val['nome'] ?></a>
+                            <div class="dropdown-menu dropdown-menu-center bg-dark ">
+                                <?php foreach ($cardapio as $key => $value) : if (!empty($value['produtos'])) : ?>
+                                        <a class="dropdown-item text-light" href="#<?= slugify($value['nome']) ?>"><?= $value['nome'] ?></a>
+                                <?php endif;
+                                endforeach; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <?php foreach ($val['produtos'] as $key => $value) : ?>
-                <div class="col-xl-3 col-6 pb-4">
-                    <!-- Button trigger modal -->
-                    <a href="#" class="text-decoration-none" data-toggle="modal" data-target="#modalAvaliacao<?= $key ?>">
-                        <div class=" text-center">
-                            <?php if ($value["imagem"] != "") : ?>
-                                <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
-                            <?php else : ?>
-                                <img class="card-img-top" src="<?= PATH ?>uploads/produto/253x180.png" alt="">
-                            <?php endif; ?>
-                            <div class="card-body bg-primaria text-claro">
-                                <h5 class="card-title"><?= $value['nome'] ?></h5>
-                                <?php if($value['media'] != -1) : for ($i = 1; $i <= 5; $i++) : if($i <= $value['media']) : ?>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                <?php else : ?>
-                                    <i class="fa fa fa-star-o" aria-hidden="true"></i>
-                                <?php endif;
-                                endfor; else: ?>
-                                    <h6>Esse item ainda não foi avaliado.</h6>
-                                <?php endif; ?>
-                                <br>
-                                <p class="card-text pt-2"><?= $value['descricao'] ?></p>
-                            </div>
-                            <div class="card-footer bg-primaria text-claro border-top-0">
-                                <h5 class="text-claro">R$<?= number_format($value['preco'], 2, ",", ".") ?></h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade av" id="modalAvaliacao<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primaria text-claro">
-                                <h5 class="modal-title"><?= $value['nome'] ?></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
+            <div class="row">
+                <?php foreach ($val['produtos'] as $key => $value) : ?>
+                    <div class="col-3 pb-4">
+                        <!-- Button trigger modal -->
+                        <a href="#" class="text-decoration-none" data-toggle="modal" data-target="#modalAvaliacao<?= $key ?>">
+                            <div class=" text-center">
                                 <?php if ($value["imagem"] != "") : ?>
-                                    <img class="card-img-top" src="<?= PATH . $value['imagem'] ?>">
+                                    <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
                                 <?php else : ?>
-                                    <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
+                                    <img class="card-img-top" id="prod-img-<?= $value['id_produto'] ?>" src="<?= PATH ?>uploads/produto/253x180.png" alt="">
                                 <?php endif; ?>
-                                <div class="card-body ">
-                                    <h3 class="card-title"><?= $value['nome'] ?></h3>
-
-                                    <p class="card-text"><?= $value['descricao'] ?></p>
-                                    <hr>
-                                    <h4 class="card-title">Comentários</h4>
-
-                                    <?php if (count($value['avaliacoes']) > 0) : foreach ($value['avaliacoes'] as $key => $ava) : ?>
-
-                                            <div class="card mb-2">
-                                                <div class="card-body p-3">
-                                                    <div class="row">
-                                                        <div class="col-md-2">
-                                                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
-                                                            <p class="text-secondary text-center mb-0"><?= date('d/m/y - H:i', strtotime($ava['data'])) ?></p>
-                                                        </div>
-                                                        <div class="col-md-10">
-                                                            <p>
-                                                                <strong><?= $ava['nome'] ?></strong>
-                                                                <?php $sub = 5 - $ava['nota']; ?>
-                                                                <?php for ($i = 1; $i <= 5; $i++) : if (($i <= $sub)) : ?>
-                                                                        <span class="float-right"><i class="text-warning fa fa-star-o"></i></span>
-                                                                    <?php else : ?>
-                                                                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                                                <?php endif;
-                                                                endfor; ?>
-                                                            </p>
-                                                            <div class="clearfix"></div>
-                                                            <p><?= $ava['comentario'] ?></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        <?php endforeach;
+                                <div class="card-body bg-primaria text-claro">
+                                    <h5 class="card-title" id="prod-nome-<?= $value['id_produto'] ?>"><?= $value['nome'] ?></h5>
+                                    <?php if ($value['media'] != -1) : for ($i = 1; $i <= 5; $i++) : if ($i <= $value['media']) : ?>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            <?php else : ?>
+                                                <i class="fa fa fa-star-o" aria-hidden="true"></i>
+                                        <?php endif;
+                                        endfor;
                                     else : ?>
-
-                                        <div class="card mb-2">
-                                            <div class="card-body py-3">
-                                                <div class="text-center text-muted">Nenhum comentário sobre esse produto ainda, seja o primeiro!</div>
-                                            </div>
-                                        </div>
-
+                                        <span>não avaliado</span>
                                     <?php endif; ?>
-
-                                    <h4 class="card-title">Avaliação</h4>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <form id="form-avaliacao" action="<?= PATH . "admin/produtos/avaliar/" . $value['id_produto'] ?>" method="post">
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <div class="form-group">
-                                                            <label>Nome</label>
-                                                            <input type="text" class="form-control" name="nome" placeholder="Digite seu nome" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <div class="form-group">
-                                                            <label class="pb-2">Avaliação</label>
-                                                            <select name="nota" class="star">
-                                                                <option value="">--</option>
-                                                                <option value="1" selected>1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        </div><br>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <div class="form-group">
-                                                            <label>Comentário</label>
-                                                            <textarea class="form-control" maxlength="250" name="comentario" id="" rows="3"></textarea>
-                                                        </div>  
-                                                    </div>
-                                                    <div class="col-3 align-self-end">
-                                                        <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary py-2 btn-block">Enviar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>                                    
-                                    </div>
+                                    <p class="card-text pt-2" id="prod-desc-<?= $value['id_produto'] ?>"><?= $value['descricao'] ?></p>
+                                </div>
+                                <div class="card-footer bg-primaria text-claro border-top-0">
+                                    <h5 class="text-claro" id="prod-preco-<?= $value['id_produto'] ?>">R$<?= number_format($value['preco'], 2, ",", ".") ?></h5>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </a>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade av" id="modalAvaliacao<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primaria text-claro">
+                                    <h5 class="modal-title"><?= $value['nome'] ?></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <?php if ($value["imagem"] != "") : ?>
+                                        <img class="card-img-top" src="<?= PATH . $value['imagem'] ?>">
+                                    <?php else : ?>
+                                        <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
+                                    <?php endif; ?>
+                                    <div class="card-body ">
+                                        <h3 class="card-title"><?= $value['nome'] ?></h3>
+
+                                        <p class="card-text"><?= $value['descricao'] ?></p>
+                                        <hr>
+                                        <h4 class="card-title">Comentários</h4>
+
+                                        <?php if (count($value['avaliacoes']) > 0) : foreach ($value['avaliacoes'] as $key => $ava) : ?>
+
+                                                <div class="card mb-2">
+                                                    <div class="card-body p-3">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+                                                                <p class="text-secondary text-center mb-0"><?= date('d/m/y  H:i', strtotime($ava['data'])) ?></p>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <p>
+                                                                    <strong><?= $ava['nome'] ?></strong>
+                                                                    <?php $sub = 5 - $ava['nota']; ?>
+                                                                    <?php for ($i = 1; $i <= 5; $i++) : if (($i <= $sub)) : ?>
+                                                                            <span class="float-right"><i class="text-warning fa fa-star-o"></i></span>
+                                                                        <?php else : ?>
+                                                                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                                                    <?php endif;
+                                                                    endfor; ?>
+                                                                </p>
+                                                                <div class="clearfix"></div>
+                                                                <p><?= $ava['comentario'] ?></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            <?php endforeach;
+                                        else : ?>
+
+                                            <div class="card mb-2">
+                                                <div class="card-body py-3">
+                                                    <div class="text-center text-muted">Nenhum comentário sobre esse produto ainda, seja o primeiro!</div>
+                                                </div>
+                                            </div>
+
+                                        <?php endif; ?>
+
+                                        <h4 class="card-title">Avaliação</h4>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <form id="form-avaliacao" action="<?= PATH . "admin/produtos/avaliar/" . $value['id_produto'] ?>" method="post">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <div class="form-group">
+                                                                <label>Nome</label>
+                                                                <input type="text" class="form-control" name="nome" placeholder="Digite seu nome" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="form-group">
+                                                                <label class="pb-2">Avaliação</label>
+                                                                <select name="nota" class="star">
+                                                                    <option value="">--</option>
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                    <option value="5">5</option>
+                                                                </select>
+                                                            </div><br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <div class="form-group">
+                                                                <label>Comentário</label>
+                                                                <textarea class="form-control" maxlength="250" name="comentario" id="" rows="3"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3 align-self-end">
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-primary py-2 btn-block">Enviar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; endforeach; ?>
+                <?php endforeach; ?>
+            </div>
+    <?php endif;
+    endforeach; ?>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -218,7 +259,7 @@
 </div>
 <!--sweet alert-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="<?= PATH ?>assets/cardapios/js/jquery.fontstar.js" ></script>
+<script src="<?= PATH ?>assets/cardapios/js/jquery.fontstar.js"></script>
 <script>
     window.addEventListener('load', () => {
         $('.star').fontstar({
@@ -238,8 +279,8 @@
         }, function(value, self) {
             console.log("hello " + value);
         });
-        let mensagem_avaliacao = "<?php echo (isset($_SESSION['mensagem-avaliacao']) && !empty($_SESSION['mensagem-avaliacao'])) ? $_SESSION['mensagem-avaliacao'] : 0?>";
-        if(mensagem_avaliacao == "success"){
+        let mensagem_avaliacao = "<?php echo (isset($_SESSION['mensagem-avaliacao']) && !empty($_SESSION['mensagem-avaliacao'])) ? $_SESSION['mensagem-avaliacao'] : 0 ?>";
+        if (mensagem_avaliacao == "success") {
             Swal.fire({
                 icon: 'success',
                 title: 'Sucesso',
@@ -247,7 +288,7 @@
                 showConfirmButton: false,
                 timer: 2000
             });
-        }else if(mensagem_avaliacao == "error"){
+        } else if (mensagem_avaliacao == "error") {
             Swal.fire({
                 icon: 'error',
                 title: 'Erro',
@@ -256,47 +297,7 @@
                 timer: 2000
             })
         }
-        "<?php $_SESSION["mensagem-avaliacao"] = ""?>"
+        "<?php $_SESSION["mensagem-avaliacao"] = "" ?>"
     });
 
-    // $(document).on("submit", "#form-avaliacao", function(event){
-    //     event.preventDefault();
-
-    //     var url=$(this).attr("action");
-    //     $.ajax({
-    //         url: url,
-    //         type: 'POST',            
-    //         data: new FormData(this),
-    //         processData: false,
-    //         contentType: false,
-    //         success: function (data, status){
-    //             mensagem = JSON.parse(data);
-    //             console.log(data);
-
-    //             if(mensagem.type == "sucesso"){
-    //                 Swal.fire({
-    //                     icon: 'success',
-    //                     title: 'Sucesso',
-    //                     text: mensagem.message,
-    //                     showConfirmButton: false,
-    //                     timer: 1500
-    //                 });
-
-    //                 $(".av").modal("hide");
-    //             }else{
-    //                 console.log(data);
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Erro',
-    //                     text: mensagem.message,
-    //                     showConfirmButton: false,
-    //                     timer: 1500
-    //                 })
-    //             }
-    //         },
-    //         error: function(e){
-    //             console.log(e.responseText);
-    //         }
-    //     });
-    // });
 </script>
