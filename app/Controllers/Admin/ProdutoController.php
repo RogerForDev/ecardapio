@@ -33,12 +33,15 @@ class ProdutoController extends Controller
             $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
         }
 
+        $user = User::getFromSession();
+        $id_usuario = $user['id_usuario'];
+
         $vars = [
             "page" => "home",	
             "categorias" => $categorias, 
             "cardapio" => $cardapio,
             "usuario" => User::getFromSession(),
-            "temas" => $tema->select()->get()
+            "temas" => $tema->getByUsuario($id_usuario)
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);

@@ -16,9 +16,12 @@ class TemaController extends Controller
     {
         $tema = new Tema;
 
+        $user = User::getFromSession();
+        $id_usuario = $user['id_usuario'];
+
         $vars = [
             "page" => "home",	
-            "temas" => $tema->select()->all()
+            "temas" => $tema->select()->findBy('id_usuario', $id_usuario)
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);
@@ -40,6 +43,9 @@ class TemaController extends Controller
             $upload = new Upload(); 
             $data['imagem'] = $upload->upload("imagem-tema", "tema");
         }
+
+        $user = User::getFromSession();
+        $data['id_usuario'] = $user['id_usuario'];
 
         $item = new Tema;
 
