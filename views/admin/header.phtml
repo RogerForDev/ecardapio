@@ -108,7 +108,7 @@
         <?= message('message') ?>
 
         <div class="btn-group my-2 my-sm-0 ml-xl-auto mr-xl-3">
-            <a href="<?= PATH . 'web/' . slugify($usuario['estabelecimento']) ?>" class="btn btn-outline-light px-lg-4" target="_blank" rel="noopener noreferrer"><i class="fa fa-eye pr-xl-2" aria-hidden="true"></i><span class="d-none d-sm-inline-block">Visualizar</span></a>
+            <a <?=($flag_produtos == 0)?"style='pointer-events:none;'":""?> href="<?= PATH . 'web/' . slugify($usuario['estabelecimento']) ?>" class="btn btn-outline-light px-lg-4" target="_blank" rel="noopener noreferrer"><i class="fa fa-eye pr-xl-2" aria-hidden="true"></i><span class="d-none d-sm-inline-block">Visualizar</span></a>
             <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="sr-only">Toggle Dropdown</span>
             </button>

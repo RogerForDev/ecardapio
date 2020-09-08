@@ -33,6 +33,9 @@ class ProdutoController extends Controller
             $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
         }
 
+        $prods = $produto->getProdByCardapioActive($id_cardapio);
+        (!empty($prods))?$flag_produtos = 1 : $flag_produtos = 0;
+
         $user = User::getFromSession();
         $id_usuario = $user['id_usuario'];
 
@@ -41,7 +44,8 @@ class ProdutoController extends Controller
             "categorias" => $categorias, 
             "cardapio" => $cardapio,
             "usuario" => User::getFromSession(),
-            "temas" => $tema->getByUsuario($id_usuario)
+            "temas" => $tema->getByUsuario($id_usuario),
+            "flag_produtos" => $flag_produtos
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);
