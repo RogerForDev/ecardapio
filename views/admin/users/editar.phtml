@@ -11,14 +11,10 @@
                  <div class="modal-body">
                      <div class="container">
                          <div class="row">
-
                              <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>">
-
                              <div class="col-lg-9 col-xl-9">
-
                                  <h4>Dados pessoais:</h4>
                                  <hr>
-
                                  <div class="row">
                                      <div class="col-lg-6">
                                          <div class="form-group">
@@ -26,7 +22,6 @@
                                              <input class="form-control" name="nome" type="text" value="<?= $usuario['nome'] ?>" required />
                                          </div>
                                      </div>
-
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Email</label>
@@ -34,10 +29,8 @@
                                          </div>
                                      </div>
                                  </div>
-
                                  <h4>Dados da Empresa:</h4>
                                  <hr>
-
                                  <div class="row">
                                      <div class="col-lg-6">
                                          <div class="form-group">
@@ -143,7 +136,7 @@
                                          <div class="form-group mr-4">
                                              <label for="prod-ativo">Gratuito</label><br>
                                              <label class="switch float-left">
-                                                 <input data-url="<?= PATH ?>admin/planos/update" id="free" type="checkbox" class="success" name="ativo" <?=($usuario['flag_assinante'] == 1)?"checked value='1' disabled":"value='0'"?>>
+                                                 <input data-url="<?= PATH ?>admin/planos/update" id="free" type="checkbox" class="success" name="ativo" <?=(@$usuario['flag_assinante'] == 1)?"checked value='1' disabled":"value='0'"?>>
                                                  <span class="slider round"></span>
                                              </label>
                                          </div>
@@ -154,7 +147,7 @@
                                             <div class="form-group mr-4">
                                                 <label for="prod-ativo">Premium</label><br>
                                                 <label class="switch float-left">
-                                                    <input data-url="<?= PATH ?>admin/planos/update" id="premium" type="checkbox" class="success" name="ativo" <?=($usuario['flag_assinante'] == 2)?"checked value='1' disabled":"value='0'"?>>
+                                                    <input data-url="<?= PATH ?>admin/planos/update" id="premium" type="checkbox" class="success" name="ativo" <?=(@$usuario['flag_assinante'] == 2)?"checked value='1' disabled":"value='0'"?>>
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>
@@ -176,19 +169,15 @@
                                  <div id="avatar_image">
                                      <img style="max-width:100px; height:auto;" src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" />
                                      <br />
-                                     <i class="fa fa-trash-o fa-fw"></i> <a class="delete_image" href="#">Remover avatar</a>
+                                     <i class="fa fa-trash-o fa-fw"></i> <a class="delete_image" href="#">Remover logo</a>
 
                                  </div>
                                  <div id="image_deleted_text"></div>
-
-
                                  <div class="m-b-10"></div>
-
                                  <div class="form-group">
-                                     <label>Alterar avatar</label>
-                                     <input type="file" name="image" class="form-control">
+                                     <label>Alterar logo</label>
+                                     <input type="file" name="logo" class="form-control">
                                  </div>
-
                              </div>
                          </div>
                      </div>

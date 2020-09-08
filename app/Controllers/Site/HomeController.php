@@ -115,7 +115,7 @@ class HomeController extends Controller
 		$avaliacao = new Avaliacao;
 		$usuario = new User;
 
-		$filtro = $_GET['busca'];
+		$filtro = @$_GET['busca'];
 
 		$cardapio = $cardapio->select()->findBy('slug', $args['slug']);
 
