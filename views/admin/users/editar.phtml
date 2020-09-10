@@ -167,17 +167,18 @@
                                  <div class="m-b-10"></div>
 
                                  <div id="avatar_image">
-                                     <img style="max-width:100px; height:auto;" src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" />
+                                     <?php if(isset($cardapio['logo'])): ?>
+                                     <img style="max-width:100px; height:auto;" src="<?= PATH.$cardapio['logo'] ?>" />
+                                     <?php endif; ?>
                                      <br />
                                      <i class="fa fa-trash-o fa-fw"></i> <a class="delete_image" href="#">Remover logo</a>
-
                                  </div>
                                  <div id="image_deleted_text"></div>
-                                 <div class="m-b-10"></div>
-                                 <div class="form-group">
-                                     <label>Alterar logo</label>
-                                     <input type="file" name="logo" class="form-control">
-                                 </div>
+                                 <div class="m-b-10"></div>                                 
+                                <div class="form-group">
+                                    <label>Alterar logo</label>
+                                    <input type="file" name="logo" class="form-control">
+                                </div>
                              </div>
                          </div>
                      </div>

@@ -179,6 +179,7 @@ class HomeController extends Controller
 			'page' => 'layout_'.$cardapio['id_layout'],
 			'cardapio' => $categorias,
 			'fundo' => $cardapio['imagem'],
+			'logo' => $cardapio['logo'],
 			'usuario' => $usuario->select()->findBy('id_usuario', $cardapio['id_usuario']),
 			'tema' => $tema->select()->findBy('id_tema', $cardapio['id_tema'])
 		];
