@@ -24,7 +24,7 @@ class UserController extends Controller
             'bairro' => 'required',
             'numero' => 'required'
         ]);
-
+        
 		if ($validate->hasErrors()) {
 			return back();
         }

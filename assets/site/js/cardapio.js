@@ -1,25 +1,40 @@
-
-
-$(".layout").on("click", function(){
-    let layout = $(this).data("layout");
-    let url = $(this).data("url");
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: {id_layout:layout},
-        success:function(data){
-            mensagem = JSON.parse(data);
-            if(mensagem.type == "sucesso"){
-                window.location.href = mensagem.path;
-            }else{
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro',
-                    text: mensagem.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
-        }
-    })
+$(function() {
+    $("input[name=layout]").on('change', () => {
+        var target = $("#temas");
+        $('html, body').animate({
+                scrollTop: target.offset().top
+            },
+            500,
+            function () {
+                // Callback after animation
+                // Must change focus!
+                var $target = $(target);
+                $target.focus();
+                if ($target.is(":focus")) { // Checking if the target was focused
+                    return false;
+                } else {
+                    $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                    $target.focus(); // Set focus again
+                };
+            });
+    });
+    $("input[name=tema]").on('change', () => {
+        var target = $("#opcoes");
+        $('html, body').animate({
+                scrollTop: target.offset().top
+            },
+            500,
+            function () {
+                // Callback after animation
+                // Must change focus!
+                var $target = $(target);
+                $target.focus();
+                if ($target.is(":focus")) { // Checking if the target was focused
+                    return false;
+                } else {
+                    $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                    $target.focus(); // Set focus again
+                };
+            });
+    });
 });

@@ -10,9 +10,6 @@ class User extends Model {
     protected $id = 'id_usuario';
     
 	const SESSION = "User";
-    const ERROR = 'UserError';
-    const SUCCESS = 'UserSuccess';
-    const ERROR_REGISTER = 'ErrorRegister';
 
     public static function getFromId($id){
         $user = new User;
@@ -27,26 +24,10 @@ class User extends Model {
         return $user;
     }
 
-    public static function checkLogin($inadmin = true)
-    {
-        if(
-            !isset($_SESSION[User::SESSION])
-            ||
-            !$_SESSION[User::SESSION]
-            ||
-            !(int)$_SESSION[User::SESSION]["iduser"] > 0
-        ){
-            //Não esta logado
-            return false;
-        }else{
-            if($inadmin === true && (bool)$_SESSION[User::SESSION]['inadmin'] === true){
-                return true;
-            }else if($inadmin === false){
-                return true;
-            }else{
-                return false;
-            }
-        }
+    public function getPasswordHash($password){
+        return password_hash($password, PASSWORD_DEFAULT, [
+            'cost'=>12
+        ]);
     }
 
 }

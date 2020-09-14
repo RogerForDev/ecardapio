@@ -1,7 +1,8 @@
 $(document).ready(function(){
   $('#altera-telefone').mask('0000-0000', {reverse: true});
   $('#altera-whats').mask('99999-9999', {reverse: true});
-  $('#altera-horario').mask('00:00:00', {reverse: true});
+  // $('#altera-horario').mask('00:00:00', {reverse: true});
+  
 });
 
 $(".altera-imagem").on("click", function(){
@@ -26,7 +27,7 @@ $(function () {
   $('.colorPicker4').colorpicker({format: "hex"}).blur(function(){
     $(this).css('background-color',$(this).val());
   }); 
-  $('.font-example').fontselect().change(function(){
+  $('.font-example').fontselect({placeholder: 'Selecione uma fonte',}).change(function(){
         
     // replace + signs with spaces for css
     var font = $(this).val().replace(/\+/g, ' ');
@@ -191,19 +192,16 @@ $(".assinar-plano").on("click", function(){
   });
 });
 
-function printElement() {
-  var elem = document.getElementById("printThis");
-  var domClone = elem.cloneNode(true);
-
-  var $printSection = document.getElementById("printSection");
-
-  if (!$printSection) {
-      var $printSection = document.createElement("div");
-      $printSection.id = "printSection";
-      document.body.appendChild($printSection);
-  }
-
-  $printSection.innerHTML = "";
-  $printSection.appendChild(domClone);
-  window.print();
+function downloadBanner(slug) {
+    // document.querySelector('.no-print').remove();
+    var el = document.getElementById('printThis');
+    domtoimage.toJpeg(el, {
+            quality: 0.95
+        })
+        .then(function(dataUrl) {
+            var link = document.createElement('a');
+            link.download = slug+'.jpeg';
+            link.href = dataUrl;
+            link.click();
+        });
 }

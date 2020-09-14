@@ -1,18 +1,26 @@
+<style>
+     .main-title {
+         font-size: 70px !important;
+            font-family: <?= $tema['fonte'] ?>;
+            text-shadow: 1px 4px 3px #171717;
+        }
+</style>
 <div class="content-page pt-5">
     <?php include "users/editar.phtml"; ?>
     <?php include "tema/novo.phtml"; ?>
     <?php include "tema/index.phtml"; ?>
     <!-- Start content -->
-    <div class="content bg-primary" style="background: url(<?= PATH . "/assets/admin/images/pattern2.png" ?>); background-attachment:fixed;">
+    <div class="content" style="background-color: #1a1a1a">
 
         <input type="hidden" id="path" value="<?= PATH ?>">
-
-        <div id="conteudo" class="container">
-            <div class="row">
-                <div class="col-xl-12 mt-4 py-3">
+        
+        <div id="conteudo" class="container mt-4 mt-lg-0">
+            <img src="<?= PATH.$cardapio['imagem'] ?>" class="w-100 d-block rounded-lg">
+            <div class="row mb-4" style="margin-top: -7rem">
+                <div class="align-items-center col-xl-12 d-flex justify-content-between mt-4 pl-lg-4 pr-lg-5">
                     <span class="main-title text-light h1"><?= $usuario['estabelecimento'] ?></span>                       
                     <div class="btn-group float-right">
-                      <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#modalTemas"><i class="fa fa-paint-brush pr-2" aria-hidden="true"></i>Trocar Aparência</button>
+                      <a class="btn btn-light" data-toggle="modal" href="#modalTemas"><i class="fa fa-paint-brush pr-2" aria-hidden="true"></i>Trocar Aparência</a>
                       <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
@@ -36,7 +44,7 @@
                     <?php foreach ($cat['produtos'] as $key => $value) : ?>
                         <div class="col-xl-3 col-6 pb-3 mt-3" data-html="true" title="<i class='fa fa-pencil pr-2' aria-hidden='true'></i>Clique para editar o produto" data-toggle="tooltip" data-placement="top">
                             <div class="card shadow text-left text-dark">
-                                <a href="" data-toggle="modal" class="text-dark" data-target="#modaleditProduct<?= $value['id_produto'] ?>">
+                                <a href="" data-toggle="modal" class="text-dark text-decoration-none" data-target="#modaleditProduct<?= $value['id_produto'] ?>">
                                     <?php if ($value["imagem"] != "") : ?>
                                         <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
                                     <?php else : ?>

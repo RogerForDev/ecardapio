@@ -38,11 +38,6 @@ class TemaController extends Controller
         if($validate->hasErrors()) {
             return back();
         }
-        
-        if(isset($_FILES)){
-            $upload = new Upload(); 
-            $data['imagem'] = $upload->upload("imagem-tema", "tema");
-        }
 
         $user = User::getFromSession();
         $data['id_usuario'] = $user['id_usuario'];
@@ -69,13 +64,6 @@ class TemaController extends Controller
 
 		if ($validate->hasErrors()) {
 			return back();
-        }
-
-        dd($_FILES);
-
-        if($_FILES["imagem-tema"]["error"] != 4){
-            $upload = new Upload(); 
-            $data['imagem'] = $upload->upload("imagem-tema", "tema");
         }
         
         $item = new Tema;

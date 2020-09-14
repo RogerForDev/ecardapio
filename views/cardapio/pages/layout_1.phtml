@@ -32,13 +32,38 @@
     button {
         outline: none;
     }
+    .image-default{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;height:220px;background-color:#cccccc;
+    }
+    .image-default > img{
+        width:100px;
+        filter:grayscale();
+        opacity: .5;
+        padding-bottom: .5rem;
+    }
+    .image-default > span{
+        color:#808080;
+    }
+    p{
+        margin-bottom: 0;
+    }
+    .card-text{
+        min-height: 135px;
+    }
+    .card-title{
+        min-height: 48px;
+    }
 </style>
 
 <div class="container">
-    <div class="row">
+    <div class="row no-print">
         <div class="col-12">
             <div class="pt-3 d-flex justify-content-center align-items-center">
-                <a class="btn btn-light rounded-pill mr-4" href="<?= PATH . 'web/' . slugify($usuario['estabelecimento']) . '?sort=top' ?>" role="button"><i class="fa fa-sort-amount-desc mr-2" aria-hidden="true"></i>Melhor avaliados</a>
+                <a class="btn btn-light rounded-pill mr-4" href="<?= PATH . 'web/' . slugify($usuario['estabelecimento']) . '?sort=top' ?>" role="button" title="Ordenar por melhores avaliados" data-toggle="tooltip"><i class="fa fa-star mr-2" aria-hidden="true"></i><span class="d-none d-sm-inline-block">Melhor avaliados</span></a>
                 <form action="" method="GET">
                     <div class="input-group">
                         <div class="input-group-prepend rounded-pill">
@@ -71,17 +96,20 @@
             </div>
             <div class="row">
                 <?php foreach ($val['produtos'] as $key => $value) : ?>
-                    <div class="col-3 pb-4">
+                    <div class="col-lg-3 col-6 pb-4">
                         <!-- Button trigger modal -->
                         <a href="#" class="text-decoration-none" data-toggle="modal" data-target="#modalAvaliacao<?= $key ?>">
                             <div class=" text-center">
                                 <?php if ($value["imagem"] != "") : ?>
                                     <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
                                 <?php else : ?>
-                                    <img class="card-img-top" id="prod-img-<?= $value['id_produto'] ?>" src="<?= PATH ?>uploads/produto/253x180.png" alt="">
+                                    <div class="image-default">
+                                        <img src="<?= PATH.$logo ?>">
+                                        <span class="text-">Sem imagem</span>
+                                    </div>
                                 <?php endif; ?>
-                                <div class="card-body bg-primaria text-claro">
-                                    <h5 class="card-title" id="prod-nome-<?= $value['id_produto'] ?>"><?= $value['nome'] ?></h5>
+                                <div class="card-body bg-primaria text-claro px-1">
+                                    <h5 class="card-title"><?= $value['nome'] ?></h5>
                                     <?php if ($value['media'] != -1) : for ($i = 1; $i <= 5; $i++) : if ($i <= $value['media']) : ?>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                             <?php else : ?>
@@ -91,10 +119,12 @@
                                     else : ?>
                                         <span>não avaliado</span>
                                     <?php endif; ?>
-                                    <p class="card-text pt-2" id="prod-desc-<?= $value['id_produto'] ?>"><?= $value['descricao'] ?></p>
-                                </div>
-                                <div class="card-footer bg-primaria text-claro border-top-0">
-                                    <h5 class="text-claro" id="prod-preco-<?= $value['id_produto'] ?>">R$<?= number_format($value['preco'], 2, ",", ".") ?></h5>
+                                    <?php if($value['descricao'] != "") :?>
+                                        <p class="card-text pt-2 px-2 d-flex align-items-center justify-content-center" title="<?= $value['descricao'] ?>"><?= $value['descricao'] ?></p>
+                                    <?php else: ?>
+                                        <p class="card-text pt-5 px-2">Sem descrição</p>
+                                    <?php endif; ?>
+                                    <h5 class="text-claro mb-0">R$<?= number_format($value['preco'], 2, ",", ".") ?></h5>
                                 </div>
                             </div>
                         </a>
@@ -111,11 +141,9 @@
                                 </div>
                                 <div class="modal-body">
                                     <?php if ($value["imagem"] != "") : ?>
-                                        <img class="card-img-top" src="<?= PATH . $value['imagem'] ?>">
-                                    <?php else : ?>
-                                        <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
+                                        <img class="card-img-top" src="<?= PATH . $value['imagem'] ?>">                                   
                                     <?php endif; ?>
-                                    <div class="card-body ">
+                                    <div>
                                         <h3 class="card-title"><?= $value['nome'] ?></h3>
 
                                         <p class="card-text"><?= $value['descricao'] ?></p>
@@ -127,11 +155,11 @@
                                                 <div class="card mb-2">
                                                     <div class="card-body p-3">
                                                         <div class="row">
-                                                            <div class="col-md-2">
+                                                            <div class="col-md-2 col-4">
                                                                 <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
                                                                 <p class="text-secondary text-center mb-0"><?= date('d/m/y  H:i', strtotime($ava['data'])) ?></p>
                                                             </div>
-                                                            <div class="col-md-10">
+                                                            <div class="col-md-10 col-8">
                                                                 <p>
                                                                     <strong><?= $ava['nome'] ?></strong>
                                                                     <?php $sub = 5 - $ava['nota']; ?>
@@ -160,6 +188,7 @@
 
                                         <?php endif; ?>
 
+                                        <?php if($cliente == true): ?>
                                         <h4 class="card-title">Avaliação</h4>
                                         <div class="card">
                                             <div class="card-body">
@@ -201,6 +230,7 @@
                                                 </form>
                                             </div>
                                         </div>
+                                        <?php endif ?>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -231,7 +261,7 @@
 </div>
 <!--sweet alert-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="<?= PATH ?>assets/cardapios/js/jquery.fontstar.js"></script>
+<script src="<?= PATH ?>assets/admin/plugins/fontstar/jquery.fontstar.js"></script>
 <script>
     window.addEventListener('load', () => {
         $('.star').fontstar({

@@ -1,6 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="modalTemas" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+<div class="modal" id="modalTemas">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary text-light">
                 <h5 class="modal-title">Alterar aparência</h5>
@@ -23,11 +23,11 @@
                                             </h2>
                                         </div>
                                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <div class="card-deck py-3 justify-content-center">
+                                            <div class="card-deck py-3 justify-content-center">
                                                 <?php $layouts = [
-                                                    1 => ['nome' => 'Grade c/ imagem'],
-                                                    2 => ['nome' => '2 Coluna s/ imagem'],
-                                                    3 => ['nome' => '2 Coluna s/ imagem']
+                                                    1 => ['nome' => 'Com fotos'],
+                                                    2 => ['nome' => '2 Coluna'],
+                                                    3 => ['nome' => 'Simples']
                                                 ];
                                                 foreach ($layouts as $key => $value) : ?>
                                                     <?php if ($cardapio['id_layout'] != $key) : ?>
@@ -57,73 +57,72 @@
                                         <div class="card-header" id="headingTwo">
                                             <h2 class="mb-0">
                                                 <button class="btn btn-link btn-block text-left collapsed text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                <i class="fa fa-paint-brush mr-3" aria-hidden="true"></i><strong>Escolha um tema</strong>
+                                                    <i class="fa fa-paint-brush mr-3" aria-hidden="true"></i><strong>Escolha um tema</strong>
                                                 </button>
                                             </h2>
                                         </div>
                                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                             <div class="card-body">
-                                            <table class="table table-hover" id="datatable">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Nome do Tema</th>
-                                                        <th>Paleta de cores</th>
-                                                        <th>Fonte</th>
-                                                        <th></th>
-                                                        <th>Ativo</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach ($temas as $value) : ?>
+                                                <table class="table table-hover" id="datatable">
+                                                    <thead>
                                                         <tr>
-                                                            <td>
-                                                                <?= $value['id_tema'] ?>
-                                                            </td>
-                                                            <td>
-                                                                <?= $value['nome'] ?>
-                                                            </td>
-                                                            <td>
-                                                                <i class="fa fa-square fa-2x" style="color:<?= $value['cor_primaria'] ?>" title="Cor Primária"></i>
-                                                                <i class="fa fa-square fa-2x" style="color:<?= $value['cor_secundaria'] ?>" title="Cor Secondária"></i>
-                                                                <i class="fa fa-square fa-2x" style="color:<?= $value['texto_escuro'] ?>" title="Texto escuro"></i>
-                                                                <i class="fa fa-square fa-2x" style="color:<?= $value['texto_claro'] ?>" title="Texto claro"></i>
-                                                            </td>
-                                                            <td>
-                                                                <a href="https://fonts.google.com/specimen/<?= $value['fonte'] ?>" target="_blank" title="Visualizar no Google Fonts">
-                                                                    <span class="badge badge-primary">
-                                                                        <?= $value['fonte'] ?>
-                                                                    </span>
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="text-center">
-                                                                    <button <?=($value['id_usuario'] == 0)?"disabled":""?> data-toggle="modal" data-target="#modaleditarTema<?= $value['id_tema'] ?>" class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i>
-                                                                        Editar</button>
-                                                                    <button <?=($value['id_usuario'] == 0)?"disabled":""?> class="btn btn-danger btn-sm" onclick="remove('<?= PATH . '/admin/themes/' . $value['id_tema'] . '/delete' ?>')">
-                                                                        <i class="fa fa-trash" aria-hidden="true"></i><span>&nbsp;Excluir</span>
-                                                                    </button>
-
-                                                                </div>
-                                                            </td>
-                                                            <td class="float-left">
-                                                                <?php if ($cardapio['id_tema'] == $value['id_tema']) : ?>
-                                                                    <label class="switch ">
-                                                                        <input type="checkbox" class="success" checked="checked" disabled="disabled">
-                                                                        <span class="slider round"></span>
-                                                                    </label>
-                                                                <?php else : ?>
-                                                                    <label class="switch ">
-                                                                        <input type="checkbox" class="success" onclick="setUpdate('<?= PATH ?>/admin/cardapio/tema/<?= $value['id_tema'] ?>')">
-                                                                        <span class="slider round"></span>
-                                                                    </label>
-                                                                <?php endif; ?>
-                                                            </td>
+                                                            <th>#</th>
+                                                            <th>Nome do Tema</th>
+                                                            <th>Paleta de cores</th>
+                                                            <th>Fonte</th>
+                                                            <th></th>
+                                                            <th>Ativo</th>
                                                         </tr>
-                                                        <?php include "editar.phtml" ?>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach ($temas as $value) : ?>
+                                                            <tr>
+                                                                <td>
+                                                                    <?= $value['id_tema'] ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?= $value['nome'] ?>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-square fa-2x" style="color:<?= $value['cor_primaria'] ?>" title="Cor Primária"></i>
+                                                                    <i class="fa fa-square fa-2x" style="color:<?= $value['cor_secundaria'] ?>" title="Cor Secondária"></i>
+                                                                    <i class="fa fa-square fa-2x" style="color:<?= $value['texto_escuro'] ?>" title="Texto escuro"></i>
+                                                                    <i class="fa fa-square fa-2x" style="color:<?= $value['texto_claro'] ?>" title="Texto claro"></i>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="https://fonts.google.com/specimen/<?= $value['fonte'] ?>" target="_blank" title="Visualizar no Google Fonts">
+                                                                        <span class="badge badge-primary">
+                                                                            <?= $value['fonte'] ?>
+                                                                        </span>
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="text-center">
+                                                                        <button <?= ($value['id_usuario'] == 0) ? "disabled" : "" ?> data-toggle="modal" data-target="#modaleditarTema<?= $value['id_tema'] ?>" class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i>
+                                                                            Editar</button>
+                                                                        <button <?= ($value['id_usuario'] == 0) ? "disabled" : "" ?> class="btn btn-danger btn-sm" onclick="remove('<?= PATH . '/admin/themes/' . $value['id_tema'] . '/delete' ?>')">
+                                                                            <i class="fa fa-trash" aria-hidden="true"></i><span>&nbsp;Excluir</span>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="float-left">
+                                                                    <?php if ($cardapio['id_tema'] == $value['id_tema']) : ?>
+                                                                        <label class="switch ">
+                                                                            <input type="checkbox" class="success" checked="checked" disabled="disabled">
+                                                                            <span class="slider round"></span>
+                                                                        </label>
+                                                                    <?php else : ?>
+                                                                        <label class="switch ">
+                                                                            <input type="checkbox" class="success" onclick="setUpdate('<?= PATH ?>/admin/cardapio/tema/<?= $value['id_tema'] ?>')">
+                                                                            <span class="slider round"></span>
+                                                                        </label>
+                                                                    <?php endif; ?>
+                                                                </td>
+                                                            </tr>
+                                                            <?php include "editar.phtml" ?>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -131,23 +130,23 @@
                                         <div class="card-header" id="headingThree">
                                             <h2 class="mb-0">
                                                 <button class="btn btn-link btn-block text-left collapsed text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    <i class="fa fa-picture-o mr-2 fa-lg" aria-hidden="true"></i> <strong>Escolha uma imagem de fundo</strong> 
+                                                    <i class="fa fa-picture-o mr-2 fa-lg" aria-hidden="true"></i> <strong>Escolha uma imagem de topo</strong>
                                                 </button>
                                             </h2>
                                         </div>
                                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                             <div class="card-body text-center">
                                                 <form action="<?= PATH ?>/admin/cardapio/background" method="post" enctype="multipart/form-data">
-                                                <?php if($cardapio['imagem'] != "") : ?>
-                                                    <img src="<?= PATH.$cardapio['imagem'] ?>" class="mb-2" width="500px" alt="">
-                                                <?php endif; ?>
+                                                    <?php if ($cardapio['imagem'] != "") : ?>
+                                                        <img src="<?= PATH . $cardapio['imagem'] ?>" class="mb-2" width="500px" alt="">
+                                                    <?php endif; ?>
                                                     <input class="file-input" name="imagem-fundo" type="file" />
                                                     <button type="submit" class="btn btn-primary bg-lg px-5" role="button">Enviar</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                                </div>                             
+                                </div>
 
                             </div>
                         </div>
