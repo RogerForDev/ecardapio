@@ -139,7 +139,7 @@ class HomeController extends Controller
 			if($filtro){
 				$cat['produtos'] = $produto->getProdByName($cardapio['id_cardapio'], $filtro, $cat['id_categoria']);
 			}else{
-				$cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+				$cat['produtos'] = $produto->getProdByCategory($cat['id_categoria']);
 			}
 			foreach ($cat['produtos'] as &$val){
 				$soma_avaliacao = 0;

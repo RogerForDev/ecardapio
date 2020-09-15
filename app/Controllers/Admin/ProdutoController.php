@@ -31,7 +31,7 @@ class ProdutoController extends Controller
             $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
         }
 
-        $prods = $produto->getProdByCardapioActive($id_cardapio);
+        $prods = $produto->getProdByCardapio($id_cardapio);
         (!empty($prods))?$flag_produtos = 1 : $flag_produtos = 0;
 
         $user = User::getFromSession();
@@ -66,6 +66,9 @@ class ProdutoController extends Controller
             $cat['produtos'] = $produtos = $produto->getProdByName($id_cardapio, $filtro, $cat['id_categoria']);
         }
         
+        $prods = $produto->getProdByCardapio($id_cardapio);
+        (!empty($prods))?$flag_produtos = 1 : $flag_produtos = 0;
+        
         foreach($categorias as $key => $cat){
             if(empty($cat['produtos'])){
                 unset($categorias[$key]);
@@ -77,7 +80,8 @@ class ProdutoController extends Controller
             "categorias" => $categorias, 
             "cardapio" => $cardapio,
             "usuario" => User::getFromSession(),
-            "temas" => $tema->select()->get()
+            "temas" => $tema->select()->get(),
+            "flag_produtos" => $flag_produtos
         ];
 
         return $this->view->render($response, '/admin/index.phtml', $vars);
