@@ -22,8 +22,6 @@ class ProdutoController extends Controller
         $tema = new Tema;       
 
         $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
-        
-       // $lista = $produto->getProdByCardapio($id_cardapio);
 
         $cardapio = $cardapio->getFromUser();
         
@@ -37,15 +35,15 @@ class ProdutoController extends Controller
         (!empty($prods))?$flag_produtos = 1 : $flag_produtos = 0;
 
         $user = User::getFromSession();
-        $id_usuario = $user['id_usuario'];
 
         $vars = [
             "page" => "home",	
             "categorias" => $categorias, 
             "cardapio" => $cardapio,
-            "usuario" => User::getFromSession(),
-            "temas" => $tema->getByUsuario($id_usuario),
-            "flag_produtos" => $flag_produtos
+            "usuario" => $user,
+            "temas" => $tema->getByUsuario($user['id_usuario']),
+            "flag_produtos" => $flag_produtos,
+            "tema" => $tema->findBy('id_tema', $cardapio['id_tema'])
         ];
     
         return $this->view->render($response, '/admin/index.phtml', $vars);

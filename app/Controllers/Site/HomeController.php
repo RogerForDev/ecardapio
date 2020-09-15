@@ -126,10 +126,11 @@ class HomeController extends Controller
 		$avaliacao = new Avaliacao;
 		$usuario = new User;
 
+		
 		$filtro = @$_GET['busca'];
-
+		
 		$cardapio = $cardapio->select()->findBy('slug', $args['slug']);
-
+		
 		if($cardapio){
 			$categorias = $categoria->select()->where('id_cardapio', $cardapio['id_cardapio'])->orderBy('ordem', 'asc')->get();
 		}
@@ -172,13 +173,16 @@ class HomeController extends Controller
 				);
 			}
 		}
+		$token = base64_decode(@$_GET['t']);
 
-		//dd($categorias);
+		$allow_avaliate = ($token == $cardapio['slug'].$cardapio['id_cardapio'])?true:false;
 		
 		$vars = [
 			'page' => 'layout_'.$cardapio['id_layout'],
 			'cardapio' => $categorias,
 			'fundo' => $cardapio['imagem'],
+			'logo' => $cardapio['logo'],
+			'cliente' => $allow_avaliate,
 			'usuario' => $usuario->select()->findBy('id_usuario', $cardapio['id_usuario']),
 			'tema' => $tema->select()->findBy('id_tema', $cardapio['id_tema'])
 		];

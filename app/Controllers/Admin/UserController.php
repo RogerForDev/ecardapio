@@ -24,18 +24,21 @@ class UserController extends Controller
             'bairro' => 'required',
             'numero' => 'required'
         ]);
-
+        
 		if ($validate->hasErrors()) {
 			return back();
         }
         
         $user = new User;
         $cardapio = new Cardapio;
+        $id_cardapio = $cardapio->select('id_cardapio')->findBy('id_usuario', $data->id_usuario)['id_cardapio'];
 
         if($_FILES["logo"]["error"] != 4){
             $upload = new Upload();
             $imagem = $upload->upload("logo", "logo");
-            $cardapio->find('id_usuario', $data->id_usuario)->update(['logo'=>$imagem]);
+            $cardapio->save_logo($id_cardapio, $imagem);
+            flash('message', success('Usuário Atualizado com sucesso'));
+			return back();
         }
 
         $estab = $user->select()->findBy('estabelecimento', $data->estabelecimento);

@@ -7,10 +7,7 @@ $app->group('/admin', function(){
     
     //USER
     $this->get('/users', 'App\Controllers\Admin\UserController:index');
-    $this->post('/users/create', 'App\Controllers\Admin\UserController:create');
     $this->post('/users/update', 'App\Controllers\Admin\UserController:update');
-    $this->get('/users/{id}/delete', 'App\Controllers\Admin\UserController:delete');
-    $this->post('/users/{id}/password', 'App\Controllers\Admin\UserController:updatePassword');
     
     //CATEGORIA
     $this->get('/categorias', 'App\Controllers\Admin\CategoriaController:index');

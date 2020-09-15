@@ -38,19 +38,67 @@
           <h6 class="text-center pb-4">Pode ser alterado depois</h6>
           <div class="form-row justify-content-center">
             <div class="radio-tile-group">
-              <?php foreach($temas as $tema): ?>
+              <?php foreach ($temas as $tema) : ?>
                 <div class="input-container">
-                  <input class="radio-button" type="radio" value="<?=$tema['id_tema']?>" name="tema">
+                  <input class="radio-button" type="radio" value="<?= $tema['id_tema'] ?>" name="tema">
                   <div class="radio-tile text-center">
-                    <h4 class="text-dark"><?=$tema['nome']?></h4>
-                    <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:<?=$tema['cor_primaria']?>">Cor principal</div>
-                    <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:<?=$tema['cor_secundaria']?>">Cor secundaria</div>
-                    <div class="rounded bg-transparent border border-dark py-2 w-100 mb-2 font-weight-bold" style="color:<?=$tema['texto_escuro']?>"><strong>Cor do texto escuro</strong></div>
-                    <div class="rounded bg-dark py-2 w-100 mb-2 font-weight-bold" style="color:<?=$tema['texto_claro']?>"><strong>Cor do texto claro</strong></div>
+                    <h4 class="text-dark"><?= $tema['nome'] ?></h4>
+                    <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:<?= $tema['cor_primaria'] ?>">Cor principal</div>
+                    <div class="rounded py-2 w-100 mb-2 font-weight-bold" style="background-color:<?= $tema['cor_secundaria'] ?>">Cor secundaria</div>
+                    <div class="rounded bg-transparent border border-dark py-2 w-100 mb-2 font-weight-bold" style="color:<?= $tema['texto_escuro'] ?>"><strong>Cor do texto escuro</strong></div>
+                    <div class="rounded bg-dark py-2 w-100 mb-2 font-weight-bold" style="color:<?= $tema['texto_claro'] ?>"><strong>Cor do texto claro</strong></div>
                   </div>
                 </div>
               <?php endforeach; ?>
             </div>
+          </div>
+          <div class="my-5 py-1" id="opcoes" tabindex="-1"></div>
+          <h3 class="text-center pt-4">3º - Opções</h3>
+          <h6 class="text-center pb-4">Ative as opções que o seu comércio possui</h6>
+          <div class="form-row py-5">
+            <div class="col">
+              <h4 class="text-center">Possui Wi-Fi?</h4>            
+              <div class="d-flex align-items-center justify-content-center">
+                <div class="mr-2">
+                  <i class="fa fa-wifi fa-2x" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <label class="switch">
+                    <input type="checkbox" name="flag_wifi">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <h4 class="text-center">Possui máquina de cartão?</h4>            
+              <div class="d-flex align-items-center justify-content-center">
+                <div class="mr-2">
+                  <i class="fa fa-credit-card fa-2x" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <label class="switch">
+                    <input type="checkbox" name="flag_cartao">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <h4 class="text-center">Possui entrega?</h4>            
+              <div class="d-flex align-items-center justify-content-center">
+                <div class="mr-2">
+                  <i class="fa fa-motorcycle fa-2x" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <label class="switch">
+                    <input type="checkbox" name="flag_entrega">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            
           </div>
           <div class="form-row py-5">
             <button type="submit" name="" id="btn-submit" class="btn btn-success py-3 px-5 btn-lg mx-auto w-75">Continuar</button>
@@ -60,24 +108,3 @@
     </div>
   </div>
 </div>
-<script>
-  $("input[name=layout]").on('change', () => {
-    var target = $("#temas");
-    $('html, body').animate({
-        scrollTop: target.offset().top
-      },
-      500,
-      function() {
-        // Callback after animation
-        // Must change focus!
-        var $target = $(target);
-        $target.focus();
-        if ($target.is(":focus")) { // Checking if the target was focused
-          return false;
-        } else {
-          $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-          $target.focus(); // Set focus again
-        };
-      });
-  });
-</script>

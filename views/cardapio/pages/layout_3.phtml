@@ -1,15 +1,4 @@
 <style>
-    .bg-header {
-        background: url(<?= PATH.$tema['imagem'] ?>);
-        background-size: cover;
-        background-position: right;
-        background-repeat: no-repeat;
-    }
-
-    .bg-title {
-        background: linear-gradient(-3deg, #f8f9fa 28%, <?= $tema['cor_primaria'] ?> 31%);
-    }
-
     .bg-fundo {
         background-color: <?= $tema['cor_secundaria'] ?>;
     }
@@ -17,7 +6,8 @@
     .text-title {
         color: <?= $tema['cor_primaria'] ?>;
         font-weight: bold;
-        font-size: 20pt;
+        font-size: 16pt;
+        padding-bottom: 5px;
     }
 
     .linewrapper {
@@ -64,13 +54,13 @@
 
     <div class="container">
         <div class="row">
-            <div class="card-columns mt-4 px-4">
+            <div class="card-columns mt-4 px-lg-4">
                 <?php foreach ($cardapio as $key => $val) : ?>
-                    <div class="card">
-                        <div class="text-center py-3">
+                    <div class="card pb-4">
+                        <div class="text-center py-3 bg-primaria">
                             <h2 class="text-light pl-4"><b><?= $val['nome'] ?></b></h2>
                         </div>
-                        <div class="bg-light pt-2 px-4">
+                        <div class="bg-light pt-2 px-lg4 px-2">
                             <?php foreach ($val['produtos'] as $key => $value) : ?>
                                 <div class="pb-2">
                                     <div class="linewrapper">
@@ -85,7 +75,7 @@
                     </div>
                 <?php endforeach; ?>
                 <div class="card">
-                    <div class="bg-title py-3">
+                    <div class="bg-primaria py-3">
                         <h2 class="text-light pl-4"><b>Onde estamos</b></h2>
                     </div>
                     <div class="bg-light py-2 px-4">

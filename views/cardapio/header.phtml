@@ -6,24 +6,198 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=<?= $tema['fonte'] ?>" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    
 
     <!-- Bootstrap CSS -->
     <link href="<?= PATH ?>assets/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="<?= PATH ?>assets/site/jquery/jquery-3.4.1.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=<?= $tema['fonte'] ?>&display=swap');
+
+        .bg-header {
+            background: url(<?= PATH . $tema['imagem'] ?>);
+            background-size: cover;
+            background-position: right;
+            background-repeat: no-repeat;
+        }
+
+        .title-header {
+            font-size: 80px;
+            font-family: <?= $tema['fonte'] ?>;
+            line-height: 1;
+            text-shadow: 1px 4px 3px #171717;
+        }
+
+        .bg-fundo {
+            background-color: <?= $tema['cor_secundaria'] ?>;
+        }
+
+        .bg-primaria {
+            background-color: <?= $tema['cor_primaria'] ?>;
+        }
+
+        .text-claro {
+            color: <?= $tema['texto_claro'] ?>;
+        }
+
+        .text-escuro {
+            color: <?= $tema['texto_escuro'] ?>;
+        }
+
+        @media only screen and(max-width: 420px) {
+            .img-logo {
+                width: 50%;
+            }
+        }
+
+        .back-to-top-wrapper {
+            position: absolute;
+            top: 100vh;
+            z-index: 99;
+            right: 63%;
+            bottom: -5em;
+            pointer-events: none;
+        }
+
+        .back-to-top-link {
+            position: fixed;
+            pointer-events: all;
+            top: calc(100vh - 4rem);
+            display: inline-block;
+            text-decoration: none;
+            font-size: 1.4rem;
+            text-align: center;
+            color: white;
+            height: 3rem;
+            background-color: #d6e3f0;
+            -webkit-transition: background-color .5s ease-out;
+            -moz-transition: background-color .5s ease-out;
+            -o-transition: background-color .5s ease-out;
+            transition: background-color .5s ease-out;
+        }
+
+        .back-to-top-link:hover,
+        .back-to-top-link:focus {
+            text-decoration: none;
+            color: black !important;
+            background-color: white !important;
+        }
+
+        .back-to-top-link:hover img {
+            filter: invert();
+        }
+
+        .back-to-top-link:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px #4e85c0;
+        }
+
+        #overlay {
+            position: fixed;
+            /* Sit on top of the page content */
+            display: none;
+            /* Hidden by default */
+            width: 100%;
+            /* Full width (cover the whole page) */
+            height: 100%;
+            /* Full height (cover the whole page) */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Black background with opacity */
+            z-index: 2;
+            /* Specify a stack order in case you're using a different order for other elements */
+            cursor: pointer;
+            /* Add a pointer on hover */
+        }
+
+        #text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            color: white;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        p {
+            margin-bottom: 0 !important;
+        }
+    </style>
 </head>
+
 <body>
-
-    <div class="container-fluid bg-fundo" <?= (isset($fundo))?'style="background: url('.PATH .$fundo.'); background-attachment:fixed;"':''?>>
-        <div class="row bg-header py-5">
-            <div class="col-xl-12 text-center py-4">
-                <div class=" title-header text-claro"><?= $usuario['estabelecimento'] ?></div>
-                <div class="d-flex flex-row align-items-center justify-content-center pt-4">
-                    <i class="fa fa-whatsapp fa-3x text-success mr-3" aria-hidden="true"></i>
-                    <strong class="text-light h3"><?= $usuario['whatsapp'] ?></strong>
-                </div>               
-            </div>            
+    <?php if(isset($_SESSION['User'])):?>
+    <div class="no-print position-absolute" style="top:1rem;right:1rem;z-index:9">
+        <a name="" id="" class="btn btn-light " href="#" onclick="downloadImg('<?= slugify($usuario['estabelecimento']) ?>')" role="button"><i class="fa fa-download" aria-hidden="true"></i> Download cardápio</a>
+    </div>
+    <?php endif; ?>
+    <div id="overlay">
+        <div id="text">
+        <i class="fa fa-cog fa-spin fa-lg fa-fw"></i>
+        Gerando imagem...
         </div>
+    </div>
+    <div class="container-fluid bg-fundo" id="conteudo-cardapio">
+        <div class="row">
+            <div class="col-xl-12 px-0">
+                <?php if (isset($fundo)) : ?>
+                    <img src="<?= PATH . $fundo ?>" class="img-fluid w-100 d-block shadow">
+                <?php else : ?>
+                    <div class="jumbotron bg-fundo"></div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="row bg-dark">
+            <div class="container">
+                <div class="row" style="margin-top: -5rem;">
+                    <div class="col-5 col-lg-2 mx-auto text-center">
+                        <?php if (isset($logo)) : ?>
+                            <img src="<?= PATH . $logo ?>" class="bg-light img-fluid img-logo p-1 rounded-circle">
+                        <?php endif; ?>
+                    </div>
+                    <div class="col-xl py-4">
+                        <div class="title-header text-center text-lg-left text-claro mt-n4 mb-4"><?= $usuario['estabelecimento'] ?></div>
+                        <div class="row">
+                            <div class="col-lg-auto d-flex align-items-center justify-content-center mr-2 pl-xl-4 pb-5 pb-lg-0">
+                                <i class="fa fa-whatsapp fa-3x text-light mr-2" aria-hidden="true"></i>
+                                <strong class="text-light h3"><?= $usuario['whatsapp'] ?></strong>
+                            </div>
+                            <div class="col-lg d-flex justify-content-around">
+                                <?php if ($usuario['flag_wifi'] == 1) : ?>
+                                    <div class="d-block text-center">
+                                        <i class="fa fa-wifi text-light fa-2x pb-2" aria-hidden="true"></i>
+                                        <p class="text-light">Possui Wi-fi</p>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($usuario['flag_cartao'] == 1) : ?>
+                                    <div class="d-block text-center">
+                                        <i class="fa fa-credit-card text-light fa-2x pb-2" aria-hidden="true"></i>
+                                        <p class="text-light">Aceita cartão crédito</p>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="d-block text-center">
+                                    <i class="fa fa-motorcycle <?= ($usuario['flag_entrega'] == 1) ? 'text-light' : 'text-muted' ?> fa-2x pb-2" aria-hidden="true"></i>
+                                    <p class="text-light text-center"><?= ($usuario['flag_entrega'] == 1) ? 'Fazemos entrega' : 'Não fazemos entrega' ?></p>
+                                </div>
+                                <?php if ($usuario['facebook'] != "") : ?>
+                                    <a href="<?= $usuario['facebook'] ?>" target="_blank" role="button" class="d-flex flex-column align-items-center px-3 text-decoration-none" title="Curta nossa página do Facebook" data-toggle="tooltip" data-placement="top">
+                                        <i class="fa fa-facebook-square text-light fa-2x pb-2" aria-hidden="true"></i>
+                                        <span class="text-light">@<?= explode('/', $usuario['facebook'])[3] ?></span>
+                                    </a>
+                                <?php endif; ?>
+                                <?php if ($usuario['instagram'] != "") : ?>
+                                    <a href="<?= $usuario['instagram'] ?>" target="_blank" role="button" class="d-flex flex-column align-items-center px-3 text-decoration-none" title="Siga nosso Instagram" data-toggle="tooltip" data-placement="top">
+                                        <i class="fa fa-instagram text-light fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                <?php endif; ?>
 
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>

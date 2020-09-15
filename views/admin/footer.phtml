@@ -7,8 +7,10 @@
 </div>
 <!-- END main -->
 
+
 <script src="<?= PATH ?>assets/admin/js/jquery.min.js"></script>
 
+<script src="<?= PATH ?>assets/admin/plugins/dom-to-image/dom-to-image.js"></script>
 <!-- sweet alert-->
 <script src="<?= PATH ?>assets/admin/plugins/sweet-alert/sweetalert2@9.js"></script>
 
@@ -17,6 +19,17 @@
 <script src="<?= PATH ?>assets/admin/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 <script src="<?= PATH ?>assets/admin/plugins/fontselect/jquery.fontselect.min.js"></script>
 
+<script src="<?= PATH ?>assets/admin/plugins/qrious/qrious.min.js"></script>
+<script>
+      (function() {
+        var qr = new QRious({
+		  size: 180,
+          value: '<?= PATH.'web/'.$cardapio['slug'].'?t='.base64_encode($cardapio['slug'].$cardapio['id_cardapio']) ?>'
+		});
+		console.log('<?= base64_encode($cardapio['slug'].$cardapio['id_cardapio']) ?>');
+		$('#qr').attr('src', qr.toDataURL());
+      })();
+</script>
 <!-- mask -->
 <script src="<?= PATH ?>assets/admin/plugins/mask/src/jquery.mask.js"></script>
 

@@ -34,11 +34,10 @@
                                  <div class="row">
                                      <div class="col-lg-6">
                                          <div class="form-group">
-                                             <label>Estabelecimento</label>
+                                             <label>Nome do comércio</label>
                                              <input class="form-control" name="estabelecimento" type="text" value="<?= $usuario['estabelecimento'] ?>" required />
                                          </div>
                                      </div>
-
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Horário de atendimento</label>
@@ -48,13 +47,27 @@
                                  </div>
 
                                  <div class="row">
-                                     <div class="col-lg-6">
+                                     <div class="col-lg-10">
                                          <div class="form-group">
-                                             <label>Categoria Estabelecimento</label>
-                                             <input class="form-control" name="categoria" type="text" value="<?= $usuario['categoria'] ?>" />
+                                             <label>Rua</label>
+                                             <input class="form-control" name="rua" type="text" value="<?= $usuario['rua'] ?>" required />
                                          </div>
                                      </div>
+                                     <div class="col-lg-2">
+                                         <div class="form-group">
+                                             <label>Número</label>
+                                             <input class="form-control" name="numero" type="text" value="<?= $usuario['numero'] ?>" required />
+                                         </div>
+                                     </div>
+                                 </div>
 
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Bairro</label>
+                                             <input class="form-control" name="bairro" type="text" value="<?= $usuario['bairro'] ?>" required />
+                                         </div>
+                                     </div>
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Cidade</label>
@@ -66,65 +79,29 @@
                                  <div class="row">
                                      <div class="col-lg-6">
                                          <div class="form-group">
-                                             <label>Rua</label>
-                                             <input class="form-control" name="rua" type="text" value="<?= $usuario['rua'] ?>" required />
-                                         </div>
-                                     </div>
-
-                                     <div class="col-lg-6">
-                                         <div class="form-group">
-                                             <label>Bairro</label>
-                                             <input class="form-control" name="bairro" type="text" value="<?= $usuario['bairro'] ?>" required />
-                                         </div>
-                                     </div>
-                                 </div>
-
-                                 <div class="row">
-                                     <div class="col-lg-6">
-                                         <div class="form-group">
-                                             <label>Número</label>
-                                             <input class="form-control" name="numero" type="text" value="<?= $usuario['numero'] ?>" required />
-                                         </div>
-                                     </div>
-
-                                     <div class="col-lg-6">
-                                         <div class="form-group">
                                              <label>Telefone</label>
                                              <input id="altera-telefone" class="form-control" name="telefone" type="text" value="<?= $usuario['telefone'] ?>" />
                                          </div>
                                      </div>
-                                 </div>
-
-                                 <div class="row">
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Whatsapp</label>
                                              <input id="altera-whats" class="form-control" name="whatsapp" type="text" value="<?= $usuario['whatsapp'] ?>" />
                                          </div>
                                      </div>
+                                 </div>
 
+                                 <div class="row">
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Facebook</label>
                                              <input class="form-control" name="facebook" type="text" value="<?= $usuario['facebook'] ?>" />
                                          </div>
                                      </div>
-                                 </div>
-
-                                 <div class="row">
                                      <div class="col-lg-6">
                                          <div class="form-group">
                                              <label>Instagram</label>
                                              <input class="form-control" name="instagram" type="text" value="<?= $usuario['instagram'] ?>" />
-                                         </div>
-                                     </div>
-                                 </div>
-
-                                 <div class="row">
-                                     <div class="col-lg-12">
-                                         <div class="form-group">
-                                             <label>Sobre</label>
-                                             <textarea name="sobre" class="form-control" rows="4"><?= $usuario['sobre'] ?></textarea>
                                          </div>
                                      </div>
                                  </div>
@@ -136,23 +113,23 @@
                                          <div class="form-group mr-4">
                                              <label for="prod-ativo">Gratuito</label><br>
                                              <label class="switch float-left">
-                                                 <input data-url="<?= PATH ?>admin/planos/update" id="free" type="checkbox" class="success" name="ativo" <?=(@$usuario['flag_assinante'] == 1)?"checked value='1' disabled":"value='0'"?>>
+                                                 <input data-url="<?= PATH ?>admin/planos/update" id="free" type="checkbox" class="success" name="ativo" <?= (@$usuario['flag_assinante'] == 1) ? "checked value='1' disabled" : "value='0'" ?>>
                                                  <span class="slider round"></span>
                                              </label>
                                          </div>
-                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, voluptatum adipisci quisquam quod dolorem ad ullam num<br>
-                                         <a href="<?= PATH ?>admin/planos">Saiba mais</a></p>
-                                        </div>
-                                        <div class="col-lg-6 d-flex">
-                                            <div class="form-group mr-4">
-                                                <label for="prod-ativo">Premium</label><br>
-                                                <label class="switch float-left">
-                                                    <input data-url="<?= PATH ?>admin/planos/update" id="premium" type="checkbox" class="success" name="ativo" <?=(@$usuario['flag_assinante'] == 2)?"checked value='1' disabled":"value='0'"?>>
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, voluptatum adipisci quisquam quod dolorem ad ullam num<br>
-                                            <a href="<?= PATH ?>admin/planos">Saiba mais</a>
+                                         <p>Plano simples, com as principais funcionalidades da plataforma, sem nenhum custo<br>
+                                             <a href="<?= PATH ?>admin/planos">Saiba mais</a></p>
+                                     </div>
+                                     <div class="col-lg-6 d-flex">
+                                         <div class="form-group mr-4">
+                                             <label for="prod-ativo">Premium</label><br>
+                                             <label class="switch float-left">
+                                                 <input data-url="<?= PATH ?>admin/planos/update" id="premium" type="checkbox" class="success" name="ativo" <?= (@$usuario['flag_assinante'] == 2) ? "checked value='1' disabled" : "value='0'" ?>>
+                                                 <span class="slider round"></span>
+                                             </label>
+                                         </div>
+                                         <p>Plano completo, com todas as funcionalidades da plataforma, com uma parcela mensal<br>
+                                             <a href="<?= PATH ?>admin/planos">Saiba mais</a>
                                          </p>
                                      </div>
                                  </div>
@@ -160,23 +137,42 @@
 
                              </div>
 
-
-
                              <div class="col-lg-3 col-xl-3 border-left">
 
                                  <div class="m-b-10"></div>
 
                                  <div id="avatar_image">
-                                     <img style="max-width:100px; height:auto;" src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" />
+                                     <?php if (isset($cardapio['logo'])) : ?>
+                                         <img style="max-width:100px; height:auto;" src="<?= PATH . $cardapio['logo'] ?>" />
+                                     <?php endif; ?>
                                      <br />
-                                     <i class="fa fa-trash-o fa-fw"></i> <a class="delete_image" href="#">Remover logo</a>
-
                                  </div>
                                  <div id="image_deleted_text"></div>
                                  <div class="m-b-10"></div>
-                                 <div class="form-group">
+                                 <div class="form-group pb-4">
                                      <label>Alterar logo</label>
                                      <input type="file" name="logo" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                     <label>Possui wi-fi no local?</label><br>
+                                     <label class="switch float-left">
+                                         <input type="checkbox" class="success" name="flag_wifi" value="<?= $usuario['flag_wifi'] ?>" <?= ($usuario['flag_wifi'] == 1) ? "checked" : "" ?>>
+                                         <span class="slider round"></span>
+                                     </label>
+                                 </div>
+                                 <div class="form-group">
+                                     <label>Aceita cartão crédito/débito?</label><br>
+                                     <label class="switch float-left">
+                                         <input type="checkbox" class="success" name="flag_cartao" value="<?= $usuario['flag_cartao'] ?>" <?= ($usuario['flag_cartao'] == 1) ? "checked" : "" ?>>
+                                         <span class="slider round"></span>
+                                     </label>
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="w-100">Faz entrega?</label>
+                                     <label class="switch float-left">
+                                         <input type="checkbox" class="success" name="flag_entrega" value="<?= $usuario['flag_entrega'] ?>" <?= ($usuario['flag_entrega'] == 1) ? "checked" : "" ?>>
+                                         <span class="slider round"></span>
+                                     </label>
                                  </div>
                              </div>
                          </div>
@@ -184,7 +180,7 @@
                  </div>
                  <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                     <button type="submit" class="btn btn-success">Salvar</button>
+                     <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
                  </div>
              </form>
          </div>
