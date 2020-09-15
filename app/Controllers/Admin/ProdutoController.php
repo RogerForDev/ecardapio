@@ -201,26 +201,5 @@ class ProdutoController extends Controller
 			return back();
         }
     }
-    public function avaliar($request, $response, $args){
-       $avaliacao = new Avaliacao;
 
-       $data = $_POST;
-
-       $data['id_produto'] = $args['id'];
-       $data['data'] =date('Y/m/d H:i:s');
-
-       $created = $avaliacao->create($data);
-
-       if($created){
-            $_SESSION['mensagem-avaliacao'] = "success";
-            return back();
-            // echo json_encode(array("type" => "sucesso", "message" => "Muito obrigado, agradecemos sua avaliação!"));
-            // exit;    
-       }else{
-            $_SESSION['mensagem-avaliacao'] = "error";     
-            return back(); 
-            // echo json_encode(array("type" => "erro", "message" => "Ocorreu um erro interno :("));
-            // exit;  
-       }
-    }
 }

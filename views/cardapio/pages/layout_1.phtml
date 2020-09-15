@@ -1,5 +1,4 @@
 <style>
-
     .fontstar {
         padding-left: 0px;
 
@@ -32,29 +31,37 @@
     button {
         outline: none;
     }
-    .image-default{
+
+    .image-default {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100%;height:220px;background-color:#cccccc;
+        width: 100%;
+        height: 220px;
+        background-color: #cccccc;
     }
-    .image-default > img{
-        width:100px;
-        filter:grayscale();
+
+    .image-default>img {
+        width: 100px;
+        filter: grayscale();
         opacity: .5;
         padding-bottom: .5rem;
     }
-    .image-default > span{
-        color:#808080;
+
+    .image-default>span {
+        color: #808080;
     }
-    p{
+
+    p {
         margin-bottom: 0;
     }
-    .card-text{
+
+    .card-text {
         min-height: 135px;
     }
-    .card-title{
+
+    .card-title {
         min-height: 48px;
     }
 </style>
@@ -104,7 +111,7 @@
                                     <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
                                 <?php else : ?>
                                     <div class="image-default">
-                                        <img src="<?= PATH.$logo ?>">
+                                        <img src="<?= PATH . $logo ?>">
                                         <span class="text-">Sem imagem</span>
                                     </div>
                                 <?php endif; ?>
@@ -119,9 +126,9 @@
                                     else : ?>
                                         <span>não avaliado</span>
                                     <?php endif; ?>
-                                    <?php if($value['descricao'] != "") :?>
+                                    <?php if ($value['descricao'] != "") : ?>
                                         <p class="card-text pt-2 px-2 d-flex align-items-center justify-content-center" title="<?= $value['descricao'] ?>"><?= $value['descricao'] ?></p>
-                                    <?php else: ?>
+                                    <?php else : ?>
                                         <p class="card-text pt-5 px-2">Sem descrição</p>
                                     <?php endif; ?>
                                     <h5 class="text-claro mb-0">R$<?= number_format($value['preco'], 2, ",", ".") ?></h5>
@@ -141,7 +148,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <?php if ($value["imagem"] != "") : ?>
-                                        <img class="card-img-top" src="<?= PATH . $value['imagem'] ?>">                                   
+                                        <img class="card-img-top" src="<?= PATH . $value['imagem'] ?>">
                                     <?php endif; ?>
                                     <div>
                                         <h3 class="card-title"><?= $value['nome'] ?></h3>
@@ -188,48 +195,49 @@
 
                                         <?php endif; ?>
 
-                                        <?php if($cliente == true): ?>
-                                        <h4 class="card-title">Avaliação</h4>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <form id="form-avaliacao" action="<?= PATH . "admin/produtos/avaliar/" . $value['id_produto'] ?>" method="post">
-                                                    <div class="row">
-                                                        <div class="col-9">
-                                                            <div class="form-group">
-                                                                <label>Nome</label>
-                                                                <input type="text" class="form-control" name="nome" placeholder="Digite seu nome" required>
+                                        <?php if ($cliente == true) : ?>
+                                            <h4 class="card-title">Avaliação</h4>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <form id="form-avaliacao<?= $value['id_produto'] ?>" action="#" method="post">
+                                                        <input type="hidden" name="id_produto" value="<?= $value['id_produto'] ?>">
+                                                        <div class="row">
+                                                            <div class="col-9">
+                                                                <div class="form-group">
+                                                                    <label>Nome</label>
+                                                                    <input type="text" class="form-control" name="nome" placeholder="Digite seu nome" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <div class="form-group">
+                                                                    <label class="pb-2">Avaliação</label>
+                                                                    <select name="nota" class="star">
+                                                                        <option value="">--</option>
+                                                                        <option value="1" selected>1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                    </select>
+                                                                </div><br>
                                                             </div>
                                                         </div>
-                                                        <div class="col-3">
-                                                            <div class="form-group">
-                                                                <label class="pb-2">Avaliação</label>
-                                                                <select name="nota" class="star">
-                                                                    <option value="">--</option>
-                                                                    <option value="1" selected>1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                    <option value="5">5</option>
-                                                                </select>
-                                                            </div><br>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-9">
-                                                            <div class="form-group">
-                                                                <label>Comentário</label>
-                                                                <textarea class="form-control" maxlength="250" name="comentario" id="" rows="3"></textarea>
+                                                        <div class="row">
+                                                            <div class="col-9">
+                                                                <div class="form-group">
+                                                                    <label>Comentário</label>
+                                                                    <textarea class="form-control" maxlength="250" name="comentario" id="" rows="3"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-3 align-self-end">
+                                                                <div class="form-group">
+                                                                    <button type="button" onclick="avaliar('<?= $value['id_produto'] ?>')" class="btn btn-primary py-2 btn-block">Enviar</button>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-3 align-self-end">
-                                                            <div class="form-group">
-                                                                <button type="submit" class="btn btn-primary py-2 btn-block">Enviar</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
                                         <?php endif ?>
                                     </div>
                                 </div>
@@ -300,6 +308,34 @@
             })
         }
         "<?php $_SESSION["mensagem-avaliacao"] = "" ?>"
+
     });
 
+    function avaliar(id){
+        var data = $('#form-avaliacao'+id).serialize();
+        // console.log(data);
+        // return 0;
+        $.post('<?= PATH . "avaliar" ?>', data)
+            .then((res) => {
+                if (res.type == "sucesso") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso',
+                        text: res.message,
+                        showConfirmButton: false
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro',
+                        text: res.message,
+                        showConfirmButton: false
+                    });
+                }
+            });
+            setTimeout(function() {
+            location.reload(true);
+        }, 1500);
+
+    }
 </script>

@@ -20,7 +20,6 @@ $app->group('/admin', function(){
     $this->get('/produtos/busca', 'App\Controllers\Admin\ProdutoController:busca');
     $this->post('/produtos/create', 'App\Controllers\Admin\ProdutoController:create');
     $this->post('/produtos/{id}', 'App\Controllers\Admin\ProdutoController:update');
-    $this->post('/produtos/avaliar/{id}', 'App\Controllers\Admin\ProdutoController:avaliar');
     $this->get('/produtos/{id}/delete', 'App\Controllers\Admin\ProdutoController:delete');
     
     //CARDAPIO
@@ -48,3 +47,4 @@ $app->post('/cadastrar', 'App\Controllers\Site\HomeController:new_user');
 $app->post('/logar', 'App\Controllers\Site\HomeController:logar');
 $app->post('/verify_login', 'App\Controllers\Site\HomeController:verify_logar');
 $app->get('/web/{slug}', 'App\Controllers\Site\HomeController:cardapio');
+$app->post('/avaliar', 'App\Controllers\Site\HomeController:avaliar');

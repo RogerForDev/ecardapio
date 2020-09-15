@@ -189,4 +189,17 @@ class HomeController extends Controller
 		return $this->view->render($response, 'cardapio/index.phtml', $vars);
 		//return $response->withJson($categorias);
 	}
+	public function avaliar($request, $response, $args){
+		$avaliacao = new Avaliacao;
+ 
+		$data = $_POST;
+ 
+		$created = $avaliacao->create($data);
+
+		if($created){
+			 return $response->withJson(["type" => "sucesso", "message" => "Muito obrigado, agradecemos sua avaliação!"]);
+		}else{
+			 return $response->withJson(["type" => "erro", "message" => "Ocorreu um erro interno :("]);
+		}
+	 }
 }
