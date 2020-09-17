@@ -15,8 +15,12 @@
         <input type="hidden" id="path" value="<?= PATH ?>">
         
         <div id="conteudo" class="container mt-4 mt-lg-0">
-            <img src="<?= PATH.$cardapio['imagem'] ?>" class="w-100 d-block rounded-lg">
-            <div class="row mb-4" style="margin-top: -7rem">
+            <?php if(!empty($cardapio['imagem'])):?>
+                <img src="<?= PATH.$cardapio['imagem'] ?>" class="w-100 d-block rounded-lg">
+                <div class="row mb-4" style="margin-top: -7rem">
+            <?php else: ?>
+                <div class="row mb-4">
+            <?php endif; ?>
                 <div class="align-items-center col-xl-12 d-flex justify-content-between mt-4 pl-lg-4 pr-lg-5">
                     <span class="main-title text-light h1"><?= $usuario['estabelecimento'] ?></span>                       
                     <div class="btn-group float-right">
