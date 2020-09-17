@@ -1,9 +1,31 @@
 <style>
-     .main-title {
-         font-size: 70px !important;
-            font-family: <?= $tema['fonte'] ?>;
-            text-shadow: 1px 4px 3px #171717;
-        }
+    .main-title {
+        font-size: 70px !important;
+        font-family: <?= $tema['fonte'] ?>;
+        text-shadow: 1px 4px 3px #171717;
+    }
+
+    .image-default {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 200px;
+        background-color: #cccccc;
+    }
+
+    .image-default>img {
+        width: 100px;
+        filter: grayscale();
+        opacity: .5;
+        padding-bottom: .5rem;
+    }
+
+    .image-default>span {
+        color: #808080;
+        text-align: center;
+    }
 </style>
 <div class="content-page pt-5">
     <?php include "users/editar.phtml"; ?>
@@ -13,21 +35,27 @@
     <div class="content" style="background-color: #1a1a1a">
 
         <input type="hidden" id="path" value="<?= PATH ?>">
-        
+
         <div id="conteudo" class="container mt-4 mt-lg-0">
-            <img src="<?= PATH.$cardapio['imagem'] ?>" class="w-100 d-block rounded-lg">
+            <?php if (isset($cardapio['imagem']) && $cardapio['imagem'] != "") : ?>
+                <img src="<?= PATH . $cardapio['imagem'] ?>" class="w-100 d-block rounded-lg">
+            <?php else : ?>
+                <div class="image-default rounded-lg">
+                    <span>Sem imagem de topo<br>Clique em "Trocar aparencia" e escolha uma imagem de topo</span>
+                </div>
+            <?php endif; ?>
             <div class="row mb-4" style="margin-top: -7rem">
                 <div class="align-items-center col-xl-12 d-flex justify-content-between mt-4 pl-lg-4 pr-lg-5">
-                    <span class="main-title text-light h1"><?= $usuario['estabelecimento'] ?></span>                       
+                    <span class="main-title text-light h1"><?= $usuario['estabelecimento'] ?></span>
                     <div class="btn-group float-right">
-                      <a class="btn btn-light" data-toggle="modal" href="#modalTemas"><i class="fa fa-paint-brush pr-2" aria-hidden="true"></i>Trocar Aparência</a>
-                      <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalnewTema"><i class="fa fa-plus pr-2" aria-hidden="true"></i>Novo tema</a>                        
-                      </div>
-                    </div>             
+                        <a class="btn btn-light" data-toggle="modal" href="#modalTemas"><i class="fa fa-paint-brush pr-2" aria-hidden="true"></i>Trocar Aparência</a>
+                        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalnewTema"><i class="fa fa-plus pr-2" aria-hidden="true"></i>Novo tema</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- end row -->
@@ -84,10 +112,10 @@
             <div class="row pb-5">
                 <div class="col-xl-12">
                     <a href="#" data-toggle="modal" data-target="#modalCategoria" type="text" class="btn-block bg-light btn btn-lg text-center mb-4" readonly="true" title="Clique para cadastrar uma nova categoria!" data-toggle="tooltip" data-placement="top"><i class="fa fa-plus"></i> NOVA CATEGORIA</a>
-                    <?php if(count($categorias) < 1) : ?>
+                    <?php if (count($categorias) < 1) : ?>
                         <div class="jumbotron text-center" style="opacity:.9">
-                            <h1 class="display-3 text-muted py-5">Bem vindo ao eCardapio!</h1>                            
-                            <h3 class="text-muted">Você ainda não possui nenhum produto cadastrado<br>Vamos começar criando uma nova <b class="text-dark">categoria</b><br>Clique no botão de <b class="text-dark">nova categoria</b> acima</h3>    
+                            <h1 class="display-3 text-muted py-5">Bem vindo ao eCardapio!</h1>
+                            <h3 class="text-muted">Você ainda não possui nenhum produto cadastrado<br>Vamos começar criando uma nova <b class="text-dark">categoria</b><br>Clique no botão de <b class="text-dark">nova categoria</b> acima</h3>
                         </div>
                     <?php endif ?>
                 </div>

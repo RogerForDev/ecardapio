@@ -103,16 +103,16 @@
             </div>
             <div class="row">
                 <?php foreach ($val['produtos'] as $key => $value) : ?>
-                    <div class="col-lg-3 col-6 pb-4">
+                    <div class="col-lg-3 col-6 pb-4 px-1 px-lg-2">
                         <!-- Button trigger modal -->
                         <a href="#" class="text-decoration-none" data-toggle="modal" data-target="#modalAvaliacao<?= $key ?>">
                             <div class=" text-center">
                                 <?php if ($value["imagem"] != "") : ?>
                                     <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
                                 <?php else : ?>
-                                    <div class="image-default">
-                                        <img src="<?= PATH . $logo ?>">
-                                        <span class="text-">Sem imagem</span>
+                                    <div class="image-default card-img-top">
+                                        <img src="<?= PATH . $logo ?>" >
+                                        <span>Sem imagem</span>
                                     </div>
                                 <?php endif; ?>
                                 <div class="card-body bg-primaria text-claro px-1">

@@ -1,3 +1,5 @@
 app/models/Connection.php
 views/site/pages/cadastro-cardapio copy.phtml
 ecardapio.http
+config.php
+uploads
