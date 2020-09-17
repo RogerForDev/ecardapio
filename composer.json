@@ -1,4 +1,6 @@
-{
+{   
+    "name": "tads/ecardapio",
+    "description": "ecardapio",
     "require": {
         "slim/slim": "^3.9",       
         "slim/php-view": "^2.0",     

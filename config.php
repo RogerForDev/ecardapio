@@ -6,10 +6,10 @@ ini_set('display_errors', 'On');
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
 
-$config['db']['host']   = "localhost";
-$config['db']['user']   = "root";
-$config['db']['pass']   = "";
-$config['db']['dbname'] = "ecardapio";
+define('DBHOST', 'localhost');
+define('DBUSER', 'root');
+define('DBPASS', 'bancodedados');
+define('DBNAME', 'ecardapio');
 
 // define('PATH', "http://localhost/ecardapio/");
 // define('DIR_PATH', $_SERVER['DOCUMENT_ROOT']."/ecardapio");

@@ -1,13 +1,13 @@
 <?php
 
-namespace app\controllers\site;
+namespace app\Controllers\site;
 
 use App\src\Validate;
 use App\models\admin\Tema;
 use App\models\admin\User;
 use App\models\admin\Produto;
 use App\models\admin\Cardapio;
-use App\controllers\Controller;
+use App\Controllers\Controller;
 use App\models\admin\Avaliacao;
 use App\models\admin\Categoria;
 
