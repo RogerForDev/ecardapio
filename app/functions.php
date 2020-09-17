@@ -60,11 +60,6 @@ function busca() {
 	return filter_input(INPUT_GET, 's', FILTER_SANITIZE_STRING);
 }
 
-function checkLogin($inadmin = true)
-{
-    return User::checkLogin($inadmin);
-}
-
 function getUserName(){
     $user = User::getFromSession();
 

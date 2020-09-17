@@ -13,13 +13,13 @@
                          <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria'] ?>">
                          <input type="hidden" name="imagem" value="<?= $value['imagem'] ?>">
                          <label for="input_file">Alterar imagem</label>
+                         <?php if (isset($value['imagem']) && $value['imagem'] != "") : ?>
                          <div class="altera-imagem" data-id="<?= $value['id_produto'] ?>" style="text-align: center; cursor: pointer;">
-                             <?php if (!empty($value['imagem'])) : ?>
-                                 <img src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
-                             <?php else : ?>
-                                 <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
-                             <?php endif; ?>
-                         </div>
+                            <img src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
+                        </div>
+                        <?php else : ?>
+                            <input type="file" name="imagem-produto" class="file-input" data-jfiler-limit="1" accept="image/*">
+                        <?php endif; ?>
                          <div id="imagem-input<?= $value['id_produto'] ?>" style="display: none;" class="form-group">
                              <input type="file" name="imagem-produto" class="file-input" data-jfiler-limit="1" accept="image/*">
                          </div>
