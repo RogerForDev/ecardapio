@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $('#altera-telefone').mask('0000-0000', {reverse: true});
   $('#altera-whats').mask('99999-9999', {reverse: true});
+  $('#preco-produto-cadastro').mask('999.999,99', {reverse: true});
   // $('#altera-horario').mask('00:00:00', {reverse: true});
   
 });
