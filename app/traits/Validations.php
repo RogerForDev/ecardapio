@@ -4,11 +4,11 @@ namespace App\traits;
 
 trait Validations {
 
-	private $errors = [];
+	public $errors = [];
 
 	protected function required($field) {
 		if (empty($_POST[$field])) {
-			$this->errors[$field][] = flash($field, error('Esse campo é obrigatório'));
+			$this->errors[$field][] = error('Esse campo é obrigatório');
 		}
 	}
 
@@ -32,7 +32,7 @@ trait Validations {
 		$find = $model->select()->where($field, $_POST[$field])->first();
 
 		if ($find and !empty($_POST[$field])) {
-			$this->errors[$field][] = flash($field, error("Esse {$field} ja esta cadastrado no banco de dados"));
+			$this->errors[$field][] = error("Esse {$field} ja esta cadastrado no banco de dados");
 		}
 	}
 
@@ -69,7 +69,7 @@ trait Validations {
 	}
 
 	public function errors() {
-		dd($this->errors);
+		return $this->errors;
 	}
 
 }

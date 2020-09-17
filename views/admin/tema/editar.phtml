@@ -1,0 +1,79 @@
+<!-- Modal -->
+<div class="modal" id="modaleditarTema<?= $value['id_tema'] ?>" data-backdrop="static">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <form role="form" action="<?= PATH . "admin/temas/" . $value['id_tema'] ?>" method="post">
+                <div class="modal-header bg-primary text-light">
+                    <h5 class="modal-title" id="modal_add_theme">Modificar tema</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <!-- <button type="submit" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Titulo do tema(obrigatório)</label>
+                                <input class="form-control" name="nome" type="text" value="<?= $value['nome'] ?>" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Cor primária</label>
+                                <div class="colorPicker1 input-group colorpicker-component colorpicker-element" title="Clique para escolhe uma cor	" data-colorpicker-id="2">
+                                    <input type="text" class="form-control input-lg" value="<?= $value['cor_primaria'] ?>" name="cor_primaria">
+                                    <span class="input-group-addon input-group-text rounded-0"><i style="background-color: <?= $value['cor_primaria'] ?>;"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Cor secundária</label>
+                                <div class="colorPicker2 input-group colorpicker-component colorpicker-element" title="Clique para escolhe uma cor	" data-colorpicker-id="2">
+                                    <input type="text" class="form-control input-lg" value="<?= $value['cor_secundaria'] ?>" name="cor_secundaria">
+                                    <span class="input-group-addon input-group-text rounded-0"><i style="background-color: <?= $value['cor_secundaria'] ?>;"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Texto claro</label>
+                                <div class="colorPicker3 input-group colorpicker-component colorpicker-element" title="Clique para escolhe uma cor	" data-colorpicker-id="2">
+                                    <input type="text" class="form-control input-lg" value="<?= $value['texto_claro'] ?>" name="texto_claro">
+                                    <span class="input-group-addon input-group-text rounded-0"><i style="background-color: <?= $value['texto_claro'] ?>;"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Texto escuro</label>
+                                <div class="colorPicker4 input-group colorpicker-component colorpicker-element" title="Clique para escolhe uma cor	" data-colorpicker-id="2">
+                                    <input type="text" class="form-control input-lg" value="<?= $value['texto_escuro'] ?>" name="texto_escuro">
+                                    <span class="input-group-addon input-group-text rounded-0"><i style="background-color: <?= $value['texto_escuro'] ?>;"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="destheme">Fonte</label>
+                                <input class="font-example" type="text" name="fonte" value="<?= $value['fonte'] ?>" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <h2 class="text-example" class="mt-4"><?= $usuario['estabelecimento'] ?></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o pr-1" aria-hidden="true"></i>Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

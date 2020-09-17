@@ -1,239 +1,134 @@
-<div class="content-page">
-	<!-- Start content -->
-	<div class="content">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xl-12">
-					<div class="breadcrumb-holder">
-						<h1 class="main-title float-left">Dashboard</h1>
-						<ol class="breadcrumb float-right">
-							<li class="breadcrumb-item">Home</li>
-							<li class="breadcrumb-item active">Dashboard</li>
-						</ol>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
-			<!-- end row -->
-			<div class="row">
-				<div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card-box noradius noborder bg-default">
-						<i class="fa fa-file-text-o float-right text-white"></i>
-						<h6 class="text-white text-uppercase m-b-20">Pedidos</h6>
-						<h1 class="m-b-20 text-white counter">1,587</h1>
-						<span class="text-white">15 Novos pedidos</span>
-					</div>
-				</div>
-				<div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card-box noradius noborder bg-warning">
-						<i class="fa fa-bar-chart float-right text-white"></i>
-						<h6 class="text-white text-uppercase m-b-20">Visitantes</h6>
-						<h1 class="m-b-20 text-white counter">250</h1>
-						<span class="text-white">Bounce rate: 25%</span>
-					</div>
-				</div>
-				<div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card-box noradius noborder bg-info">
-						<i class="fa fa-user-o float-right text-white"></i>
-						<h6 class="text-white text-uppercase m-b-20">Users</h6>
-						<h1 class="m-b-20 text-white counter">120</h1>
-						<span class="text-white">25 New Users</span>
-					</div>
-				</div>
-				<div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card-box noradius noborder bg-danger">
-						<i class="fa fa-bell-o float-right text-white"></i>
-						<h6 class="text-white text-uppercase m-b-20">Alertas</h6>
-						<h1 class="m-b-20 text-white counter">58</h1>
-						<span class="text-white">5 New Alerts</span>
-					</div>
-				</div>
-			</div>
-			<!-- end row -->
-		
+<style>
+    .main-title {
+        font-size: 70px !important;
+        font-family: <?= $tema['fonte'] ?>;
+        text-shadow: 1px 4px 3px #171717;
+    }
 
+    .image-default {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 200px;
+        background-color: #cccccc;
+    }
 
-			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-					<div class="card mb-3">
-						<div class="card-header">
-							<h3><i class="fa fa-users"></i> Staff details</h3>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non luctus metus. Vivamus fermentum ultricies
-							orci sit amet sollicitudin.
-						</div>
-						<div class="card-body">
-							<table id="example1" class="table table-bordered table-responsive-xl table-hover display">
-								<thead>
-									<tr>
-										<th>Name</th>
-										<th>Position</th>
-										<th>Office</th>
-										<th>Age</th>
-										<th>Start date</th>
-										<th>Salary</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Tiger Nixon</td>
-										<td>System Architect</td>
-										<td>Edinburgh</td>
-										<td>61</td>
-										<td>2011/04/25</td>
-										<td>$320,800</td>
-									</tr>
-									<tr>
-										<td>Garrett Winters</td>
-										<td>Accountant</td>
-										<td>Tokyo</td>
-										<td>63</td>
-										<td>2011/07/25</td>
-										<td>$170,750</td>
-									</tr>
-									<tr>
-										<td>Ashton Cox</td>
-										<td>Junior Technical Author</td>
-										<td>San Francisco</td>
-										<td>66</td>
-										<td>2009/01/12</td>
-										<td>$86,000</td>
-									</tr>
-									<tr>
-										<td>Cedric Kelly</td>
-										<td>Senior Javascript Developer</td>
-										<td>Edinburgh</td>
-										<td>22</td>
-										<td>2012/03/29</td>
-										<td>$433,060</td>
-									</tr>
-									<tr>
-										<td>Airi Satou</td>
-										<td>Accountant</td>
-										<td>Tokyo</td>
-										<td>33</td>
-										<td>2008/11/28</td>
-										<td>$162,700</td>
-									</tr>
-									<tr>
-										<td>Brielle Williamson</td>
-										<td>Integration Specialist</td>
-										<td>New York</td>
-										<td>61</td>
-										<td>2012/12/02</td>
-										<td>$372,000</td>
-									</tr>
-									<tr>
-										<td>Herrod Chandler</td>
-										<td>Sales Assistant</td>
-										<td>San Francisco</td>
-										<td>59</td>
-										<td>2012/08/06</td>
-										<td>$137,500</td>
-									</tr>
-									<tr>
-										<td>Rhona Davidson</td>
-										<td>Integration Specialist</td>
-										<td>Tokyo</td>
-										<td>55</td>
-										<td>2010/10/14</td>
-										<td>$327,900</td>
-									</tr>
-									<tr>
-										<td>Colleen Hurst</td>
-										<td>Javascript Developer</td>
-										<td>San Francisco</td>
-										<td>39</td>
-										<td>2009/09/15</td>
-										<td>$205,500</td>
-									</tr>
-									<tr>
-										<td>Sonya Frost</td>
-										<td>Software Engineer</td>
-										<td>Edinburgh</td>
-										<td>23</td>
-										<td>2008/12/13</td>
-										<td>$103,600</td>
-									</tr>
-									<tr>
-										<td>Jena Gaines</td>
-										<td>Office Manager</td>
-										<td>London</td>
-										<td>30</td>
-										<td>2008/12/19</td>
-										<td>$90,560</td>
-									</tr>
-									<tr>
-										<td>Quinn Flynn</td>
-										<td>Support Lead</td>
-										<td>Edinburgh</td>
-										<td>22</td>
-										<td>2013/03/03</td>
-										<td>$342,000</td>
-									</tr>
-									<tr>
-										<td>Fiona Green</td>
-										<td>Chief Operating Officer (COO)</td>
-										<td>San Francisco</td>
-										<td>48</td>
-										<td>2010/03/11</td>
-										<td>$850,000</td>
-									</tr>
-									<tr>
-										<td>Shou Itou</td>
-										<td>Regional Marketing</td>
-										<td>Tokyo</td>
-										<td>20</td>
-										<td>2011/08/14</td>
-										<td>$163,000</td>
-									</tr>
-									<tr>
-										<td>Jonas Alexander</td>
-										<td>Developer</td>
-										<td>San Francisco</td>
-										<td>30</td>
-										<td>2010/07/14</td>
-										<td>$86,500</td>
-									</tr>
-									<tr>
-										<td>Shad Decker</td>
-										<td>Regional Director</td>
-										<td>Edinburgh</td>
-										<td>51</td>
-										<td>2008/11/13</td>
-										<td>$183,000</td>
-									</tr>
-									<tr>
-										<td>Michael Bruce</td>
-										<td>Javascript Developer</td>
-										<td>Singapore</td>
-										<td>29</td>
-										<td>2011/06/27</td>
-										<td>$183,000</td>
-									</tr>
-									<tr>
-										<td>Donna Snider</td>
-										<td>Customer Support</td>
-										<td>New York</td>
-										<td>27</td>
-										<td>2011/01/25</td>
-										<td>$112,000</td>
-									</tr>
-								</tbody>
-							</table>
+    .image-default>img {
+        width: 100px;
+        filter: grayscale();
+        opacity: .5;
+        padding-bottom: .5rem;
+    }
 
-						</div>
-					</div><!-- end card-->
-				</div>
+    .image-default>span {
+        color: #808080;
+        text-align: center;
+    }
+</style>
+<div class="content-page pt-5">
+    <?php include "users/editar.phtml"; ?>
+    <?php include "tema/novo.phtml"; ?>
+    <?php include "tema/index.phtml"; ?>
+    <!-- Start content -->
+    <div class="content" style="background-color: #1a1a1a">
 
+        <input type="hidden" id="path" value="<?= PATH ?>">
 
-			</div>
+        <div id="conteudo" class="container mt-4 mt-lg-0">
+            <?php if (isset($cardapio['imagem']) && $cardapio['imagem'] != "") : ?>
+                <img src="<?= PATH . $cardapio['imagem'] ?>" class="w-100 d-block rounded-lg">
+            <?php else : ?>
+                <div class="image-default rounded-lg">
+                    <span>Sem imagem de topo<br>Clique em "Trocar aparencia" e escolha uma imagem de topo</span>
+                </div>
+            <?php endif; ?>
+            <div class="row mb-4" style="margin-top: -7rem">
+                <div class="align-items-center col-xl-12 d-flex justify-content-between mt-4 pl-lg-4 pr-lg-5">
+                    <span class="main-title text-light h1"><?= $usuario['estabelecimento'] ?></span>
+                    <div class="btn-group float-right">
+                        <a class="btn btn-light" data-toggle="modal" href="#modalTemas"><i class="fa fa-paint-brush pr-2" aria-hidden="true"></i>Trocar Aparência</a>
+                        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalnewTema"><i class="fa fa-plus pr-2" aria-hidden="true"></i>Novo tema</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
 
+            <?php foreach ($categorias as $key => $cat) : ?>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <input data-id="<?= $cat['id_categoria'] ?>" type="text" class="bg-cat-title py-3 h5 w-100 border-0 text-center nome-categoria" readonly="true" data-html="true" title="<i class='fa fa-pencil pr-2' aria-hidden='true'></i>Clique para editar o nome da categoria" data-toggle="tooltip" data-placement="top" value="<?= $cat['nome'] ?>">
+                        <a href="javascript:;" class="position-absolute py-2 d-none btn-delete-cat deletar-categoria" href="#" title="Excluir categoria" onclick="remove('<?= PATH . 'admin/categorias/' . $cat['id_categoria'] . '/delete' ?>')" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash fa-3x text-danger pr-2" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <?php foreach ($cat['produtos'] as $key => $value) : ?>
+                        <div class="col-xl-3 col-6 pb-3 mt-3" data-html="true" title="<i class='fa fa-pencil pr-2' aria-hidden='true'></i>Clique para editar o produto" data-toggle="tooltip" data-placement="top">
+                            <div class="card shadow text-left text-dark">
+                                <a href="" data-toggle="modal" class="text-dark text-decoration-none" data-target="#modaleditProduct<?= $value['id_produto'] ?>">
+                                    <?php if ($value["imagem"] != "") : ?>
+                                        <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
+                                    <?php else : ?>
+                                        <img class="card-img-top" src="<?= PATH ?>uploads/produto/253x180.png" alt="">
+                                    <?php endif; ?>
+                                    <div class="card-body p-2">
+                                        <h5 class="card-title text-center"><?= $value['nome'] ?></h5>
+                                        <p class="card-text text-center" style="min-height:63px" title="<?= $value['descricao'] ?>"><?= substr($value['descricao'], 0, 90) ?></p>
+                                        <h6 class="text-center">R$<?= number_format($value['preco'], 2, ",", ".") ?></h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Modal Editar produto-->
+                        <?php include "produto/editar.phtml"; ?>
+                    <?php endforeach; ?>
+                    <div class="col-xl-3 pb-3 mt-3">
+                        <div class="card text-left">
+                            <div class="card-body py-4">
+                                <a href="" data-toggle="modal" data-target="#modalNewProduct<?= $key ?>">
+                                    <h3 class="card-title text-center text-dark">
+                                        <i class="fa fa-plus fa-2x"></i><br>
+                                        Adicionar produto
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Novo Produto -->
+                <?php include "produto/novo.phtml"; ?>
+            <?php endforeach; ?>
+        </div>
 
+        <div class="container pb-5">
 
-		</div>
-		<!-- END container-fluid -->
+            <div class="row pb-5">
+                <div class="col-xl-12">
+                    <a href="#" data-toggle="modal" data-target="#modalCategoria" type="text" class="btn-block bg-light btn btn-lg text-center mb-4" readonly="true" title="Clique para cadastrar uma nova categoria!" data-toggle="tooltip" data-placement="top"><i class="fa fa-plus"></i> NOVA CATEGORIA</a>
+                    <?php if (count($categorias) < 1) : ?>
+                        <div class="jumbotron text-center" style="opacity:.9">
+                            <h1 class="display-3 text-muted py-5">Bem vindo ao eCardapio!</h1>
+                            <h3 class="text-muted">Você ainda não possui nenhum produto cadastrado<br>Vamos começar criando uma nova <b class="text-dark">categoria</b><br>Clique no botão de <b class="text-dark">nova categoria</b> acima</h3>
+                        </div>
+                    <?php endif ?>
+                </div>
+            </div>
+            <!-- Modal Nova Categoria -->
+            <?php include "categoria/novo.phtml"; ?>
+            <?php include "produto/novoGenerico.phtml"; ?>
+        </div>
+        <!-- end row -->
+        <!-- END container-fluid -->
 
-	</div>
-	<!-- END content -->
+    </div>
+    <!-- END content -->
 
 </div>
+<!-- END content-page -->

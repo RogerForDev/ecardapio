@@ -1,5 +1,6 @@
 <?php
 
+use App\models\admin\Categoria;
 use App\models\admin\User;
 use App\src\Flash;
 use App\src\Redirect;
@@ -69,6 +70,11 @@ function getUserName(){
 
     return $user['nome'];
 }
+function getNomeCategoria($id){
+    $cat = Categoria::getName($id);
+
+    return $cat['nome'];
+}
 
 function printAlert($msg, $url){
   return '<div class="modal-dialog modal-dialog-centered">
@@ -111,6 +117,44 @@ function statusColor($idstatus){
 function array_filter_key( $array, $callback ) {
     $matchedKeys = array_filter(array_keys($array), $callback);
 	return array_intersect_key($array, array_flip($matchedKeys));
+}
+
+function thumbUrl($path, $size_w = 600, $size_h = 500, $style = '')
+{
+    if (!$path) return '';
+    $ext = explode('.', $path);
+    $ext = end($ext);
+
+    if($ext=='png') $path = PATH . "thumb/phpThumb.php?" . "src=" . $path . "&w=$size_w&h=$size_h&zc=1&f=png";
+    else $path = PATH . "thumb/phpThumb.php?" . "src=" . $path . "&w=$size_w&h=$size_h&zc=1";
+    return $path;
+}
+
+function slugify($text)
+{
+  // replace non letter or digits by -
+  $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+  // transliterate
+  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+  // remove unwanted characters
+  $text = preg_replace('~[^-\w]+~', '', $text);
+
+  // trim
+  $text = trim($text, '-');
+
+  // remove duplicate -
+  $text = preg_replace('~-+~', '-', $text);
+
+  // lowercase
+  $text = strtolower($text);
+
+  if (empty($text)) {
+    return 'n-a';
+  }
+
+  return $text;
 }
 
 ?>

@@ -4,7 +4,9 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\models\admin\Categoria;
+use App\models\admin\Cardapio;
 use App\src\Validate;
+use App\src\Upload;
 
 class CategoriaController extends Controller
 {
@@ -22,50 +24,61 @@ class CategoriaController extends Controller
     }
     public function create()
     {
-        $validate = new Validate;
+        $data = array();
 
-        $data = (array) $validate->validate([
-            'nome' => 'required:min@3'
-        ]);
-        
-        if($validate->hasErrors()) {
-            return back();
+        if(isset($_POST['nome']) && !empty($_POST['nome'])){
+            $data['nome'] = addslashes(htmlspecialchars($_POST['nome']));
+        }else{
+            echo json_encode(array("type" => "erro", "message" => "Nome da categoria não informado!"));
+            exit;  
         }
+        
         $categoria = new Categoria;
+
+        $data['id_cardapio'] = Cardapio::getFromUser()['id_cardapio'];
+        // print_r($data);exit;
 
         $categoria = $categoria->create($data);
 
         if($categoria){
-            flash('message', success('Cadastrado com sucesso!'));
-            return back();
+            echo json_encode(array("type" => "sucesso", "message" => "Categoria cadastrado com sucesso!", "nome" => $data['nome'], "id" => $categoria, "path" => PATH));
+            exit;
         }
         
-		flash('message', error('Erro ao cadastrar, tente novamente'));
-		return back();      
+		echo json_encode(array("type" => "erro", "message" => "Ocorreu um erro interno!"));
+        exit;    
     }        
     public function update($request, $response, $args){
-
-        $validate = new Validate;
-
-		$data = $validate->validate([
-			'nome' => 'required'
-		]);
-
-		if ($validate->hasErrors()) {
-			return back();
-        }
         
         $categoria = new Categoria;
 
-		$updated = $categoria->find('id_categoria', $args['id'])->update((array) $data);
+        if(isset($_POST['nome']) && !empty($_POST['nome'])){
+            $data['nome'] = addslashes(htmlspecialchars($_POST['nome']));
+        }else{
+            echo json_encode(array("type" => "erro", "message" => "Nome da categoria não informado!"));
+            exit;  
+        }
+
+        if(isset($_POST['id']) && !empty($_POST['id'])){
+            $data['id_categoria'] = addslashes(htmlspecialchars($_POST['id']));
+        }else{
+             echo json_encode(array("type" => "sucesso", "message" => "Categoria cadastrado com sucesso!", "nome" => $data['nome'], "id" => $categoria));
+            exit;  
+        }
+
+        $data['ativo'] = 1;
+
+        $updated = $categoria->find('id_categoria', $data['id_categoria'])->update((array) $data);
+        
+        // print_r($updated);exit;
 
 		if ($updated) {
-			flash('message', success('Atualizado com sucesso'));
-			return back();
+            echo json_encode(array("type" => "sucesso", "message" => "Categoria atualizada com sucesso!", "nome" => $data['nome']));
+            exit;
 		}
 
-		flash('message', error('Erro ao atualizar'));
-		back(); 
+		// echo json_encode(array("type" => "erro", "message" => "Ocorreu um erro interno!"));
+        // exit;  
     }
     public function delete($request, $response, $args)
     {   

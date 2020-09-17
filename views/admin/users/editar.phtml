@@ -1,0 +1,188 @@
+ <div class="modal fade custom-modal" id="modaleditUser" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+         <div class="modal-content">
+             <div class="modal-header bg-primary text-light">
+                 <h5 class="modal-title">Dados do usuário</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <form id="form-editar-usuario" role="form" method="post" action="<?= PATH ?>admin/users/update" enctype="multipart/form-data" data-parsley-validate novalidate>
+                 <div class="modal-body">
+                     <div class="container">
+                         <div class="row">
+                             <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>">
+                             <div class="col-lg-9 col-xl-9">
+                                 <h4>Dados pessoais:</h4>
+                                 <hr>
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Nome completo</label>
+                                             <input class="form-control" name="nome" type="text" value="<?= $usuario['nome'] ?>" required />
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Email</label>
+                                             <input class="form-control" name="email" type="email" value="<?= $usuario['email'] ?>" required />
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <h4>Dados da Empresa:</h4>
+                                 <hr>
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Nome do comércio</label>
+                                             <input class="form-control" name="estabelecimento" type="text" value="<?= $usuario['estabelecimento'] ?>" required />
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Horário de atendimento</label>
+                                             <input id="altera-horario" class="form-control" name="horario" type="text" value="<?= $usuario['horario'] ?>" required />
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <div class="row">
+                                     <div class="col-lg-10">
+                                         <div class="form-group">
+                                             <label>Rua</label>
+                                             <input class="form-control" name="rua" type="text" value="<?= $usuario['rua'] ?>" required />
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-2">
+                                         <div class="form-group">
+                                             <label>Número</label>
+                                             <input class="form-control" name="numero" type="text" value="<?= $usuario['numero'] ?>" required />
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Bairro</label>
+                                             <input class="form-control" name="bairro" type="text" value="<?= $usuario['bairro'] ?>" required />
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Cidade</label>
+                                             <input class="form-control" name="cidade" type="text" value="<?= $usuario['cidade'] ?>" required />
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Telefone</label>
+                                             <input id="altera-telefone" class="form-control" name="telefone" type="text" value="<?= $usuario['telefone'] ?>" />
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Whatsapp</label>
+                                             <input id="altera-whats" class="form-control" name="whatsapp" type="text" value="<?= $usuario['whatsapp'] ?>" />
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Facebook</label>
+                                             <input class="form-control" name="facebook" type="text" value="<?= $usuario['facebook'] ?>" />
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-6">
+                                         <div class="form-group">
+                                             <label>Instagram</label>
+                                             <input class="form-control" name="instagram" type="text" value="<?= $usuario['instagram'] ?>" />
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <h4>Assinatura:</h4>
+                                 <hr>
+                                 <div class="row">
+                                     <div class="col-lg-6 d-flex">
+                                         <div class="form-group mr-4">
+                                             <label for="prod-ativo">Gratuito</label><br>
+                                             <label class="switch float-left">
+                                                 <input data-url="<?= PATH ?>admin/planos/update" id="free" type="checkbox" class="success" name="ativo" <?= (@$usuario['flag_assinante'] == 1) ? "checked value='1' disabled" : "value='0'" ?>>
+                                                 <span class="slider round"></span>
+                                             </label>
+                                         </div>
+                                         <p>Plano simples, com as principais funcionalidades da plataforma, sem nenhum custo<br>
+                                             <a href="<?= PATH ?>admin/planos">Saiba mais</a></p>
+                                     </div>
+                                     <div class="col-lg-6 d-flex">
+                                         <div class="form-group mr-4">
+                                             <label for="prod-ativo">Premium</label><br>
+                                             <label class="switch float-left">
+                                                 <input data-url="<?= PATH ?>admin/planos/update" id="premium" type="checkbox" class="success" name="ativo" <?= (@$usuario['flag_assinante'] == 2) ? "checked value='1' disabled" : "value='0'" ?>>
+                                                 <span class="slider round"></span>
+                                             </label>
+                                         </div>
+                                         <p>Plano completo, com todas as funcionalidades da plataforma, com uma parcela mensal<br>
+                                             <a href="<?= PATH ?>admin/planos">Saiba mais</a>
+                                         </p>
+                                     </div>
+                                 </div>
+
+
+                             </div>
+
+                             <div class="col-lg-3 col-xl-3 border-left">
+
+                                 <div class="m-b-10"></div>
+
+                                 <div id="avatar_image">
+                                     <?php if (isset($cardapio['logo'])) : ?>
+                                         <img style="max-width:100px; height:auto;" src="<?= PATH . $cardapio['logo'] ?>" />
+                                     <?php endif; ?>
+                                     <br />
+                                 </div>
+                                 <div id="image_deleted_text"></div>
+                                 <div class="m-b-10"></div>
+                                 <div class="form-group pb-4">
+                                     <label>Alterar logo</label>
+                                     <input type="file" name="logo" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                     <label>Possui wi-fi no local?</label><br>
+                                     <label class="switch float-left">
+                                         <input type="checkbox" class="success" name="flag_wifi" value="<?= $usuario['flag_wifi'] ?>" <?= ($usuario['flag_wifi'] == 1) ? "checked" : "" ?>>
+                                         <span class="slider round"></span>
+                                     </label>
+                                 </div>
+                                 <div class="form-group">
+                                     <label>Aceita cartão crédito/débito?</label><br>
+                                     <label class="switch float-left">
+                                         <input type="checkbox" class="success" name="flag_cartao" value="<?= $usuario['flag_cartao'] ?>" <?= ($usuario['flag_cartao'] == 1) ? "checked" : "" ?>>
+                                         <span class="slider round"></span>
+                                     </label>
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="w-100">Faz entrega?</label>
+                                     <label class="switch float-left">
+                                         <input type="checkbox" class="success" name="flag_entrega" value="<?= $usuario['flag_entrega'] ?>" <?= ($usuario['flag_entrega'] == 1) ? "checked" : "" ?>>
+                                         <span class="slider round"></span>
+                                     </label>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                     <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </div>

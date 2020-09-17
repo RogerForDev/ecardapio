@@ -1,0 +1,87 @@
+<style>
+    .bg-title {
+        background: linear-gradient(-3deg, #ffffff 28%, <?= $tema['cor_primaria'] ?> 31%);
+    }
+    .bg-fundo {
+        background-color: <?= $tema['cor_secundaria'] ?>;
+    }
+    .text-title {
+        color: <?= $tema['cor_primaria'] ?>;
+        font-weight: bold;
+        font-size: 15pt;
+        padding-bottom: 5px;
+    }
+    .linewrapper {
+        display: flex;
+        align-items: baseline;
+    }
+    .middle {
+        border-bottom: 1px dotted #000;
+        flex-grow: 1;
+        margin: 0 5px;
+    }
+    .ingredients {
+        margin-top: -0.5rem;
+        font-weight: bold;
+        font-size: 10pt;
+    }
+    .title-header {
+        font-size: 80px;
+        font-family: <?= $tema['fonte'] ?>;
+        line-height: 1;
+    }
+    .card {
+        background-color: unset !important;
+    }
+
+    @media (min-width: 576px) {
+        .card-columns {
+            column-count: 2;
+        }
+    }
+
+    .text-claro {
+        color: <?= $tema['texto_claro'] ?>
+    }
+
+    .text-escuro {
+        color: <?= $tema['texto_escuro'] ?>
+    }
+</style>
+
+    <div class="container">
+        <div class="row">
+            <div class="card-columns mt-4 px-4">
+                <?php foreach ($cardapio as $key => $val) : ?>
+                    <div class="card">
+                        <div class="bg-title py-3">
+                            <h2 class="text-light pl-4"><b><?= $val['nome'] ?></b></h2>
+                        </div>
+                        <div class="bg-light pt-2 px-lg-4">
+                            <?php foreach ($val['produtos'] as $key => $value) : ?>
+                                <div class="pb-2">
+                                    <div class="linewrapper">
+                                        <span class="text-title"><?= $value['nome'] ?></span>
+                                        <div class="middle"></div>
+                                        <span class="text-title">R$ <?= number_format($value['preco'], 2, ",", ".") ?></span>
+                                    </div>
+                                    <div class="ingredients"><?= $value['descricao'] ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <div class="card">
+                    <div class="bg-title py-3">
+                        <h2 class="text-light pl-4"><b>Onde estamos</b></h2>
+                    </div>
+                    <div class="bg-light py-2 px-4">
+                        <h5 class="pl-4 pb-2 text-center">Horário de atendimento: <?= $usuario['horario'] ?></h5>
+                        <iframe src="https://www.google.com.br/maps?q='<?= $usuario['rua'].", ".$usuario['bairro'].", ".$usuario['cidade'] ?>',&output=embed" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <h5 class="text-center pt-2"><?= $usuario['rua'] ?><br><?= $usuario['bairro'] ?></h5>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>

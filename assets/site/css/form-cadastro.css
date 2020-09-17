@@ -1,0 +1,69 @@
+.radio-tile-group {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.radio-tile-group .input-container {
+    position: relative;
+    margin-right: 1rem;
+}
+
+.radio-tile-group .input-container .radio-button {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+
+.radio-tile-group .input-container .radio-tile {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 280px;
+    height: 463px;
+    background-color: #ffffff94;
+    transition: background-color 0.5s ease-out;
+    box-shadow: 33px 33px 67px #893536, -33px -33px 67px #ff878c;
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    border-radius: 50px;
+    -webkit-transition: -webkit-transform 300ms ease;
+    transition: -webkit-transform 300ms ease;
+    transition: transform 300ms ease;
+    transition: transform 300ms ease, -webkit-transform 300ms ease;
+}
+
+.radio-tile-group .input-container .radio-tile-label {
+    text-align: center;
+    font-size: 0.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #c3c2c2 !important;
+}
+
+.radio-tile-group .input-container .radio-button:checked+.radio-tile {
+    background-color: white;
+    color: white;
+    box-shadow: 0 !important;
+}
+
+.radio-tile-group .input-container .radio-button:checked+.radio-tile .radio-tile-label {
+    color: white;
+    background-color: white;
+}
+
+.radio-tile:hover{
+    background-color: white !important;
+}

@@ -1,0 +1,59 @@
+ <div class="modal fade custom-modal" id="modaleditProduct<?= $value['id_produto'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+             <div class="modal-header bg-primary text-light">
+                 <h5 class="modal-title"><?= $value['nome'] ?></h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <form action="<?= PATH . "admin/produtos/" . $value['id_produto'] ?>" method="POST" enctype="multipart/form-data">
+                 <div class="modal-body">
+                     <div class="container-fluid">
+                         <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria'] ?>">
+                         <input type="hidden" name="imagem" value="<?= $value['imagem'] ?>">
+                         <label for="input_file">Alterar imagem</label>
+                         <div class="altera-imagem" data-id="<?= $value['id_produto'] ?>" style="text-align: center; cursor: pointer;">
+                             <?php if (!empty($value['imagem'])) : ?>
+                                 <img src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
+                             <?php else : ?>
+                                 <img class="card-img-top" src="https://via.placeholder.com/253x180?text=Imagem+Produto" alt="">
+                             <?php endif; ?>
+                         </div>
+                         <div id="imagem-input<?= $value['id_produto'] ?>" style="display: none;" class="form-group">
+                             <input type="file" name="imagem-produto" class="file-input" data-jfiler-limit="1" accept="image/*">
+                         </div>
+                         <div class="form-group">
+                             <label for="prod-nome">Nome</label>
+                             <input type="text" class="form-control" name="nome" value="<?= $value['nome'] ?>" placeholder="">
+                         </div>
+                         <div class="form-group">
+                             <label for="">Descrição</label>
+                             <textarea class="form-control" name="descricao" rows="3"><?= $value['descricao'] ?></textarea>
+                         </div>
+                         <div class="form-row">
+                             <div class="col-xl-6">
+                                 <label for="prod-preco">Preço(R$)</label>
+                                 <input type="number" min="0.00" step="0.01" value="<?= $value['preco'] ?>" class="form-control" name="preco" placeholder="">
+                             </div>
+                             <div class="col-xl-6 pl-5">
+                                 <div class="form-group">
+                                     <label for="prod-ativo">Ativo</label><br>
+                                    <label class="switch float-left">
+                                        <input type="checkbox" class="success" name="ativo" value="<?= $value['ativo'] ?>" <?= ($value['ativo'] == 1)?"checked":"" ?> >
+                                        <span class="slider round"></span>
+                                    </label>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="modal-footer">
+                     <a href="javascript:;" onclick="remove('<?= PATH . '/admin/produtos/' . $value['id_produto'] . '/delete' ?>')" class="btn btn-danger mr-auto text-light"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</a>
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                     <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o pr-1" aria-hidden="true"></i>Salvar</button>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </div>
