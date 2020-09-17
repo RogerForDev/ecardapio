@@ -11,8 +11,8 @@ define('DBUSER', 'root');
 define('DBPASS', 'bancodedados');
 define('DBNAME', 'ecardapio');
 
-// define('PATH', "http://localhost/ecardapio/");
-// define('DIR_PATH', $_SERVER['DOCUMENT_ROOT']."/ecardapio");
+define('PATH', "http://localhost/ecardapio/");
+define('DIR_PATH', $_SERVER['DOCUMENT_ROOT']."/ecardapio");
 
-define('PATH', "http://bfe42e2169b3.ngrok.io/");
-define('DIR_PATH', $_SERVER['DOCUMENT_ROOT']."/");
+// define('PATH', "http://bfe42e2169b3.ngrok.io/");
+// define('DIR_PATH', $_SERVER['DOCUMENT_ROOT']."/");
