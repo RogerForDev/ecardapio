@@ -87,7 +87,7 @@
                 <div class="col-xl-12">
                     <a href="#" data-toggle="modal" data-target="#modalCategoria" type="text" class="btn-block bg-light btn btn-lg text-center mb-4" readonly="true" title="Clique para cadastrar uma nova categoria!" data-toggle="tooltip" data-placement="top"><i class="fa fa-plus"></i> NOVA CATEGORIA</a>
                     <?php if (count($categorias) < 1) : ?>
-                        <div class="jumbotron text-center" style="opacity:.9">
+                        <div id="card-sem-categoria" class="jumbotron text-center" style="opacity:.9">
                             <h1 class="display-3 text-muted py-5">Bem vindo ao eCardapio!</h1>
                             <h3 class="text-muted">Você ainda não possui nenhum produto cadastrado<br>Vamos começar criando uma nova <b class="text-dark">categoria</b><br>Clique no botão de <b class="text-dark">nova categoria</b> acima</h3>
                         </div>

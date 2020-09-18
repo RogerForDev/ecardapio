@@ -33,6 +33,7 @@ $(document).on("submit", "#form-categoria", function(event)
                 $("#conteudo").append(linha);
 
                 $("#modalCategoria").modal("hide");
+                $("#card-sem-categoria").hide();
             }else{
                 console.log(data);
                 Swal.fire({
