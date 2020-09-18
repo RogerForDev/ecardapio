@@ -105,7 +105,7 @@
                 <?php foreach ($val['produtos'] as $key => $value) : ?>
                     <div class="col-lg-3 col-6 pb-4 px-1 px-lg-2">
                         <!-- Button trigger modal -->
-                        <a href="#" class="text-decoration-none" data-toggle="modal" data-target="#modalAvaliacao<?= $key ?>">
+                        <a href="#" class="text-decoration-none" data-toggle="modal" data-target="#modalAvaliacao<?= $value['id_produto'] ?>">
                             <div class=" text-center">
                                 <?php if ($value["imagem"] != "") : ?>
                                     <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
@@ -137,7 +137,7 @@
                         </a>
                     </div>
                     <!-- Modal -->
-                    <div class="modal fade av" id="modalAvaliacao<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal fade av" id="modalAvaliacao<?= $value['id_produto'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header bg-primaria text-claro">

@@ -8,7 +8,7 @@
         <input type="hidden" id="path" value="<?= PATH ?>">
 
         <div id="conteudo" class="container mt-4 mt-lg-0">
-            <?php if (isset($cardapio['imagem']) && $cardapio['imagem'] != "") : ?>
+            <?php if (is_file($cardapio['imagem']) && isset($cardapio['imagem']) && $cardapio['imagem'] != "") : ?>
                 <img src="<?= PATH . $cardapio['imagem'] ?>" class="w-100 d-block rounded-lg">
             <?php else : ?>
                 <div class="image-default-banner rounded-lg">

@@ -129,7 +129,7 @@
 </head>
 
 <body>
-    <?php if(isset($_SESSION['User'])):?>
+    <?php if(isset($_SESSION['User']) && $_SESSION['User']['id_usuario'] == $usuario['id_usuario']):?>
     <div class="no-print position-absolute" style="top:1rem;right:1rem;z-index:9">
         <a name="" id="" class="btn btn-light " href="#" onclick="downloadImg('<?= slugify($usuario['estabelecimento']) ?>')" role="button"><i class="fa fa-download" aria-hidden="true"></i> Download cardápio</a>
     </div>
@@ -143,7 +143,7 @@
     <div class="container-fluid bg-fundo" id="conteudo-cardapio">
         <div class="row">
             <div class="col-xl-12 px-0">
-                <?php if (isset($fundo) && $fundo != "") : ?>
+                <?php if (is_file($fundo) && isset($fundo) && $fundo != "") : ?>
                     <img src="<?= PATH . $fundo ?>" class="img-fluid w-100 d-block shadow">
                 <?php else : ?>
                     <div style="background-image: url(<?= PATH ?>assets/site/img/styleguide/food.png);height:155px"></div>
