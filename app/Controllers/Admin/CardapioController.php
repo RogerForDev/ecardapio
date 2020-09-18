@@ -33,6 +33,9 @@ class CardapioController extends Controller
             'flag_entrega'=>$flag_entrega
         ]);
 
+        $us = $usuario->select()->findBy('id_usuario', $user['id_usuario']);
+        $_SESSION['User'] = $us;
+
         if($cardapio){
             redirect(PATH.'admin');
             // echo json_encode(array("type" => "sucesso", "message" => "Cardapio cadastrado com sucesso!", "id" => $cardapio, "path" => PATH."admin"));
