@@ -69,9 +69,7 @@ class TemaController extends Controller
         $item = new Tema;
 
         $updated = $item->find('id_tema', $args['id'])->update($data);
-        
-        dd($updated);
-
+ 
 		if ($updated) {
 			flash('message', success('Atualizado com sucesso'));
 			return back();

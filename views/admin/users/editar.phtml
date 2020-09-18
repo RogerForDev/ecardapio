@@ -156,21 +156,21 @@
                                  <div class="form-group">
                                      <label>Possui wi-fi no local?</label><br>
                                      <label class="switch float-left">
-                                         <input type="checkbox" class="success" name="flag_wifi" value="<?= $usuario['flag_wifi'] ?>" <?= ($usuario['flag_wifi'] == 1) ? "checked" : "" ?>>
+                                         <input type="checkbox" class="success" name="flag_wifi" <?= (@$usuario['flag_wifi'] == 1) ? "checked" : "" ?>>
                                          <span class="slider round"></span>
                                      </label>
                                  </div>
                                  <div class="form-group">
                                      <label>Aceita cartão crédito/débito?</label><br>
                                      <label class="switch float-left">
-                                         <input type="checkbox" class="success" name="flag_cartao" value="<?= $usuario['flag_cartao'] ?>" <?= ($usuario['flag_cartao'] == 1) ? "checked" : "" ?>>
+                                         <input type="checkbox" class="success" name="flag_cartao" <?= (@$usuario['flag_cartao'] == 1) ? "checked" : "" ?>>
                                          <span class="slider round"></span>
                                      </label>
                                  </div>
                                  <div class="form-group">
                                      <label class="w-100">Faz entrega?</label>
                                      <label class="switch float-left">
-                                         <input type="checkbox" class="success" name="flag_entrega" value="<?= $usuario['flag_entrega'] ?>" <?= ($usuario['flag_entrega'] == 1) ? "checked" : "" ?>>
+                                         <input type="checkbox" class="success" name="flag_entrega" <?= (@$usuario['flag_entrega'] == 1) ? "checked" : "" ?>>
                                          <span class="slider round"></span>
                                      </label>
                                  </div>

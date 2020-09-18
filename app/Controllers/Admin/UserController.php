@@ -24,10 +24,14 @@ class UserController extends Controller
             'bairro' => 'required',
             'numero' => 'required'
         ]);
-        
+
 		if ($validate->hasErrors()) {
 			return back();
         }
+
+        $data->flag_wifi = ($data->flag_wifi == 'on')?1:0;
+        $data->flag_cartao = ($data->flag_cartao == 'on')?1:0;
+        $data->flag_entrega = ($data->flag_entrega == 'on')?1:0;
         
         $user = new User;
         $cardapio = new Cardapio;

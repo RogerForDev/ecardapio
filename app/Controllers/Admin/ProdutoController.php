@@ -20,6 +20,7 @@ class ProdutoController extends Controller
         $produto = new Produto;
         $categoria = new Categoria;       
         $tema = new Tema;       
+        $user = new User;
 
         $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
 
@@ -34,7 +35,7 @@ class ProdutoController extends Controller
         $prods = $produto->getProdByCardapio($id_cardapio);
         (!empty($prods))?$flag_produtos = 1 : $flag_produtos = 0;
 
-        $user = User::getFromSession();
+        $user = $user::getFromId(User::getFromSession()['id_usuario']);
 
         $vars = [
             "page" => "home",	
