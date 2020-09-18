@@ -144,7 +144,7 @@
         <div class="row">
             <div class="col-xl-12 px-0">
                 <?php if (is_file($fundo) && isset($fundo) && $fundo != "") : ?>
-                    <img src="<?= PATH . $fundo ?>" class="img-fluid w-100 d-block shadow">
+                    <img src="<?= PATH . $fundo ?>" style="height: 300px;" class="img-fluid w-100 d-block shadow">
                 <?php else : ?>
                     <div style="background-image: url(<?= PATH ?>assets/site/img/styleguide/food.png);height:155px"></div>
                 <?php endif; ?>
