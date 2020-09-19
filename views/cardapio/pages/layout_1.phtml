@@ -38,7 +38,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 228px;
+        padding: 1rem 5rem;
         background-color: #cccccc;
     }
 
@@ -51,6 +51,28 @@
 
     .image-default>span {
         color: #808080;
+    }
+
+    .image-default-banner {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 150px;
+        background-color: #cccccc;
+    }
+
+    .image-default-banner>img {
+        width: 100px;
+        filter: grayscale();
+        opacity: .5;
+        padding-bottom: .5rem;
+    }
+
+    .image-default-banner span {
+        color: #808080;
+        text-align: center;
     }
 
     p {
@@ -88,7 +110,27 @@
         </div>
     </div>
     <?php foreach ($cardapio as $key => $val) : if (!empty($val['produtos'])) : ?>
-            <div class="row" id="<?= slugify($val['nome']) ?>">
+        <div class="row" id="<?= slugify($val['nome']) ?>">
+            <?php if($key == 1): ?>
+                <div class="mx-auto col-7 text-center" >
+                    <a href="#">
+                        <img src="<?= PATH ?>assets/site/img/anuncios/prats.jpg" class="img-fluid">
+                    </a>
+                </div>
+            <?php elseif($key > 1): ?>
+                <div class="image-default-banner px-2">
+                    <div class="d-block">
+                        <span><i class="fa fa-bullhorn fa-4x" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="d-block">
+                        <span class="h4 d-block">ANUNCIE AQUI</span>
+                        <span>Espaço reservado para anúncios publicitários, anunciantes entre em contato com contato@ecardapio.com.br</span>
+                    </div>
+                    <div class="d-block">
+                        <span><i class="fa fa-bullhorn fa-4x fa-flip-horizontal" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+            <?php endif; ?>
                 <div class="col-12">
                     <div class="text-center py-4">
                         <div class="dropdown open">
@@ -100,7 +142,7 @@
                                 endforeach; ?>
                             </div>
                         </div>
-                    </div>
+                    </div>                   
                 </div>
             </div>
             <div class="row">
