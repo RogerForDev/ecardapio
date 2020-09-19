@@ -113,7 +113,9 @@
                                     <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
                                 <?php else : ?>
                                     <div class="image-default card-img-top">
-                                        <img src="<?= PATH . $logo ?>" >
+                                        <?php if(isset($logo) && !empty($logo)): ?>
+                                            <img src="<?= PATH . $logo ?>" >
+                                        <?php endif; ?>
                                         <span>Sem imagem</span>
                                     </div>
                                 <?php endif; ?>

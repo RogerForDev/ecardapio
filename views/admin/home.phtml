@@ -48,7 +48,9 @@
                                         <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
                                     <?php else : ?>
                                         <div class="image-default-prod card-img-top">
-                                        <img src="<?= PATH . $cardapio['logo'] ?>" >
+                                        <?php if(isset($cardapio['logo']) && !empty($cardapio['logo'])): ?>
+                                            <img src="<?= PATH . $cardapio['logo'] ?>" >
+                                        <?php endif; ?>
                                         <span>Sem imagem</span>
                                     </div>
                                     <?php endif; ?>
