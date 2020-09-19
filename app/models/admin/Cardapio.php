@@ -22,4 +22,13 @@ class Cardapio extends Model {
             ":logo"=> $logo
         ]);
     }
+
+    public function update_slug($id_cardapio, $slug){
+        $sql = "UPDATE tb_cardapio SET slug = :slug WHERE id_cardapio = :id_cardapio";
+        $create = $this->connect->prepare($sql);
+        $create->execute([
+            ":id_cardapio"=>$id_cardapio,
+            ":slug"=>$slug
+        ]);
+    }
 }

@@ -55,6 +55,9 @@ class UserController extends Controller
         $updated = $user->find('id_usuario', $data->id_usuario)->update((array) $data);
 
 		if ($updated) {
+            $slug = slugify($data->estabelecimento);
+            $cardapio->update_slug($id_cardapio, $slug);
+            
             $_SESSION[User::SESSION] = get_object_vars($data);
 			flash('message', success('Usuário Atualizado com sucesso'));
 			return back();
