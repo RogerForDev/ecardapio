@@ -38,7 +38,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        padding: 1rem 5rem;
+        padding: 3rem 5rem;
         background-color: #cccccc;
     }
 
@@ -248,13 +248,13 @@
                                                     <form id="form-avaliacao<?= $value['id_produto'] ?>" action="#" method="post">
                                                         <input type="hidden" name="id_produto" value="<?= $value['id_produto'] ?>">
                                                         <div class="row">
-                                                            <div class="col-9">
+                                                            <div class="col-lg-9">
                                                                 <div class="form-group">
                                                                     <label>Nome</label>
                                                                     <input type="text" class="form-control" name="nome" placeholder="Digite seu nome" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-3">
+                                                            <div class="col-lg-3">
                                                                 <div class="form-group">
                                                                     <label class="pb-2">Avaliação</label>
                                                                     <select name="nota" class="star">
@@ -269,13 +269,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-9">
+                                                            <div class="col-lg-9">
                                                                 <div class="form-group">
                                                                     <label>Comentário</label>
                                                                     <textarea class="form-control" maxlength="250" name="comentario" id="" rows="3"></textarea>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-3 align-self-end">
+                                                            <div class="col-lg-3 align-self-end">
                                                                 <div class="form-group">
                                                                     <button type="button" onclick="avaliar('<?= $value['id_produto'] ?>')" class="btn btn-primary py-2 btn-block">Enviar</button>
                                                                 </div>
