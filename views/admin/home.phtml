@@ -1,6 +1,6 @@
 <div class="content-page pt-5">
     <?php include "users/editar.phtml"; ?>
-    <?php include "tema/novo.phtml"; ?>
+    
     <?php include "tema/index.phtml"; ?>
     <!-- Start content -->
     <div class="content" style="background-color: #1a1a1a">
@@ -16,16 +16,10 @@
                 </div>
             <?php endif; ?>
             <div class="row mb-4" style="margin-top: -7rem">
-                <div class="align-items-center col-xl-12 d-flex justify-content-between mt-4 pl-lg-4 pr-lg-5">
+                <div class="align-items-center col-xl-12 d-flex justify-content-between mt-4 pl-lg-4">
                     <span class="main-title text-light" style="font-family: <?= $tema['fonte'] ?>;"><?= $usuario['estabelecimento'] ?></span>
-                    <div class="btn-group float-right">
-                        <a class="btn btn-light" data-toggle="modal" href="#modalTemas"><i class="fa fa-paint-brush pr-2" aria-hidden="true"></i>Trocar Aparência</a>
-                        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalnewTema"><i class="fa fa-plus pr-2" aria-hidden="true"></i>Novo tema</a>
-                        </div>
+                    <div class="float-right pr-3">
+                        <a class="btn btn-light" data-toggle="modal" href="#modalTemas"><i class="fa fa-paint-brush pr-2" aria-hidden="true"></i>Trocar Aparência</a>                       
                     </div>
                 </div>
             </div>
