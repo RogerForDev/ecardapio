@@ -117,14 +117,15 @@ class ProdutoController extends Controller
         
 		flash('message', error('Erro ao cadastrar, tente novamente'));
 		return back();      
-    }        
+    }    
+
     public function update($request, $response, $args){
 
         $validate = new Validate;
 
 		$data = (array) $validate->validate([
 			'nome' => 'required'
-		]);
+        ]);
 
 		if ($validate->hasErrors()) {
 			return back();
@@ -135,15 +136,11 @@ class ProdutoController extends Controller
             $data['imagem'] = $upload->upload("imagem-produto", "produto");
         }
 
-        if(isset($_POST['ativo'])){
-            $data['ativo'] = 1;
-        }else{
-            $data['ativo'] = 0;
-        }
+        $data['ativo'] = ($data['ativo'] == 'on')?1:0;
         
         $item = new Produto;
 
-		$updated = $item->find('id_produto', $args['id'])->update( $data);
+		$updated = $item->find('id_produto', $args['id'])->update($data);
 
 		if ($updated) {
 			flash('message', success('Atualizado com sucesso'));
