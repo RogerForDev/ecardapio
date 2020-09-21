@@ -161,21 +161,33 @@
                     <div class="col-xl py-4">
                         <div class="title-header text-center text-lg-left text-claro mt-n4 mb-4"><?= $usuario['estabelecimento'] ?></div>
                         <div class="row">
-                            <div class="col-lg-auto d-flex align-items-center justify-content-center mr-2 pl-xl-4 pb-5 pb-lg-0">
-                                <i class="fa fa-whatsapp fa-3x text-light mr-2" aria-hidden="true"></i>
-                                <strong class="text-light h3"><?= $usuario['whatsapp'] ?></strong>
-                            </div>
+                            <?php if(isset($usuario['whatsapp']) && !empty($usuario['whatsapp'])):?>
+                                <div class="col-lg-auto d-flex align-items-center justify-content-center mr-2 pl-xl-4 pb-5 pb-lg-0">
+                                    <i class="fa fa-whatsapp fa-3x text-light mr-2" aria-hidden="true"></i>
+                                    <strong class="text-light h3"><?= $usuario['whatsapp'] ?></strong>
+                                </div>
+                            <?php endif; ?>
                             <div class="col-lg d-flex justify-content-around">
                                 <?php if ($usuario['flag_wifi'] == 1) : ?>
                                     <div class="d-block text-center">
                                         <i class="fa fa-wifi text-light fa-2x pb-2" aria-hidden="true"></i>
                                         <p class="text-light">Possui Wi-fi</p>
                                     </div>
+                                <?php else: ?>
+                                    <div class="d-block text-center">
+                                        <i class="fa fa-wifi text-muted fa-2x pb-2" aria-hidden="true"></i>
+                                        <p class="text-light">Não possui wi-fi</p>
+                                    </div>
                                 <?php endif; ?>
                                 <?php if ($usuario['flag_cartao'] == 1) : ?>
                                     <div class="d-block text-center">
                                         <i class="fa fa-credit-card text-light fa-2x pb-2" aria-hidden="true"></i>
                                         <p class="text-light">Aceita cartão crédito</p>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="d-block text-center">
+                                        <i class="fa fa-credit-card text-muted fa-2x pb-2" aria-hidden="true"></i>
+                                        <p class="text-light">Não aceita cartão crédito</p>
                                     </div>
                                 <?php endif; ?>
                                 <div class="d-block text-center">
