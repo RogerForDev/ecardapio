@@ -151,7 +151,7 @@
                         <!-- Button trigger modal -->
                         <a href="#" class="text-decoration-none" data-toggle="modal" data-target="#modalAvaliacao<?= $value['id_produto'] ?>">
                             <div class=" text-center">
-                                <?php if (is_file($value["imagem"]) && $value["imagem"] != "") : ?>
+                                <?php if (isset($value["imagem"]) && $value["imagem"] != "") : ?>
                                     <img class="card-img-top" src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
                                 <?php else : ?>
                                     <div class="image-default card-img-top">
