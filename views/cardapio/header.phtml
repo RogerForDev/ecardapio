@@ -194,10 +194,12 @@
                                     <i class="fa fa-motorcycle <?= ($usuario['flag_entrega'] == 1) ? 'text-light' : 'text-muted' ?> fa-2x pb-2" aria-hidden="true"></i>
                                     <p class="text-light text-center"><?= ($usuario['flag_entrega'] == 1) ? 'Fazemos entrega' : 'Não fazemos entrega' ?></p>
                                 </div>
-                                <?php if ($usuario['facebook'] != "") : ?>
+                                <?php $facebook_formatado = explode('/', $usuario['facebook']);
+                                $tamanho = count($facebook_formatado)?>
+                                <?php if ($usuario['facebook'] != "" && $tamanho > 3) : ?>
                                     <a href="<?= $usuario['facebook'] ?>" target="_blank" role="button" class="d-flex flex-column align-items-center px-3 text-decoration-none" title="Curta nossa página do Facebook" data-toggle="tooltip" data-placement="top">
                                         <i class="fa fa-facebook-square text-light fa-2x pb-2" aria-hidden="true"></i>
-                                        <span class="text-light">@<?= explode('/', $usuario['facebook'])[3] ?></span>
+                                        <span class="text-light">@<?= $facebook_formatado[3] ?></span>
                                     </a>
                                 <?php endif; ?>
                                 <?php if ($usuario['instagram'] != "") : ?>
