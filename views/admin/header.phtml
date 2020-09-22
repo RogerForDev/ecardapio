@@ -65,7 +65,7 @@
         </form>
         <div class="btn-group">
             <button type="button" class="btn btn-transparent dropdown-toggle px-1 px-lg-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?php if (is_file($cardapio['logo']) && isset($cardapio['logo'])) : ?>
+                <?php if (isset($cardapio['logo']) && isset($cardapio['logo'])) : ?>
                     <img src="<?= PATH . $cardapio['logo'] ?>" width="40px" alt="Profile image" class="bg-light p-1 rounded-circle">
                 <?php else : ?>
                     <img src="<?= PATH ?>assets/admin/images/avatars/avatar7.png" width="40px" alt="Profile image" class="bg-light rounded-circle">

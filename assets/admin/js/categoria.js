@@ -51,6 +51,26 @@ $(document).on("submit", "#form-categoria", function(event)
     });
 });
 
+$(".salvar-produto1").on("click", function(){
+    nome = $("#nome1").val();
+    descricao = $("#descricao1").val();
+    preco = $("#preco1").val();
+
+    if(nome != "" && descricao != "" && preco != ""){
+        $(this).css("pointer-events: none;")
+    }
+});
+
+$(".salvar-produto2").on("click", function(){
+    nome = $("#nome2").val();
+    descricao = $("#descricao2").val();
+    preco = $("#preco2").val();
+
+    if(nome != "" && descricao != "" && preco != ""){
+        $(this).css("pointer-events: none;")
+    }
+});
+
 $(document).on("click", ".novo-produto-generico", function(){
     let categoria = $(this).data("categoria");
     let idCategoria = $(this).data("id");

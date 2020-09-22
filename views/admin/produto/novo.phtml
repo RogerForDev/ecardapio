@@ -17,23 +17,23 @@
                         </div>
                         <div class="form-group">
                             <label for="prod-nome">Nome</label>
-                            <input type="text" class="form-control" name="nome" placeholder="Escreva o nome do produto" parsley-trigger="change" required >
+                            <input id="nome1" type="text" class="form-control" name="nome" placeholder="Escreva o nome do produto" parsley-trigger="change" required >
                         </div>
                         <div class="form-group">
                             <label for="">Descrição/Ingredientes</label>
-                            <textarea class="form-control" name="descricao" rows="3"></textarea>
+                            <textarea id="descricao1" class="form-control" name="descricao" rows="3"></textarea>
                         </div>
                         <div class="form-row">
                             <div class="col-xl-6">
                                 <label for="prod-preco">Preço(R$)</label>
-                                <input id="preco-produto-cadastro" type="text" class="form-control" name="preco" parsley-trigger="change" required placeholder="0,00">
+                                <input id="preco1" type="text" class="form-control preco-produto-cadastro" name="preco" parsley-trigger="change" required placeholder="0,00">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o pr-1" aria-hidden="true"></i>Salvar</button>
+                    <button type="submit" class="btn btn-success salvar-produto1"><i class="fa fa-floppy-o pr-1" aria-hidden="true"></i>Salvar</button>
                 </div>
             </form>
         </div>

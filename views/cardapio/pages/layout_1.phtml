@@ -193,7 +193,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <?php if (is_file($value["imagem"]) && $value["imagem"] != "") : ?>
+                                    <?php if (isset($value["imagem"]) && $value["imagem"] != "") : ?>
                                         <img class="card-img-top" src="<?= PATH . $value['imagem'] ?>">
                                     <?php endif; ?>
                                     <div>
