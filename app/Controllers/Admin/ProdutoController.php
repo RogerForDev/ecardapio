@@ -21,6 +21,7 @@ class ProdutoController extends Controller
         $categoria = new Categoria;       
         $tema = new Tema;       
         $user = new User;
+        $ava = new Avaliacao;
 
         $id_cardapio = Cardapio::getFromUser()['id_cardapio'];
 
@@ -30,6 +31,9 @@ class ProdutoController extends Controller
 
         foreach($categorias as &$cat){
             $cat['produtos'] = $produto->select()->where("id_categoria", $cat['id_categoria'])->get();
+            foreach($cat['produtos'] as &$prod){
+                $prod['comentarios'] = $ava->select('id_avaliacao, comentario')->where("id_produto", $prod['id_produto'])->orderBy('data', 'asc')->get();
+            }
         }
 
         $prods = $produto->getProdByCardapio($id_cardapio);
@@ -154,6 +158,19 @@ class ProdutoController extends Controller
     {   
         $item = new Produto;
 		$deleted = $item->find('id_produto', $args['id'])->delete();
+
+		if ($deleted) {
+			flash('message', success('Deletado com sucesso'));
+			return back();
+		}
+
+		flash('message', error('Erro ao deletar'));
+		back();
+    }
+    public function delete_comentario($request, $response, $args)
+    {   
+        $item = new Avaliacao;
+		$deleted = $item->find('id_avaliacao', $args['id'])->delete();
 
 		if ($deleted) {
 			flash('message', success('Deletado com sucesso'));

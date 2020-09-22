@@ -14,16 +14,16 @@
                          <input type="hidden" name="imagem" value="<?= $value['imagem'] ?>">
                          <label for="input_file">Alterar imagem</label>
                          <?php if (isset($value['imagem']) && $value['imagem'] != "") : ?>
-                         <div class="altera-imagem" data-id="<?= $value['id_produto'] ?>" style="text-align: center; cursor: pointer;">
-                            <img src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
-                        </div>
-                        <div id="imagem-input<?= $value['id_produto'] ?>" style="display: none;" class="form-group">
+                             <div class="altera-imagem" data-id="<?= $value['id_produto'] ?>" style="text-align: center; cursor: pointer;">
+                                 <img src="<?= thumbUrl(PATH . $value['imagem'], 260, 220) ?>">
+                             </div>
+                             <div id="imagem-input<?= $value['id_produto'] ?>" style="display: none;" class="form-group">
+                                 <input type="file" name="imagem-produto" class="file-input" data-jfiler-limit="1" accept="image/*">
+                             </div>
+                         <?php else : ?>
                              <input type="file" name="imagem-produto" class="file-input" data-jfiler-limit="1" accept="image/*">
-                         </div>
-                        <?php else : ?>
-                            <input type="file" name="imagem-produto" class="file-input" data-jfiler-limit="1" accept="image/*">
-                        <?php endif; ?>
-                        
+                         <?php endif; ?>
+
                          <div class="form-group">
                              <label for="prod-nome">Nome</label>
                              <input type="text" class="form-control" name="nome" value="<?= $value['nome'] ?>" placeholder="">
@@ -40,13 +40,42 @@
                              <div class="col-xl-6 pl-5">
                                  <div class="form-group">
                                      <label for="prod-ativo">Ativo</label><br>
-                                    <label class="switch float-left">
-                                        <input type="checkbox" class="success" name="ativo" <?= ($value['ativo'] == 1)?"checked":"" ?> >
-                                        <span class="slider round"></span>
-                                    </label>
+                                     <label class="switch float-left">
+                                         <input type="checkbox" class="success" name="ativo" <?= ($value['ativo'] == 1) ? "checked" : "" ?>>
+                                         <span class="slider round"></span>
+                                     </label>
                                  </div>
                              </div>
                          </div>
+                         <?php if(is_array($value['comentarios']) && !empty($value['comentarios'])) : ?>
+                         <div class="form-row mt-3">
+                             <div class="col-xl-12">
+                                 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                     <i class="fa fa-comment" aria-hidden="true"></i> Comentários
+                                 </a>
+                                 <div class="collapse" id="collapseExample">
+                                     <div class="border">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Comentario</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach($value['comentarios'] as $key => $value): ?>
+                                                    <tr>
+                                                        <td scope="row" class="text-break"><?= $value['comentario']?></td>
+                                                        <td class="text-center"><a class="btn btn-danger btn-sm" href="javascript:;" onclick="remove('<?= PATH . '/admin/comentario/' . $value['id_avaliacao'] . '/delete' ?>')"><i class="fa fa-trash" aria-hidden="true"></i></a> </td>
+                                                    </tr>
+                                                <?php endforeach; ?>                                                
+                                            </tbody>
+                                        </table> 
+                                    </div>
+                                 </div>
+                             </div>
+                         </div>    
+                         <?php endif; ?>                    
                      </div>
                  </div>
                  <div class="modal-footer">
