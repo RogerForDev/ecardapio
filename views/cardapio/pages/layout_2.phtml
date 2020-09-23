@@ -78,6 +78,7 @@
                         <img src="<?= PATH ?>assets/site/img/anuncios/prats-quad.png" class="img-fluid">
                     </a>
                 </div>
+                <?php if(!empty($usuario['rua']) && !empty($usuario['bairro']) && !empty($usuario['cidade'])): ?>
                 <div class="card">
                     <div class="bg-title py-3">
                         <h2 class="text-light pl-4"><b>Onde estamos</b></h2>
@@ -88,6 +89,7 @@
                         <h5 class="text-center pt-2"><?= $usuario['rua'] ?><br><?= $usuario['bairro'] ?></h5>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </div>        
     </div>
