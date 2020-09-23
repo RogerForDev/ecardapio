@@ -15,14 +15,7 @@ class UserController extends Controller
         $validate = new Validate;
 
 		$data = $validate->validate([
-			'nome' => 'required',
-            'email' => 'required:email',
-            'estabelecimento' => 'required',
-            'horario' => 'required',
-            'cidade' => 'required',
-            'rua' => 'required',
-            'bairro' => 'required',
-            'numero' => 'required'
+            'email' => 'email',
         ]);
 
 		if ($validate->hasErrors()) {
