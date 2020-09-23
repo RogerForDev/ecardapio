@@ -26,7 +26,6 @@
 		  size: 180,
           value: '<?= PATH.'web/'.$cardapio['slug'].'?t='.base64_encode($cardapio['slug'].$cardapio['id_cardapio']) ?>'
 		});
-		console.log('<?= base64_encode($cardapio['slug'].$cardapio['id_cardapio']) ?>');
 		$('#qr').attr('src', qr.toDataURL());
       })();
 </script>
